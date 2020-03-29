@@ -8,6 +8,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -32,36 +33,22 @@ import java.awt.SystemColor;
 import javax.swing.JInternalFrame;
 import javax.swing.Box;
 import java.awt.Rectangle;
+import javax.swing.border.LineBorder;
+import javax.swing.UIManager;
 
 public class LoginScreen extends JFrame {
-
+	// MARK: Attributes
 	private JPanel background;
-	private JTextField textField;
-	private JPasswordField passwordField;
-	int mouseX;
-	int mouseY;
+	private JTextField emailTextField;
+	private JPasswordField passwordTextField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginScreen frame = new LoginScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
 	public LoginScreen() {
-		setBounds(new Rectangle(500, 500, 0, 0));
+		// MARK Properties_Screen
+		setBounds(new Rectangle(0, 0, 0, 0));
 		setAlwaysOnTop(true);
 		setUndecorated(true);
 		setForeground(SystemColor.textHighlight);
@@ -69,6 +56,7 @@ public class LoginScreen extends JFrame {
 		setModalExclusionType(ModalExclusionType.TOOLKIT_EXCLUDE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 719, 502);
+		this.setLocationRelativeTo(null);
 		background = new JPanel();
 		background.setAutoscrolls(true);
 		background.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -84,29 +72,19 @@ public class LoginScreen extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel draggScreen = new JLabel("");
-		draggScreen.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				mouseX = e.getX();
-				mouseY = e.getY();
-			}
-		});
-		draggScreen.addMouseMotionListener(new MouseMotionAdapter() {
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				int cordinateX = e.getXOnScreen();
-				int cordinateY = e.getXOnScreen();
-				
-				setLocation(cordinateX - mouseX, cordinateY - mouseY);
-			}
-		});
-		draggScreen.setBounds(0, 0, 300, 44);
+		draggScreen.setHorizontalAlignment(SwingConstants.CENTER);
+		draggScreen.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		draggScreen.setBounds(0, 0, 365, 44);
 		panel.add(draggScreen);
 		
-		textField = new JTextField();
-		textField.setBounds(440, 183, 184, 42);
-		background.add(textField);
-		textField.setColumns(10);
+		emailTextField = new JTextField();
+		emailTextField.setFont(new Font("Verdana", Font.PLAIN, 14));
+		emailTextField.setForeground(UIManager.getColor("SplitPaneDivider.draggingColor"));
+		emailTextField.setCaretColor(UIManager.getColor("ComboBox.disabledForeground"));
+		emailTextField.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		emailTextField.setBounds(440, 183, 222, 42);
+		background.add(emailTextField);
+		emailTextField.setColumns(10);
 		
 		JButton btnClose = new JButton("X");
 		btnClose.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -125,20 +103,20 @@ public class LoginScreen extends JFrame {
 		btnMinimize.setBounds(630, 0, 45, 45);
 		background.add(btnMinimize);
 		
-		JButton btnNewButton = new JButton("Login");
-		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton.setFont(new Font("Verdana", Font.PLAIN, 18));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBorder(null);
-		btnNewButton.setBackground(new Color(0, 102, 255));
-		btnNewButton.setBounds(440, 322, 184, 45);
-		background.add(btnNewButton);
+		JButton btnSignUp = new JButton("Login");
+		btnSignUp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnSignUp.setFont(new Font("Verdana", Font.PLAIN, 18));
+		btnSignUp.setForeground(new Color(255, 255, 255));
+		btnSignUp.setBorder(null);
+		btnSignUp.setBackground(new Color(0, 102, 255));
+		btnSignUp.setBounds(456, 319, 184, 45);
+		background.add(btnSignUp);
 		
 		JLabel lblSingUp = new JLabel("Sing Up");
 		lblSingUp.setFont(new Font("Verdana", Font.PLAIN, 28));
 		lblSingUp.setForeground(new Color(192, 192, 192));
 		lblSingUp.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSingUp.setBounds(440, 91, 184, 53);
+		lblSingUp.setBounds(456, 90, 184, 53);
 		background.add(lblSingUp);
 		
 		JLabel lblNewLabel = new JLabel("Email");
@@ -153,33 +131,76 @@ public class LoginScreen extends JFrame {
 		lblSenha.setBounds(440, 235, 46, 14);
 		background.add(lblSenha);
 		
-		JButton btnCliqueAquiPara = new JButton("Clique aqui para redefinir sua senha!");
-		btnCliqueAquiPara.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnCliqueAquiPara.setFont(new Font("Verdana", Font.PLAIN, 13));
-		btnCliqueAquiPara.setForeground(new Color(51, 51, 255));
-		btnCliqueAquiPara.setBackground(new Color(255, 255, 255));
-		btnCliqueAquiPara.setBorder(null);
-		btnCliqueAquiPara.setBounds(392, 394, 279, 23);
-		background.add(btnCliqueAquiPara);
+		JButton btnResetPassword = new JButton("Clique aqui para redefinir sua senha!");
+		btnResetPassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnResetPassword.setFont(new Font("Verdana", Font.PLAIN, 13));
+		btnResetPassword.setForeground(new Color(51, 51, 255));
+		btnResetPassword.setBackground(new Color(255, 255, 255));
+		btnResetPassword.setBorder(null);
+		btnResetPassword.setBounds(410, 417, 279, 23);
+		background.add(btnResetPassword);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(440, 249, 184, 42);
-		background.add(passwordField);
+		passwordTextField = new JPasswordField();
+		passwordTextField.setFont(new Font("Verdana", Font.PLAIN, 14));
+		passwordTextField.setForeground(UIManager.getColor("ScrollBar.trackHighlightForeground"));
+		passwordTextField.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		passwordTextField.setBounds(440, 249, 222, 42);
+		background.add(passwordTextField);
 		
 		Box horizontalBox = Box.createHorizontalBox();
 		horizontalBox.setBounds(381, 80, -16, -18);
 		background.add(horizontalBox);
 		
-		// MARK: BUTTONS ACTIONS
+		JPanel draggSecondPanel = new JPanel();
+		draggSecondPanel.setBackground(Color.WHITE);
+		draggSecondPanel.setBounds(362, 0, 269, 45);
+		background.add(draggSecondPanel);
 		
+		// MARK: ACTIONS
+		
+		 
+		// Method to make screen draggable through a JLabel bar
+		draggSecondPanel.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				Point cordinate = e.getLocationOnScreen();
+				setLocation(cordinate);
+			}
+		});
+		draggScreen.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				Point cordinate = e.getLocationOnScreen();
+				setLocation(cordinate);
+			}
+		});
+		//Method to make close Screen with custom button
 		btnClose.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		
-		
+		// Method to make Minimize Screen with custom Button
+		btnMinimize.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setState(JFrame.ICONIFIED);
+			}
+		});
+	}
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginScreen frame = new LoginScreen();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }
