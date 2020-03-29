@@ -1,3 +1,4 @@
+package view;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -36,7 +37,7 @@ import java.awt.Rectangle;
 import javax.swing.border.LineBorder;
 import javax.swing.UIManager;
 
-public class LoginScreen extends JFrame {
+public class LoginView extends JFrame {
 	// MARK: Attributes
 	private JPanel background;
 	private JTextField emailTextField;
@@ -46,7 +47,7 @@ public class LoginScreen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LoginScreen() {
+	public LoginView() {
 		// MARK Properties_Screen
 		setBounds(new Rectangle(0, 0, 0, 0));
 		setAlwaysOnTop(true);
@@ -195,7 +196,7 @@ public class LoginScreen extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginScreen frame = new LoginScreen();
+					LoginView frame = new LoginView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
