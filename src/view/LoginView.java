@@ -35,6 +35,9 @@ import javax.swing.JInternalFrame;
 import javax.swing.Box;
 import java.awt.Rectangle;
 import javax.swing.border.LineBorder;
+
+import controller.LoginController;
+
 import javax.swing.UIManager;
 
 public class LoginView extends JFrame {
@@ -105,6 +108,7 @@ public class LoginView extends JFrame {
 		background.add(btnMinimize);
 		
 		JButton btnSignUp = new JButton("Login");
+		
 		btnSignUp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSignUp.setFont(new Font("Verdana", Font.PLAIN, 18));
 		btnSignUp.setForeground(new Color(255, 255, 255));
@@ -175,6 +179,27 @@ public class LoginView extends JFrame {
 				setLocation(cordinate);
 			}
 		});
+		// Method to make Login
+		btnSignUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String email = emailTextField.getText();
+				String password = passwordTextField.getText();
+				boolean success;
+				
+				try {
+				LoginController loginController = new LoginController();
+				success = loginController.singUp(email, password);
+				
+				if(success == true) {
+					JOptionPane.showMessageDialog(null, "Usuario Logado");
+				}else {
+					JOptionPane.showMessageDialog(null, "Email ou Senha invalidos!");
+				}
+				}catch(Exception err){
+					JOptionPane.showMessageDialog(null, "Erro: " + err);
+				}
+			}
+		});
 		//Method to make close Screen with custom button
 		btnClose.addActionListener(new ActionListener() {
 			@Override
@@ -191,7 +216,6 @@ public class LoginView extends JFrame {
 			}
 		});
 	}
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
