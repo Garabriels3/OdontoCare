@@ -1,4 +1,4 @@
-package view;
+package br.com.odonto.view;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -36,14 +36,15 @@ import javax.swing.Box;
 import java.awt.Rectangle;
 import javax.swing.border.LineBorder;
 
-import controller.LoginController;
+import br.com.odonto.controller.LoginController;
+import br.com.odonto.util.ConnectionFactory;
 
 import javax.swing.UIManager;
 
 public class LoginView extends JFrame {
 	// MARK: Attributes
 	private JPanel background;
-	private JTextField emailTextField;
+	private JTextField loginTextField;
 	private JPasswordField passwordTextField;
 
 	
@@ -81,14 +82,14 @@ public class LoginView extends JFrame {
 		draggScreen.setBounds(0, 0, 365, 44);
 		panel.add(draggScreen);
 		
-		emailTextField = new JTextField();
-		emailTextField.setFont(new Font("Verdana", Font.PLAIN, 14));
-		emailTextField.setForeground(UIManager.getColor("SplitPaneDivider.draggingColor"));
-		emailTextField.setCaretColor(UIManager.getColor("ComboBox.disabledForeground"));
-		emailTextField.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
-		emailTextField.setBounds(440, 183, 222, 42);
-		background.add(emailTextField);
-		emailTextField.setColumns(10);
+		loginTextField = new JTextField();
+		loginTextField.setFont(new Font("Verdana", Font.PLAIN, 14));
+		loginTextField.setForeground(UIManager.getColor("SplitPaneDivider.draggingColor"));
+		loginTextField.setCaretColor(UIManager.getColor("ComboBox.disabledForeground"));
+		loginTextField.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		loginTextField.setBounds(440, 183, 222, 42);
+		background.add(loginTextField);
+		loginTextField.setColumns(10);
 		
 		JButton btnClose = new JButton("X");
 		btnClose.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -117,17 +118,17 @@ public class LoginView extends JFrame {
 		btnSignUp.setBounds(456, 319, 184, 45);
 		background.add(btnSignUp);
 		
-		JLabel lblSingUp = new JLabel("Sing Up");
+		JLabel lblSingUp = new JLabel("Sing In");
 		lblSingUp.setFont(new Font("Verdana", Font.PLAIN, 28));
 		lblSingUp.setForeground(new Color(192, 192, 192));
 		lblSingUp.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSingUp.setBounds(456, 90, 184, 53);
+		lblSingUp.setBounds(456, 46, 184, 53);
 		background.add(lblSingUp);
 		
-		JLabel lblNewLabel = new JLabel("Email");
+		JLabel lblNewLabel = new JLabel("Login");
 		lblNewLabel.setForeground(new Color(192, 192, 192));
 		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblNewLabel.setBounds(440, 168, 46, 14);
+		lblNewLabel.setBounds(440, 164, 46, 14);
 		background.add(lblNewLabel);
 		
 		JLabel lblSenha = new JLabel("Senha");
@@ -161,6 +162,13 @@ public class LoginView extends JFrame {
 		draggSecondPanel.setBounds(362, 0, 269, 45);
 		background.add(draggSecondPanel);
 		
+		JLabel lblEmail = new JLabel("Email ou senha invalidos!");
+		lblEmail.setFont(new Font("Verdana", Font.PLAIN, 16));
+		lblEmail.setForeground(Color.RED);
+		lblEmail.setBounds(447, 126, 242, 14);
+		background.add(lblEmail);
+		lblEmail.setVisible(false);
+		
 		// MARK: ACTIONS
 		
 		 
@@ -182,7 +190,7 @@ public class LoginView extends JFrame {
 		// Method to make Login
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String email = emailTextField.getText();
+				String email = loginTextField.getText();
 				String password = passwordTextField.getText();
 				boolean success;
 				
@@ -191,9 +199,10 @@ public class LoginView extends JFrame {
 				success = loginController.singUp(email, password);
 				
 				if(success == true) {
+					lblEmail.setVisible(false);
 					JOptionPane.showMessageDialog(null, "Usuario Logado");
 				}else {
-					JOptionPane.showMessageDialog(null, "Email ou Senha invalidos!");
+					lblEmail.setVisible(true);
 				}
 				}catch(Exception err){
 					JOptionPane.showMessageDialog(null, "Erro: " + err);
@@ -216,7 +225,7 @@ public class LoginView extends JFrame {
 			}
 		});
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -227,5 +236,6 @@ public class LoginView extends JFrame {
 				}
 			}
 		});
+		
 	}
 }
