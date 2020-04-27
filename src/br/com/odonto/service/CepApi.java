@@ -16,8 +16,8 @@ import org.apache.http.util.EntityUtils;
 
 
 public class CepApi {
-	String path;
-	String BASEURL = "http://viacep.com.br/ws/08474340/json/";
+	static String path;
+	
 	static CepApi instance;
 	
 	CloseableHttpClient clientHTTP;
@@ -34,13 +34,13 @@ public class CepApi {
 	}
 	
 	public String doRequest(String path) {
-		this.path = path;
+		String BASEURL = "http://viacep.com.br/ws/"+path+"/json/";
 		String responseBody = null;
 		
 		try {
 
-			HttpGet httpGet = new HttpGet(this.BASEURL);
-			
+			HttpGet httpGet = new HttpGet(BASEURL);
+
 			ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
 
 				@Override

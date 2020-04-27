@@ -232,7 +232,7 @@ public class LoginView extends JFrame {
 				try {
 					RegisterDao register = new RegisterDao();
 					
-					register.getApi("08474-340");
+					register.getApi("08474340");
 					LoginView frame = new LoginView();
 					frame.setVisible(true);
 				} catch (Exception e) {
