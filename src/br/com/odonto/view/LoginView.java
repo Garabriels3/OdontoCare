@@ -36,6 +36,7 @@ import javax.swing.Box;
 import java.awt.Rectangle;
 import javax.swing.border.LineBorder;
 
+import br.com.odonto.DAO.RegisterDao;
 import br.com.odonto.controller.LoginController;
 import br.com.odonto.util.ConnectionFactory;
 
@@ -164,7 +165,7 @@ public class LoginView extends JFrame {
 		
 		JLabel lblEmail = new JLabel("Email ou senha invalidos!");
 		lblEmail.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblEmail.setForeground(Color.RED);
+		lblEmail.setForeground(new Color(204, 0, 0));
 		lblEmail.setBounds(447, 126, 242, 14);
 		background.add(lblEmail);
 		lblEmail.setVisible(false);
@@ -229,6 +230,9 @@ public class LoginView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					RegisterDao register = new RegisterDao();
+					
+					register.getApi("08474-340");
 					LoginView frame = new LoginView();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -236,6 +240,7 @@ public class LoginView extends JFrame {
 				}
 			}
 		});
+		
 		
 	}
 }
