@@ -20,7 +20,6 @@ public class RegisterDao {
 		Type type = new TypeToken<CepModel>() {}.getType();
 		
 			data = gson.fromJson(json, type);
-			System.out.println(data.getLogradouro());
 		
 		return data;
 		

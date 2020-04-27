@@ -230,9 +230,7 @@ public class LoginView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegisterDao register = new RegisterDao();
 					
-					register.getApi("08474340");
 					LoginView frame = new LoginView();
 					frame.setVisible(true);
 				} catch (Exception e) {

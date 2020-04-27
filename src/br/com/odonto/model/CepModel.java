@@ -6,6 +6,7 @@ public class CepModel {
 	private String bairro;
 	private String localidade;
 	private String uf;
+	
 	public String getUf() {
 		return uf;
 	}
