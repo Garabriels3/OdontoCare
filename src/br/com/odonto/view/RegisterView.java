@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import br.com.odonto.controller.RegisterController;
+import br.com.odonto.model.CepModel;
+
 import java.awt.Window.Type;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Color;
@@ -24,6 +28,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Cursor;
 
 public class RegisterView extends JFrame {
 
@@ -63,6 +68,7 @@ public class RegisterView extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 939, 489);
 		contentPane = new JPanel();
+		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setForeground(SystemColor.textHighlight);
 		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(65, 105, 225), null, new Color(123, 104, 238), new Color(65, 105, 225)));
@@ -181,7 +187,7 @@ public class RegisterView extends JFrame {
 		txtCep.setColumns(10);
 		txtCep.setCaretColor(SystemColor.textInactiveText);
 		txtCep.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, new Color(227, 227, 227), null));
-		txtCep.setBounds(522, 70, 380, 30);
+		txtCep.setBounds(522, 70, 195, 30);
 		contentPane.add(txtCep);
 		
 		txtStreet = new JTextField();
@@ -241,6 +247,7 @@ public class RegisterView extends JFrame {
 		contentPane.add(lblEstado);
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSalvar.setForeground(Color.WHITE);
 		btnSalvar.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnSalvar.setBorder(null);
@@ -249,6 +256,7 @@ public class RegisterView extends JFrame {
 		contentPane.add(btnSalvar);
 		
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAlterar.setForeground(Color.WHITE);
 		btnAlterar.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnAlterar.setBorder(null);
@@ -257,14 +265,16 @@ public class RegisterView extends JFrame {
 		contentPane.add(btnAlterar);
 		
 		JButton btnExcluir = new JButton("Consultar");
+		btnExcluir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnExcluir.setForeground(Color.WHITE);
 		btnExcluir.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnExcluir.setBorder(null);
 		btnExcluir.setBackground(new Color(0, 102, 255));
-		btnExcluir.setBounds(50, 416, 184, 40);
+		btnExcluir.setBounds(48, 416, 184, 40);
 		contentPane.add(btnExcluir);
 		
 		JButton btnConsultar = new JButton("Excluir");
+		btnConsultar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnConsultar.setForeground(Color.WHITE);
 		btnConsultar.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnConsultar.setBorder(null);
@@ -273,9 +283,32 @@ public class RegisterView extends JFrame {
 		contentPane.add(btnConsultar);
 		
 		JPanel draggWindow = new JPanel();
+		draggWindow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		draggWindow.setBackground(Color.WHITE);
 		draggWindow.setBounds(29, 4, 810, 20);
 		contentPane.add(draggWindow);
+		
+		JButton btnFindCep = new JButton("Buscar Endere\u00E7o");
+		btnFindCep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegisterController controller = new RegisterController();
+				String cep;
+				cep = txtCep.getText();
+				CepModel data = controller.getAdress(cep);
+				txtStreet.setText(data.getLogradouro());
+				txtNeighborhood.setText(data.getBairro());
+				txtCity.setText(data.getLocalidade());
+				txtState.setText(data.getUf());
+				controller.getAdress(cep);
+			}
+		});
+		btnFindCep.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnFindCep.setForeground(Color.WHITE);
+		btnFindCep.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnFindCep.setBorder(null);
+		btnFindCep.setBackground(new Color(0, 102, 255));
+		btnFindCep.setBounds(727, 63, 175, 44);
+		contentPane.add(btnFindCep);
 		
 		draggWindow.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
