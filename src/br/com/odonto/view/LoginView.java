@@ -36,7 +36,7 @@ import javax.swing.Box;
 import java.awt.Rectangle;
 import javax.swing.border.LineBorder;
 
-import br.com.odonto.DAO.RegisterDao;
+import br.com.odonto.DAO.ClientRegisterDao;
 import br.com.odonto.controller.LoginController;
 import br.com.odonto.util.ConnectionFactory;
 

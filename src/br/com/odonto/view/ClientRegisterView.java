@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import br.com.odonto.controller.RegisterController;
+import br.com.odonto.controller.ClientRegisterController;
 import br.com.odonto.model.CepModel;
 
 import java.awt.Window.Type;
@@ -30,7 +30,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Cursor;
 
-public class RegisterView extends JFrame {
+public class ClientRegisterView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtCPF;
@@ -50,7 +50,7 @@ public class RegisterView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					RegisterView frame = new RegisterView();
+					ClientRegisterView frame = new ClientRegisterView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +62,7 @@ public class RegisterView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public RegisterView() {
+	public ClientRegisterView() {
 		setForeground(new Color(65, 105, 225));
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -138,11 +138,7 @@ public class RegisterView extends JFrame {
 		contentPane.add(lblDataDeNascimento);
 		
 		JButton btnClose = new JButton("X");
-		btnClose.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		
 		btnClose.setForeground(Color.WHITE);
 		btnClose.setFont(new Font("Verdana", Font.PLAIN, 17));
 		btnClose.setBorder(null);
@@ -151,11 +147,7 @@ public class RegisterView extends JFrame {
 		contentPane.add(btnClose);
 		
 		JButton btnMinimize = new JButton("-");
-		btnMinimize.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setState(JFrame.ICONIFIED);
-			}
-		});
+		
 		btnMinimize.setForeground(Color.WHITE);
 		btnMinimize.setFont(new Font("Verdana", Font.PLAIN, 24));
 		btnMinimize.setBorder(null);
@@ -289,19 +281,7 @@ public class RegisterView extends JFrame {
 		contentPane.add(draggWindow);
 		
 		JButton btnFindCep = new JButton("Buscar Endere\u00E7o");
-		btnFindCep.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				RegisterController controller = new RegisterController();
-				String cep;
-				cep = txtCep.getText();
-				CepModel data = controller.getAdress(cep);
-				txtStreet.setText(data.getLogradouro());
-				txtNeighborhood.setText(data.getBairro());
-				txtCity.setText(data.getLocalidade());
-				txtState.setText(data.getUf());
-				controller.getAdress(cep);
-			}
-		});
+	
 		btnFindCep.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnFindCep.setForeground(Color.WHITE);
 		btnFindCep.setFont(new Font("Verdana", Font.PLAIN, 16));
@@ -310,11 +290,42 @@ public class RegisterView extends JFrame {
 		btnFindCep.setBounds(727, 63, 175, 44);
 		contentPane.add(btnFindCep);
 		
+		// MARK: METHODS
+		
+		// Método para Minimizar Janela de forma customizada
+		btnMinimize.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setState(JFrame.ICONIFIED);
+			}
+		});
+		
+		// Metodo para fechar Janela de forma customizada
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		
+		// Metodo para tornar janela arrastavel de forma customizada
 		draggWindow.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				Point cordinate = e.getLocationOnScreen();
 				setLocation(cordinate);
+			}
+		});
+		
+		// Metodo que ao clicar no botao abaixo, retorna nos TextFields, os dados da API(Endereço)
+		btnFindCep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ClientRegisterController controller = new ClientRegisterController();
+				String cep; 
+				cep = txtCep.getText(); // Pegar o CEP digitado pelo usuario
+				CepModel data = controller.getAdress(cep); // usamos data aqui tbm para manipular a API, como objeto
+				txtStreet.setText(data.getLogradouro());  // É Setado cada um dos campos de endereço, com os dados da API, de forma separada
+				txtNeighborhood.setText(data.getBairro());
+				txtCity.setText(data.getLocalidade());
+				txtState.setText(data.getUf());
 			}
 		});
 	}
