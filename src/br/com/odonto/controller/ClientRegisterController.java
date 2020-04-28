@@ -11,11 +11,17 @@ public class ClientRegisterController {
 	CepModel data; // Variavel para pegar o retorno da função da DAO
 	
 	public CepModel getAdress(String path) {
-		if(path != null) { // Checamos aqui, se o path, que é o nosso CEP, não está vazio, o que poderia ocasionar um Crash na Service, caso não verificado
+		if(path != null && path.length() == 8) { // Checamos aqui, se o path, que é o nosso CEP, não está vazio, o que poderia ocasionar um Crash na Service, caso não verificado
 			data = registerDao.getApi(path);
 		}else {
-			JOptionPane.showInternalMessageDialog(null, "Campo Cep não preenchido"); // caso esteja vazio, essa camada é responsavel, por avisar o usuario, e não deixar prosseguir para proxima camada
+			JOptionPane.showInternalMessageDialog(null, "Campo Cep não preenchido corretamente"); // caso esteja vazio, essa camada é responsavel, por avisar o usuario, e não deixar prosseguir para proxima camada
 		}
-		return data; // Retorna os Dados da API convertidos para View
+		if(data != null) {
+			return data; // Retorna os Dados da API convertidos para View
+		}else {
+			JOptionPane.showInternalMessageDialog(null, "Campo Cep não encontrado");
+			return null;
+		}
+		
 	}
 }

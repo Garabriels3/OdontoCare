@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
 import br.com.odonto.controller.ClientRegisterController;
 import br.com.odonto.model.CepModel;
@@ -14,6 +15,8 @@ import java.awt.Window.Type;
 import java.awt.Dialog.ModalExclusionType;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Point;
 
@@ -25,10 +28,14 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Cursor;
+import javax.swing.JFormattedTextField;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 public class ClientRegisterView extends JFrame {
 
@@ -37,12 +44,11 @@ public class ClientRegisterView extends JFrame {
 	private JTextField txtNameComplete;
 	private JTextField txtPhone;
 	private JTextField txtBirthday;
-	private JTextField txtCep;
 	private JTextField txtNeighborhood;
 	private JTextField txtCity;
 	private JTextField txtState;
 	private JTextField txtStreet;
-
+	String cep;
 	/**
 	 * Launch the application.
 	 */
@@ -61,8 +67,9 @@ public class ClientRegisterView extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws ParseException 
 	 */
-	public ClientRegisterView() {
+	public ClientRegisterView() throws ParseException {
 		setForeground(new Color(65, 105, 225));
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -173,15 +180,6 @@ public class ClientRegisterView extends JFrame {
 		lblCep.setBounds(522, 39, 43, 20);
 		contentPane.add(lblCep);
 		
-		txtCep = new JTextField();
-		txtCep.setForeground(Color.DARK_GRAY);
-		txtCep.setFont(new Font("Verdana", Font.PLAIN, 14));
-		txtCep.setColumns(10);
-		txtCep.setCaretColor(SystemColor.textInactiveText);
-		txtCep.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, new Color(227, 227, 227), null));
-		txtCep.setBounds(522, 70, 195, 30);
-		contentPane.add(txtCep);
-		
 		txtStreet = new JTextField();
 		txtStreet.setForeground(Color.DARK_GRAY);
 		txtStreet.setFont(new Font("Verdana", Font.PLAIN, 14));
@@ -290,6 +288,21 @@ public class ClientRegisterView extends JFrame {
 		btnFindCep.setBounds(727, 63, 175, 44);
 		contentPane.add(btnFindCep);
 		
+		JFormattedTextField txtCep = new JFormattedTextField(new MaskFormatter("#####-###"));
+		txtCep.addInputMethodListener(new InputMethodListener() {
+			public void caretPositionChanged(InputMethodEvent event) {
+			}
+			public void inputMethodTextChanged(InputMethodEvent event) {
+			}
+		});
+		txtCep.setToolTipText("");
+		txtCep.setFont(new Font("Verdana", Font.PLAIN, 11));
+		txtCep.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, SystemColor.controlHighlight, null));
+		txtCep.setBounds(522, 70, 195, 30);
+		
+
+		contentPane.add(txtCep);
+		
 		// MARK: METHODS
 		
 		// Método para Minimizar Janela de forma customizada
@@ -318,15 +331,25 @@ public class ClientRegisterView extends JFrame {
 		// Metodo que ao clicar no botao abaixo, retorna nos TextFields, os dados da API(Endereço)
 		btnFindCep.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				ClientRegisterController controller = new ClientRegisterController();
-				String cep; 
-				cep = txtCep.getText(); // Pegar o CEP digitado pelo usuario
+				 
+				cep = txtCep.getText().replace("-", ""); // Pegar o CEP digitado pelo usuario
+		try {
+			if(!cep.isEmpty() && cep.length() == 8) {
 				CepModel data = controller.getAdress(cep); // usamos data aqui tbm para manipular a API, como objeto
+			if(data != null){
 				txtStreet.setText(data.getLogradouro());  // É Setado cada um dos campos de endereço, com os dados da API, de forma separada
 				txtNeighborhood.setText(data.getBairro());
 				txtCity.setText(data.getLocalidade());
 				txtState.setText(data.getUf());
+				}
+			}else {
+				JOptionPane.showMessageDialog(null, "CEP não encontrado");
 			}
-		});
+			}catch(Exception ex) {
+				JOptionPane.showMessageDialog(null, "Campo CEP está vazio!");
+			}
+			}});
 	}
 }
