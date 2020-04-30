@@ -16,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
+import java.text.ParseException;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -47,7 +48,9 @@ public class LoginView extends JFrame {
 	private JPanel background;
 	private JTextField loginTextField;
 	private JPasswordField passwordTextField;
-
+	private JButton btnCadastrar;
+	private ClientRegisterView crv;
+	private LoginView lv;
 	
 	/**
 	 * Create the frame.
@@ -144,7 +147,7 @@ public class LoginView extends JFrame {
 		btnResetPassword.setForeground(new Color(51, 51, 255));
 		btnResetPassword.setBackground(new Color(255, 255, 255));
 		btnResetPassword.setBorder(null);
-		btnResetPassword.setBounds(410, 417, 279, 23);
+		btnResetPassword.setBounds(410, 453, 279, 23);
 		background.add(btnResetPassword);
 		
 		passwordTextField = new JPasswordField();
@@ -168,6 +171,28 @@ public class LoginView extends JFrame {
 		lblEmail.setForeground(new Color(204, 0, 0));
 		lblEmail.setBounds(447, 126, 242, 14);
 		background.add(lblEmail);
+		
+		btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					crv = new ClientRegisterView();
+					lv = new LoginView();
+					crv.setLocationRelativeTo(null);
+					crv.setVisible(true);
+					lv.setVisible(false);
+					dispose();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnCadastrar.setForeground(Color.WHITE);
+		btnCadastrar.setFont(new Font("Verdana", Font.PLAIN, 18));
+		btnCadastrar.setBorder(null);
+		btnCadastrar.setBackground(new Color(0, 102, 255));
+		btnCadastrar.setBounds(456, 390, 184, 45);
+		background.add(btnCadastrar);
 		lblEmail.setVisible(false);
 		
 		// MARK: ACTIONS
