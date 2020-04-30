@@ -48,6 +48,8 @@ public class ClientRegisterView extends JFrame {
 	private JTextField txtCity;
 	private JTextField txtState;
 	private JTextField txtStreet;
+	private ClientRegisterView crv;
+	private LoginView lv;
 	String cep;
 	/**
 	 * Launch the application.
@@ -214,12 +216,12 @@ public class ClientRegisterView extends JFrame {
 		txtCity.setColumns(10);
 		txtCity.setCaretColor(SystemColor.textInactiveText);
 		txtCity.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, new Color(227, 227, 227), null));
-		txtCity.setBounds(522, 313, 380, 30);
+		txtCity.setBounds(522, 293, 380, 30);
 		contentPane.add(txtCity);
 		
 		JLabel lblCidade = new JLabel("CIDADE");
 		lblCidade.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblCidade.setBounds(522, 282, 95, 20);
+		lblCidade.setBounds(522, 271, 95, 20);
 		contentPane.add(lblCidade);
 		
 		txtState = new JTextField();
@@ -228,12 +230,12 @@ public class ClientRegisterView extends JFrame {
 		txtState.setColumns(10);
 		txtState.setCaretColor(SystemColor.textInactiveText);
 		txtState.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, new Color(227, 227, 227), null));
-		txtState.setBounds(522, 388, 380, 30);
+		txtState.setBounds(522, 359, 380, 30);
 		contentPane.add(txtState);
 		
 		JLabel lblEstado = new JLabel("ESTADO");
 		lblEstado.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblEstado.setBounds(522, 354, 95, 20);
+		lblEstado.setBounds(522, 334, 95, 20);
 		contentPane.add(lblEstado);
 		
 		JButton btnSalvar = new JButton("Salvar");
@@ -302,6 +304,29 @@ public class ClientRegisterView extends JFrame {
 		
 
 		contentPane.add(txtCep);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					crv = new ClientRegisterView();
+					lv = new LoginView();
+					lv.setLocationRelativeTo(null);
+					lv.setVisible(true);
+					crv.setVisible(false);
+					dispose();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnVoltar.setForeground(Color.WHITE);
+		btnVoltar.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnVoltar.setBorder(null);
+		btnVoltar.setBackground(new Color(0, 102, 255));
+		btnVoltar.setBounds(645, 416, 184, 40);
+		contentPane.add(btnVoltar);
 		
 		// MARK: METHODS
 		
