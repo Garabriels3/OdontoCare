@@ -86,7 +86,7 @@ public class LoginView extends JFrame {
 		loginTextField.setForeground(UIManager.getColor("SplitPaneDivider.draggingColor"));
 		loginTextField.setCaretColor(UIManager.getColor("ComboBox.disabledForeground"));
 		loginTextField.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
-		loginTextField.setBounds(440, 183, 222, 42);
+		loginTextField.setBounds(440, 188, 222, 42);
 		background.add(loginTextField);
 		loginTextField.setColumns(10);
 		
@@ -114,26 +114,26 @@ public class LoginView extends JFrame {
 		btnSignUp.setForeground(new Color(255, 255, 255));
 		btnSignUp.setBorder(null);
 		btnSignUp.setBackground(new Color(0, 102, 255));
-		btnSignUp.setBounds(456, 319, 184, 45);
+		btnSignUp.setBounds(456, 329, 184, 45);
 		background.add(btnSignUp);
 		
-		JLabel lblSingUp = new JLabel("Sing In");
-		lblSingUp.setFont(new Font("Verdana", Font.PLAIN, 28));
+		JLabel lblSingUp = new JLabel("Sign In");
+		lblSingUp.setFont(new Font("Verdana", Font.BOLD, 35));
 		lblSingUp.setForeground(new Color(192, 192, 192));
 		lblSingUp.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSingUp.setBounds(456, 46, 184, 53);
+		lblSingUp.setBounds(456, 56, 184, 53);
 		background.add(lblSingUp);
 		
 		JLabel lblNewLabel = new JLabel("Login");
 		lblNewLabel.setForeground(new Color(192, 192, 192));
 		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblNewLabel.setBounds(440, 164, 46, 14);
+		lblNewLabel.setBounds(440, 166, 46, 17);
 		background.add(lblNewLabel);
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setForeground(Color.LIGHT_GRAY);
 		lblSenha.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblSenha.setBounds(440, 235, 46, 14);
+		lblSenha.setBounds(440, 246, 46, 14);
 		background.add(lblSenha);
 		
 		JButton btnResetPassword = new JButton("Clique aqui para redefinir sua senha!");
@@ -142,14 +142,14 @@ public class LoginView extends JFrame {
 		btnResetPassword.setForeground(new Color(51, 51, 255));
 		btnResetPassword.setBackground(new Color(255, 255, 255));
 		btnResetPassword.setBorder(null);
-		btnResetPassword.setBounds(410, 453, 279, 23);
+		btnResetPassword.setBounds(410, 457, 279, 23);
 		background.add(btnResetPassword);
 		
 		passwordTextField = new JPasswordField();
 		passwordTextField.setFont(new Font("Verdana", Font.PLAIN, 14));
 		passwordTextField.setForeground(UIManager.getColor("ScrollBar.trackHighlightForeground"));
 		passwordTextField.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
-		passwordTextField.setBounds(440, 249, 222, 42);
+		passwordTextField.setBounds(440, 265, 222, 42);
 		background.add(passwordTextField);
 		
 		Box horizontalBox = Box.createHorizontalBox();
