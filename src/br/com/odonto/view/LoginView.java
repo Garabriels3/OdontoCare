@@ -51,6 +51,7 @@ public class LoginView extends JFrame {
 	private JButton btnCadastrar;
 	private ClientRegisterView crv;
 	private LoginView lv;
+	int x,y;
 	
 	/**
 	 * Create the frame.
@@ -79,12 +80,6 @@ public class LoginView extends JFrame {
 		panel.setBounds(0, 0, 365, 502);
 		background.add(panel);
 		panel.setLayout(null);
-		
-		JLabel draggScreen = new JLabel("");
-		draggScreen.setHorizontalAlignment(SwingConstants.CENTER);
-		draggScreen.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		draggScreen.setBounds(0, 0, 365, 44);
-		panel.add(draggScreen);
 		
 		loginTextField = new JTextField();
 		loginTextField.setFont(new Font("Verdana", Font.PLAIN, 14));
@@ -162,8 +157,15 @@ public class LoginView extends JFrame {
 		background.add(horizontalBox);
 		
 		JPanel draggSecondPanel = new JPanel();
+		draggSecondPanel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				x = e.getX();
+				y = e.getY();
+			}
+		});
 		draggSecondPanel.setBackground(Color.WHITE);
-		draggSecondPanel.setBounds(362, 0, 269, 45);
+		draggSecondPanel.setBounds(0, 0, 631, 45);
 		background.add(draggSecondPanel);
 		
 		JLabel lblEmail = new JLabel("Email ou senha invalidos!");
@@ -202,15 +204,9 @@ public class LoginView extends JFrame {
 		draggSecondPanel.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
-				Point cordinate = e.getLocationOnScreen();
-				setLocation(cordinate);
-			}
-		});
-		draggScreen.addMouseMotionListener(new MouseMotionAdapter() {
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				Point cordinate = e.getLocationOnScreen();
-				setLocation(cordinate);
+				int xx = e.getXOnScreen();
+				int yy = e.getYOnScreen();
+				setLocation(xx-x,yy-y);
 			}
 		});
 		// Method to make Login
