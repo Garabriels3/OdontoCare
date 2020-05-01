@@ -10,12 +10,17 @@ import br.com.odonto.util.ConnectionFactory;
 
 public class LoginDAO {
 	
+	Connection con;
+	PreparedStatement stmt;
+	ResultSet rs;
+	boolean check;
+	
 	public boolean checkLogin(LoginModel user) throws Exception {
 		
-		Connection con = ConnectionFactory.getConnection();
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		boolean check = false;
+		con = ConnectionFactory.getConnection();
+		stmt = null;
+		rs = null;
+		check = false;
 				
 		try {
 			stmt = con.prepareStatement("SELECT * FROM users WHERE login = ? and senha = ?");
@@ -32,10 +37,6 @@ public class LoginDAO {
 		}catch (SQLException ex) {
 			System.out.println(ex);
 		}
-		
 		return check;
-		
-		
-		
 	}
 }

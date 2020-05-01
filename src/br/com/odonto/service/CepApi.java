@@ -20,8 +20,12 @@ public class CepApi {
 	// Varivavel do Tipo da prórpria classe para fazer Singleton
 	static CepApi instance;
 	
-	// Variavel, responsavel por fazer a execução da busca da API
-	CloseableHttpClient clientHTTP;
+	private CloseableHttpClient clientHTTP;// Variavel, responsavel por fazer a execução da busca da API
+	private String BASEURL;
+	private String responseBody;
+	private ResponseHandler<String> responseHandler;
+	private HttpEntity entity;
+	private HttpGet httpGet;
 	
 	// Construtor privado, pois a classe em si não é instanciada, e sim o Singleton
 	private CepApi() {
@@ -38,20 +42,20 @@ public class CepApi {
 	
 	// Função que faz a chamada GET da API
 	public String doRequest(String path) {
-		String BASEURL = "http://viacep.com.br/ws/"+path+"/json/"; // URL com EndPoint "path" dinamico, que muda conforme passado no campo CEP pelo usuario
-		String responseBody = null; //variavel que vai conter o corpo da api, no formato Json
+		BASEURL = "http://viacep.com.br/ws/"+path+"/json/"; // URL com EndPoint "path" dinamico, que muda conforme passado no campo CEP pelo usuario
+		responseBody = null; //variavel que vai conter o corpo da api, no formato Json
 		
 		try {
 
-			HttpGet httpGet = new HttpGet(BASEURL); // init do HTTPGET, passando a URL para que ele possa fazer o GET
+			httpGet = new HttpGet(BASEURL); // init do HTTPGET, passando a URL para que ele possa fazer o GET
 
-			ResponseHandler<String> responseHandler = new ResponseHandler<String>() { // Expressão Lambda, que faz um override de uma func da Interface ResponseHanler
+			responseHandler = new ResponseHandler<String>() { // Expressão Lambda, que faz um override de uma func da Interface ResponseHanler
 
 				@Override
 				public String handleResponse(HttpResponse response) throws ClientProtocolException, IOException { // response é a resposta do servidor onde a API fica, com os dados
 					int status = response.getStatusLine().getStatusCode(); // Status serve para pegar o codigo de retorno da requisição  API REST
 					if (status >= 200 && status < 300) { // Aqui testamos para verificar se o código está entre 200 e 300, que são códigos de sucesso de retorno da API
-						HttpEntity entity = response.getEntity(); // caso der true, inicializamos o response, pegando a Entity
+						entity = response.getEntity(); // caso der true, inicializamos o response, pegando a Entity
 						
 						return entity != null ? EntityUtils.toString(entity) : null; // Fazemos mais uma verificação, para assegurar que o programa não irá crashar
 					}else {

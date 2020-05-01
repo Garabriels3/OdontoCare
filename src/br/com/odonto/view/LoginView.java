@@ -197,7 +197,7 @@ public class LoginView extends JFrame {
 				
 				try {
 				LoginController loginController = new LoginController();
-				success = loginController.singUp(email, password);
+				success = loginController.signIn(email, password);
 				
 				if(success == true) {
 					lblEmail.setVisible(false);

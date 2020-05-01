@@ -2,7 +2,7 @@ package br.com.odonto.model;
 
 public class LoginModel {
 	private String login;
-	private String senha;
+	private String password;
 	
 	
 	public LoginModel(String login, String password) {
@@ -19,10 +19,10 @@ public class LoginModel {
 	}
 
 	public String getPassword() {
-		return senha;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		this.senha = password;
+		this.password = password;
 	}
 }

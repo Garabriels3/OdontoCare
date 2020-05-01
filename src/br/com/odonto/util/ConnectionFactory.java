@@ -3,13 +3,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectionFactory {
+	private static String login;
+	private static String password;
+	private static String url;
 	public static Connection getConnection() throws Exception {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String login = "root";
-			String senha = "71463771";
-			String url = "jdbc:mysql://localhost:3306/odonto";
-			return DriverManager.getConnection(url, login, senha);
+			login = "root";
+			password = "71463771";
+			url = "jdbc:mysql://localhost:3306/odonto";
+			return DriverManager.getConnection(url, login, password);
 		}
 		catch(Exception e) {
 			System.out.println("Erro Ao conectar");
