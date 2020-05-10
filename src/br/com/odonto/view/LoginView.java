@@ -51,6 +51,7 @@ public class LoginView extends JFrame {
 	private JButton btnCadastrar;
 	private ClientRegisterView crv;
 	private LoginView lv;
+	private EmployeeRegisterView erv;
 	int x,y;
 	
 	/**
@@ -178,10 +179,10 @@ public class LoginView extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					crv = new ClientRegisterView();
+					erv = new EmployeeRegisterView();
 					lv = new LoginView();
-					crv.setLocationRelativeTo(null);
-					crv.setVisible(true);
+					erv.setLocationRelativeTo(null);
+					erv.setVisible(true);
 					lv.setVisible(false);
 					dispose();
 				} catch (Exception e1) {
