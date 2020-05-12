@@ -46,8 +46,9 @@ import javax.swing.UIManager;
 public class LoginView extends JFrame {
 	// MARK: Attributes
 	private JPanel background;
-	private JTextField loginTextField;
-	private JPasswordField passwordTextField;
+	private LoginController loginController = LoginController.getINSTANCE();
+	private JTextField txtEmail;
+	private JPasswordField txtSenha;
 	private JButton btnCadastrar;
 	private ClientRegisterView crv;
 	private LoginView lv;
@@ -82,14 +83,14 @@ public class LoginView extends JFrame {
 		background.add(panel);
 		panel.setLayout(null);
 		
-		loginTextField = new JTextField();
-		loginTextField.setFont(new Font("Verdana", Font.PLAIN, 14));
-		loginTextField.setForeground(UIManager.getColor("SplitPaneDivider.draggingColor"));
-		loginTextField.setCaretColor(UIManager.getColor("ComboBox.disabledForeground"));
-		loginTextField.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
-		loginTextField.setBounds(440, 188, 222, 42);
-		background.add(loginTextField);
-		loginTextField.setColumns(10);
+		txtEmail = new JTextField();
+		txtEmail.setFont(new Font("Verdana", Font.PLAIN, 14));
+		txtEmail.setForeground(UIManager.getColor("SplitPaneDivider.draggingColor"));
+		txtEmail.setCaretColor(UIManager.getColor("ComboBox.disabledForeground"));
+		txtEmail.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtEmail.setBounds(440, 188, 222, 42);
+		background.add(txtEmail);
+		txtEmail.setColumns(10);
 		
 		JButton btnClose = new JButton("X");
 		btnClose.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -125,11 +126,11 @@ public class LoginView extends JFrame {
 		lblSingUp.setBounds(456, 56, 184, 53);
 		background.add(lblSingUp);
 		
-		JLabel lblNewLabel = new JLabel("Login");
-		lblNewLabel.setForeground(new Color(192, 192, 192));
-		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblNewLabel.setBounds(440, 166, 46, 17);
-		background.add(lblNewLabel);
+		JLabel lblEmail2 = new JLabel("Email");
+		lblEmail2.setForeground(new Color(192, 192, 192));
+		lblEmail2.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblEmail2.setBounds(440, 166, 46, 17);
+		background.add(lblEmail2);
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setForeground(Color.LIGHT_GRAY);
@@ -146,12 +147,12 @@ public class LoginView extends JFrame {
 		btnResetPassword.setBounds(410, 457, 279, 23);
 		background.add(btnResetPassword);
 		
-		passwordTextField = new JPasswordField();
-		passwordTextField.setFont(new Font("Verdana", Font.PLAIN, 14));
-		passwordTextField.setForeground(UIManager.getColor("ScrollBar.trackHighlightForeground"));
-		passwordTextField.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
-		passwordTextField.setBounds(440, 265, 222, 42);
-		background.add(passwordTextField);
+		txtSenha = new JPasswordField();
+		txtSenha.setFont(new Font("Verdana", Font.PLAIN, 14));
+		txtSenha.setForeground(UIManager.getColor("ScrollBar.trackHighlightForeground"));
+		txtSenha.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtSenha.setBounds(440, 265, 222, 42);
+		background.add(txtSenha);
 		
 		Box horizontalBox = Box.createHorizontalBox();
 		horizontalBox.setBounds(381, 80, -16, -18);
@@ -169,11 +170,11 @@ public class LoginView extends JFrame {
 		draggSecondPanel.setBounds(0, 0, 631, 45);
 		background.add(draggSecondPanel);
 		
-		JLabel lblEmail = new JLabel("Email ou senha invalidos!");
-		lblEmail.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblEmail.setForeground(new Color(204, 0, 0));
-		lblEmail.setBounds(447, 126, 242, 14);
-		background.add(lblEmail);
+		JLabel lblErro = new JLabel("Email ou senha invalidos!");
+		lblErro.setFont(new Font("Verdana", Font.PLAIN, 16));
+		lblErro.setForeground(new Color(204, 0, 0));
+		lblErro.setBounds(447, 126, 242, 14);
+		background.add(lblErro);
 		
 		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -196,7 +197,7 @@ public class LoginView extends JFrame {
 		btnCadastrar.setBackground(new Color(0, 102, 255));
 		btnCadastrar.setBounds(456, 390, 184, 45);
 		background.add(btnCadastrar);
-		lblEmail.setVisible(false);
+		lblErro.setVisible(false);
 		
 		// MARK: ACTIONS
 		
@@ -213,23 +214,18 @@ public class LoginView extends JFrame {
 		// Method to make Login
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String email = loginTextField.getText();
-				String password = passwordTextField.getText();
-				boolean success;
-				
 				try {
-				LoginController loginController = new LoginController();
-				success = loginController.singUp(email, password);
-				
-				if(success == true) {
-					lblEmail.setVisible(false);
+					boolean check = loginController.verificarLogin(txtSenha.getText(), txtEmail.getText());
+				if(check) {
+					lblErro.setVisible(false);
 					JOptionPane.showMessageDialog(null, "Usuario Logado");
 				}else {
-					lblEmail.setVisible(true);
+					lblErro.setVisible(true);
 				}
 				}catch(Exception err){
 					JOptionPane.showMessageDialog(null, "Erro: " + err);
 				}
+				
 			}
 		});
 		//Method to make close Screen with custom button

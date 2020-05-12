@@ -38,6 +38,23 @@ public class EmployeeRegisterDAO {
 			connectionFactory.closeConnection(con, stmt);
 		}
 	}
+	public boolean verificarLogin(String senha, String email) throws Exception{
+		try {
+			boolean check = false;
+			sql = "SELECT * FROM funcionario WHERE senha = ? and email = ?";
+			con = connectionFactory.getConnection();
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, senha);
+			stmt.setString(2, email);
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				check = true;
+			}
+			return check;
+		} finally {
+			connectionFactory.closeConnection(con, stmt, rs);
+		}
+	}
 	
 
 }
