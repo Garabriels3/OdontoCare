@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import br.com.odonto.controller.EmployeeRegisterController;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -17,9 +20,14 @@ import javax.swing.UIManager;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 public class EmployeeRegisterView extends JFrame {
 	
+	private final EmployeeRegisterController employeeRegisterController = EmployeeRegisterController.getINSTANCE();
 	private EmployeeRegisterView erv;
 	private LoginView lv;
 	private JPanel contentPane;
@@ -37,9 +45,10 @@ public class EmployeeRegisterView extends JFrame {
 	private JTextField txtEmail;
 	private JLabel lblEmail;
 	private JLabel lblSenha;
-	private JTextField txtSenha;
 	private JButton btnVoltar;
 	private JButton btnCadastrar;
+	private JPasswordField txtSenha;
+	private int x,y;
 
 	/**
 	 * Launch the application.
@@ -77,6 +86,21 @@ public class EmployeeRegisterView extends JFrame {
 		contentPane.add(panel);
 		
 		draggWindow = new JPanel();
+		draggWindow.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int xx = e.getXOnScreen();
+				int yy = e.getYOnScreen();
+				setLocation(xx-x,yy-y);
+			}
+		});
+		draggWindow.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				x = e.getX();
+				y = e.getY();
+			}
+		});
 		draggWindow.setLayout(null);
 		draggWindow.setBackground(Color.WHITE);
 		draggWindow.setBounds(30, 0, 676, 45);
@@ -169,15 +193,6 @@ public class EmployeeRegisterView extends JFrame {
 		lblSenha.setBounds(50, 304, 201, 20);
 		contentPane.add(lblSenha);
 		
-		txtSenha = new JTextField();
-		txtSenha.setForeground(Color.DARK_GRAY);
-		txtSenha.setFont(new Font("Verdana", Font.PLAIN, 14));
-		txtSenha.setColumns(10);
-		txtSenha.setCaretColor(SystemColor.textInactiveText);
-		txtSenha.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
-		txtSenha.setBounds(52, 325, 380, 30);
-		contentPane.add(txtSenha);
-		
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -214,5 +229,11 @@ public class EmployeeRegisterView extends JFrame {
 		lblCadastrar.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCadastrar.setForeground(Color.LIGHT_GRAY);
 		lblCadastrar.setFont(new Font("Verdana", Font.BOLD, 40));
+		
+		txtSenha = new JPasswordField();
+		txtSenha.setCaretColor(SystemColor.textInactiveText);
+		txtSenha.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtSenha.setBounds(52, 325, 380, 30);
+		contentPane.add(txtSenha);
 	}
 }

@@ -34,7 +34,7 @@ public class ConnectionFactory {
 		return null;
 	}
 	
-	public  void closeConnection(Connection con) {
+	public void closeConnection(Connection con) {
 		if(con != null) {
 			try {
 				con.close();
