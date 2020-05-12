@@ -21,9 +21,10 @@ public class ConnectionFactory {
 
 	public Connection getConnection() throws Exception {
 		try {
+			System.out.println("Chegou no ConnectionFactory");
 			Class.forName("com.mysql.jdbc.Driver");
 			String login = "root";
-			String senha = "71463771";
+			String senha = "";
 			String url = "jdbc:mysql://localhost:3306/odonto";
 			return DriverManager.getConnection(url, login, senha);
 		}

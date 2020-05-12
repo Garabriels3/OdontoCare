@@ -8,9 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import br.com.odonto.controller.EmployeeRegisterController;
+import br.com.odonto.model.EmployeeRegisterModel;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -28,6 +31,7 @@ import java.awt.event.MouseMotionAdapter;
 public class EmployeeRegisterView extends JFrame {
 	
 	private final EmployeeRegisterController employeeRegisterController = EmployeeRegisterController.getINSTANCE();
+	private EmployeeRegisterModel funcionario;
 	private EmployeeRegisterView erv;
 	private LoginView lv;
 	private JPanel contentPane;
@@ -216,6 +220,21 @@ public class EmployeeRegisterView extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					funcionario = new EmployeeRegisterModel();
+					funcionario.setCpf(txtCPF.getText());
+					funcionario.setNome(txtNome.getText());
+					funcionario.setFuncao(txtFuncao.getText());
+					funcionario.setEmail(txtEmail.getText());
+					funcionario.setSenha(txtSenha.getText());
+					employeeRegisterController.salvarDados(funcionario);				
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		});
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setFont(new Font("Verdana", Font.PLAIN, 18));
 		btnCadastrar.setBorder(null);
