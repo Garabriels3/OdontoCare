@@ -53,6 +53,7 @@ public class LoginView extends JFrame {
 	private ClientRegisterView crv;
 	private LoginView lv;
 	private EmployeeRegisterView erv;
+	private SchedulingView sch;
 	int x,y;
 	
 	/**
@@ -218,7 +219,12 @@ public class LoginView extends JFrame {
 					boolean check = loginController.verificarLogin(txtSenha.getText(), txtEmail.getText());
 				if(check) {
 					lblErro.setVisible(false);
-					JOptionPane.showMessageDialog(null, "Usuario Logado");
+					sch = new SchedulingView();
+					lv = new LoginView();
+					sch.setLocationRelativeTo(null);
+					sch.setVisible(true);
+					lv.setVisible(false);
+					dispose();
 				}else {
 					lblErro.setVisible(true);
 				}
