@@ -30,8 +30,8 @@ import java.awt.event.MouseMotionAdapter;
 
 public class EmployeeRegisterView extends JFrame {
 	
-	private final EmployeeRegisterController employeeRegisterController = EmployeeRegisterController.getINSTANCE();
-	private EmployeeRegisterModel funcionario;
+	private EmployeeRegisterController employeeRegisterController;
+	private EmployeeRegisterModel employee;
 	private EmployeeRegisterView erv;
 	private LoginView lv;
 	private JPanel contentPane;
@@ -223,13 +223,14 @@ public class EmployeeRegisterView extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					funcionario = new EmployeeRegisterModel();
-					funcionario.setCpf(txtCPF.getText());
-					funcionario.setNome(txtNome.getText());
-					funcionario.setFuncao(txtFuncao.getText());
-					funcionario.setEmail(txtEmail.getText());
-					funcionario.setSenha(txtSenha.getText());
-					employeeRegisterController.salvarDados(funcionario);				
+					employeeRegisterController = EmployeeRegisterController.getINSTANCE();
+					employee = new EmployeeRegisterModel();
+					employee.setCpf(txtCPF.getText());
+					employee.setNome(txtNome.getText());
+					employee.setFuncao(txtFuncao.getText());
+					employee.setEmail(txtEmail.getText());
+					employee.setSenha(txtSenha.getText());
+					employeeRegisterController.salvarDados(employee);				
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}

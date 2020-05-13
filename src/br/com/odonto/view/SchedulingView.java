@@ -28,6 +28,7 @@ public class SchedulingView extends JFrame {
 	private JLabel lblAgendamentos;
 	private int x,y;
 	private NewSchedulingView nsch;
+	private ClientRegisterView crv;
 	private SchedulingView sch;
 	private JButton btnCadastroCliente;
 	private JButton btnNovoAgendamento;
@@ -123,6 +124,20 @@ public class SchedulingView extends JFrame {
 		lblAgendamentos.setFont(new Font("Verdana", Font.BOLD, 40));
 		
 		btnCadastroCliente = new JButton("Cadastrar Cliente");
+		btnCadastroCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					crv = new ClientRegisterView();
+					sch = new SchedulingView();
+					crv.setLocationRelativeTo(null);
+					crv.setVisible(true);
+					sch.setVisible(false);
+					dispose();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnCadastroCliente.setForeground(Color.WHITE);
 		btnCadastroCliente.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnCadastroCliente.setBorder(null);

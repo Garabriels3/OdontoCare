@@ -54,7 +54,7 @@ public class ClientRegisterView extends JFrame {
 	private JTextField txtState;
 	private JTextField txtStreet;
 	private ClientRegisterView crv;
-	private LoginView lv;
+	private SchedulingView sch;
 	private int x,y;
 	String cep;
 	/**
@@ -176,9 +176,9 @@ public class ClientRegisterView extends JFrame {
 		contentPane.add(lblSe);
 		
 		JComboBox cbSex = new JComboBox();
-		cbSex.setBorder(new LineBorder(new Color(0, 153, 255)));
-		cbSex.setBackground(new Color(0, 102, 255));
-		cbSex.setForeground(new Color(255, 255, 255));
+		cbSex.setBorder(null);
+		cbSex.setBackground(Color.WHITE);
+		cbSex.setForeground(Color.BLACK);
 		cbSex.setFont(new Font("Verdana", Font.PLAIN, 14));
 		cbSex.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Feminino"}));
 		cbSex.setBounds(62, 325, 379, 37);
@@ -332,9 +332,9 @@ public class ClientRegisterView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					crv = new ClientRegisterView();
-					lv = new LoginView();
-					lv.setLocationRelativeTo(null);
-					lv.setVisible(true);
+					sch = new SchedulingView();
+					sch.setLocationRelativeTo(null);
+					sch.setVisible(true);
 					crv.setVisible(false);
 					dispose();
 				} catch (Exception e1) {

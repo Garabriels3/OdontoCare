@@ -8,7 +8,7 @@ import br.com.odonto.model.LoginModel;
 
 public class LoginController {
 	private static LoginController INSTANCE;
-	private EmployeeRegisterDAO funcionario = EmployeeRegisterDAO.getINSTANCE();
+	private LoginDAO loginDAO;
 	private LoginController() {
 		
 	}
@@ -19,9 +19,10 @@ public class LoginController {
 		return INSTANCE;
 	}
 	public boolean verificarLogin(String senha, String email)throws Exception{
+		loginDAO = LoginDAO.getINSTANCE();
 		boolean check = false;
 		if(senha != null && senha.length() > 0 && email != null && email.length() > 0) {
-			return funcionario.verificarLogin(senha, email);
+			return loginDAO.verificarLogin(senha, email);
 		}
 		return check;
 	}

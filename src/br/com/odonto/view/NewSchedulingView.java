@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import javax.swing.JComboBox;
 
 public class NewSchedulingView extends JFrame {
 
@@ -40,13 +41,13 @@ public class NewSchedulingView extends JFrame {
 	private JTextField txtMotivoConsulta;
 	private JLabel lblMotivoDaConsulta;
 	private JLabel lblDentistaResponsvel;
-	private JTextField txtDentista;
 	private JButton btnSalvar;
 	private JButton btnExcluir;
 	private JButton btnVoltar;
 	private NewSchedulingView nsch;
 	private SchedulingView sch;
 	private int x,y;
+	private JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -70,10 +71,10 @@ public class NewSchedulingView extends JFrame {
 	public NewSchedulingView() {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 793, 436);
+		setBounds(100, 100, 758, 436);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(4, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -93,7 +94,7 @@ public class NewSchedulingView extends JFrame {
 		btnMinimize.setFont(new Font("Verdana", Font.PLAIN, 24));
 		btnMinimize.setBorder(null);
 		btnMinimize.setBackground(new Color(0, 102, 255));
-		btnMinimize.setBounds(703, 0, 45, 45);
+		btnMinimize.setBounds(668, 0, 45, 45);
 		contentPane.add(btnMinimize);
 		
 		btnClose = new JButton("X");
@@ -106,7 +107,7 @@ public class NewSchedulingView extends JFrame {
 		btnClose.setFont(new Font("Verdana", Font.PLAIN, 17));
 		btnClose.setBorder(null);
 		btnClose.setBackground(new Color(0, 102, 255));
-		btnClose.setBounds(748, 0, 45, 45);
+		btnClose.setBounds(713, 0, 45, 45);
 		contentPane.add(btnClose);
 		
 		draggWindow = new JPanel();
@@ -127,16 +128,16 @@ public class NewSchedulingView extends JFrame {
 		});
 		draggWindow.setLayout(null);
 		draggWindow.setBackground(Color.WHITE);
-		draggWindow.setBounds(27, 0, 676, 45);
+		draggWindow.setBounds(27, 0, 642, 45);
 		contentPane.add(draggWindow);
 		
 		lblNovoAgendamento = new JLabel("Novo Agendamento");
+		lblNovoAgendamento.setBounds(116, 0, 441, 45);
+		draggWindow.add(lblNovoAgendamento);
 		lblNovoAgendamento.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNovoAgendamento.setForeground(Color.LIGHT_GRAY);
 		lblNovoAgendamento.setFont(new Font("Verdana", Font.BOLD, 40));
 		lblNovoAgendamento.setBackground(Color.WHITE);
-		lblNovoAgendamento.setBounds(149, 0, 441, 50);
-		draggWindow.add(lblNovoAgendamento);
 		
 		lblNomeCompleto = new JLabel("NOME COMPLETO");
 		lblNomeCompleto.setFont(new Font("Verdana", Font.PLAIN, 15));
@@ -152,10 +153,10 @@ public class NewSchedulingView extends JFrame {
 		txtNome.setBounds(42, 77, 380, 30);
 		contentPane.add(txtNome);
 		
-		lblData = new JLabel("Data");
+		lblData = new JLabel("DATA");
 		lblData.setHorizontalAlignment(SwingConstants.LEFT);
 		lblData.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblData.setBounds(40, 118, 36, 20);
+		lblData.setBounds(40, 118, 41, 20);
 		contentPane.add(lblData);
 		
 		textField_1 = new JTextField();
@@ -178,7 +179,7 @@ public class NewSchedulingView extends JFrame {
 		txtDuracaoConsulta.setColumns(10);
 		txtDuracaoConsulta.setCaretColor(SystemColor.textInactiveText);
 		txtDuracaoConsulta.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
-		txtDuracaoConsulta.setBounds(42, 201, 98, 30);
+		txtDuracaoConsulta.setBounds(42, 201, 144, 30);
 		contentPane.add(txtDuracaoConsulta);
 		
 		txtHorario = new JTextField();
@@ -187,13 +188,13 @@ public class NewSchedulingView extends JFrame {
 		txtHorario.setColumns(10);
 		txtHorario.setCaretColor(SystemColor.textInactiveText);
 		txtHorario.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
-		txtHorario.setBounds(245, 139, 98, 30);
+		txtHorario.setBounds(492, 139, 98, 30);
 		contentPane.add(txtHorario);
 		
-		lblHorario = new JLabel("Hor\u00E1rio");
+		lblHorario = new JLabel("HOR\u00C1RIO");
 		lblHorario.setHorizontalAlignment(SwingConstants.LEFT);
 		lblHorario.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblHorario.setBounds(243, 118, 54, 20);
+		lblHorario.setBounds(490, 118, 71, 20);
 		contentPane.add(lblHorario);
 		
 		txtMotivoConsulta = new JTextField();
@@ -202,12 +203,12 @@ public class NewSchedulingView extends JFrame {
 		txtMotivoConsulta.setColumns(10);
 		txtMotivoConsulta.setCaretColor(SystemColor.textInactiveText);
 		txtMotivoConsulta.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
-		txtMotivoConsulta.setBounds(247, 201, 175, 30);
+		txtMotivoConsulta.setBounds(494, 201, 240, 30);
 		contentPane.add(txtMotivoConsulta);
 		
 		lblMotivoDaConsulta = new JLabel("MOTIVO DA CONSULTA");
 		lblMotivoDaConsulta.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblMotivoDaConsulta.setBounds(245, 180, 175, 20);
+		lblMotivoDaConsulta.setBounds(492, 180, 175, 20);
 		contentPane.add(lblMotivoDaConsulta);
 		
 		lblDentistaResponsvel = new JLabel("DENTISTA RESPONS\u00C1VEL");
@@ -215,29 +216,24 @@ public class NewSchedulingView extends JFrame {
 		lblDentistaResponsvel.setBounds(40, 242, 189, 20);
 		contentPane.add(lblDentistaResponsvel);
 		
-		txtDentista = new JTextField();
-		txtDentista.setForeground(Color.DARK_GRAY);
-		txtDentista.setFont(new Font("Verdana", Font.PLAIN, 14));
-		txtDentista.setColumns(10);
-		txtDentista.setCaretColor(SystemColor.textInactiveText);
-		txtDentista.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
-		txtDentista.setBounds(42, 263, 380, 30);
-		contentPane.add(txtDentista);
-		
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.setForeground(Color.WHITE);
 		btnSalvar.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnSalvar.setBorder(null);
 		btnSalvar.setBackground(new Color(0, 102, 255));
-		btnSalvar.setBounds(557, 128, 184, 45);
+		btnSalvar.setBounds(79, 359, 184, 45);
 		contentPane.add(btnSalvar);
 		
 		btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnExcluir.setForeground(Color.WHITE);
 		btnExcluir.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnExcluir.setBorder(null);
 		btnExcluir.setBackground(new Color(0, 102, 255));
-		btnExcluir.setBounds(557, 189, 184, 45);
+		btnExcluir.setBounds(293, 359, 184, 45);
 		contentPane.add(btnExcluir);
 		
 		btnVoltar = new JButton("Voltar");
@@ -259,7 +255,13 @@ public class NewSchedulingView extends JFrame {
 		btnVoltar.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnVoltar.setBorder(null);
 		btnVoltar.setBackground(new Color(0, 102, 255));
-		btnVoltar.setBounds(557, 250, 184, 45);
+		btnVoltar.setBounds(506, 359, 184, 45);
 		contentPane.add(btnVoltar);
+		
+		comboBox = new JComboBox();
+		comboBox.setBorder(null);
+		comboBox.setBackground(Color.WHITE);
+		comboBox.setBounds(40, 263, 376, 30);
+		contentPane.add(comboBox);
 	}
 }

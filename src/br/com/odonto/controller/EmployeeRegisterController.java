@@ -7,7 +7,7 @@ import br.com.odonto.model.EmployeeRegisterModel;
 
 public class EmployeeRegisterController {
 	private static EmployeeRegisterController INSTANCE;
-	private final EmployeeRegisterDAO employeeRegisterDAO = EmployeeRegisterDAO.getINSTANCE();
+	private EmployeeRegisterDAO employeeRegisterDAO;
 	
 	private EmployeeRegisterController() {
 	}
@@ -17,8 +17,9 @@ public class EmployeeRegisterController {
 		}
 		return INSTANCE;
 	}
-	public void salvarDados(EmployeeRegisterModel funcionario) throws Exception{
-		employeeRegisterDAO.salvarDados(funcionario);
+	public void salvarDados(EmployeeRegisterModel employee) throws Exception{
+		employeeRegisterDAO = EmployeeRegisterDAO.getINSTANCE();
+		employeeRegisterDAO.salvarDados(employee);
 	}
 	
 }

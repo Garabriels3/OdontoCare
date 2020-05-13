@@ -1,28 +1,32 @@
 package br.com.odonto.model;
 
 public class LoginModel {
-	private String login;
 	private String senha;
+	private String email;
 	
-	
-	public LoginModel(String login, String password) {
-		this.setEmail(login);
-		this.setPassword(password);
-	}
-	
-	public String getEmail() {
-		return login;
+	public LoginModel() {
 	}
 
-	public void setEmail(String login) {
-		this.login = login;
+	public LoginModel(String senha, String email) {
+		this.senha = senha;
+		this.email = email;
 	}
 
-	public String getPassword() {
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setPassword(String password) {
-		this.senha = password;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 }

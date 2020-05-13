@@ -46,7 +46,7 @@ import javax.swing.UIManager;
 public class LoginView extends JFrame {
 	// MARK: Attributes
 	private JPanel background;
-	private LoginController loginController = LoginController.getINSTANCE();
+	private LoginController loginController;
 	private JTextField txtEmail;
 	private JPasswordField txtSenha;
 	private JButton btnCadastrar;
@@ -74,7 +74,7 @@ public class LoginView extends JFrame {
 		background.setAutoscrolls(true);
 		background.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		background.setBackground(new Color(255, 255, 255));
-		background.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(100, 149, 237), new Color(100, 149, 237), new Color(0, 0, 0), new Color(169, 169, 169)));
+		background.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, new Color(0, 0, 0), new Color(169, 169, 169)));
 		setContentPane(background);
 		background.setLayout(null);
 		
@@ -216,6 +216,7 @@ public class LoginView extends JFrame {
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					loginController = LoginController.getINSTANCE();
 					boolean check = loginController.verificarLogin(txtSenha.getText(), txtEmail.getText());
 				if(check) {
 					lblErro.setVisible(false);
