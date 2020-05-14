@@ -18,14 +18,7 @@ public class LoginController {
 		}
 		return INSTANCE;
 	}
-	public boolean verificarLogin(String senha, String email)throws Exception{
-		loginDAO = LoginDAO.getINSTANCE();
-		boolean check = false;
-		if(senha.length() > 0 && email.length() > 0) {
-			return loginDAO.verificarLogin(senha, email);
-		}
-		return check;
-	}
+
 	
 }
 
