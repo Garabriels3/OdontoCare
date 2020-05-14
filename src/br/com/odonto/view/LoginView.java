@@ -48,13 +48,14 @@ public class LoginView extends JFrame {
 	private JPanel background;
 	private LoginController loginController;
 	private JTextField txtEmail;
-	private JPasswordField txtSenha;
+	private JPasswordField txtPassword;
 	private JButton btnCadastrar;
 	private ClientRegisterView crv;
 	private LoginView lv;
 	private EmployeeRegisterView erv;
 	private SchedulingView sch;
 	int x,y;
+	boolean success;
 	
 	/**
 	 * Create the frame.
@@ -148,12 +149,12 @@ public class LoginView extends JFrame {
 		btnResetPassword.setBounds(410, 457, 279, 23);
 		background.add(btnResetPassword);
 		
-		txtSenha = new JPasswordField();
-		txtSenha.setFont(new Font("Verdana", Font.PLAIN, 14));
-		txtSenha.setForeground(UIManager.getColor("ScrollBar.trackHighlightForeground"));
-		txtSenha.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
-		txtSenha.setBounds(440, 265, 222, 42);
-		background.add(txtSenha);
+		txtPassword = new JPasswordField();
+		txtPassword.setFont(new Font("Verdana", Font.PLAIN, 14));
+		txtPassword.setForeground(UIManager.getColor("ScrollBar.trackHighlightForeground"));
+		txtPassword.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtPassword.setBounds(440, 265, 222, 42);
+		background.add(txtPassword);
 		
 		Box horizontalBox = Box.createHorizontalBox();
 		horizontalBox.setBounds(381, 80, -16, -18);
@@ -171,11 +172,11 @@ public class LoginView extends JFrame {
 		draggSecondPanel.setBounds(0, 0, 631, 45);
 		background.add(draggSecondPanel);
 		
-		JLabel lblErro = new JLabel("Email ou senha invalidos!");
-		lblErro.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblErro.setForeground(new Color(204, 0, 0));
-		lblErro.setBounds(447, 126, 242, 14);
-		background.add(lblErro);
+		JLabel lblError = new JLabel("Email ou senha invalidos!");
+		lblError.setFont(new Font("Verdana", Font.PLAIN, 16));
+		lblError.setForeground(new Color(204, 0, 0));
+		lblError.setBounds(447, 126, 242, 14);
+		background.add(lblError);
 		
 		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -198,7 +199,7 @@ public class LoginView extends JFrame {
 		btnCadastrar.setBackground(new Color(0, 102, 255));
 		btnCadastrar.setBounds(456, 390, 184, 45);
 		background.add(btnCadastrar);
-		lblErro.setVisible(false);
+		lblError.setVisible(false);
 		
 		// MARK: ACTIONS
 		
@@ -216,41 +217,41 @@ public class LoginView extends JFrame {
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-<<<<<<< HEAD
 				LoginController loginController = new LoginController();
+				String email = txtEmail.getText();
+				String password = txtPassword.getText();
 				success = loginController.signIn(email, password);
 				
 				if(success == true) {
-					lblEmail.setVisible(false);
+					lblError.setVisible(false);
 					JOptionPane.showMessageDialog(null, "Usuario Logado");
-=======
-					loginController = LoginController.getINSTANCE();
-					boolean check = loginController.verificarLogin(txtSenha.getText(), txtEmail.getText());
-				if(check) {
-					lblErro.setVisible(false);
+				}
+				if(success) {
+					lblError.setVisible(false);
 					sch = new SchedulingView();
 					lv = new LoginView();
 					sch.setLocationRelativeTo(null);
 					sch.setVisible(true);
 					lv.setVisible(false);
 					dispose();
->>>>>>> origin/FuncionarioCRUD
 				}else {
-					lblErro.setVisible(true);
+					lblError.setVisible(true);
 				}
-				}catch(Exception err){
+				}catch(Exception err) {
 					JOptionPane.showMessageDialog(null, "Erro: " + err);
 				}
-				
 			}
 		});
+		
 		//Method to make close Screen with custom button
 		btnClose.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
+		
 		// Method to make Minimize Screen with custom Button
 		btnMinimize.addActionListener(new ActionListener() {
 
@@ -259,7 +260,8 @@ public class LoginView extends JFrame {
 				setState(JFrame.ICONIFIED);
 			}
 		});
-	}
+		}
+	
 	public static void main(String[] args) throws Exception {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

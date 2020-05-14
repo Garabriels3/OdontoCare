@@ -17,15 +17,10 @@ public class EmployeeRegisterDAO {
 	
 	private EmployeeRegisterDAO() {	
 	}
-	public static EmployeeRegisterDAO getINSTANCE() {
-		if(INSTANCE == null) {
-			INSTANCE = new EmployeeRegisterDAO();
-		}
-		return INSTANCE;
-	}
+	
 	public void salvarDados(EmployeeRegisterModel employee) throws Exception{
 		try {
-			connectionFactory = ConnectionFactory.getINSTANCE();
+			connectionFactory = new ConnectionFactory();
 			sql = "INSERT INTO funcionario (cpf,nome,funcao,email,senha)VALUES (?,?,?,?,?)";
 			con = connectionFactory.getConnection();
 			stmt = con.prepareStatement(sql);

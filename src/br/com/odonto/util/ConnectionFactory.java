@@ -6,41 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-<<<<<<< HEAD
 	private static String login;
 	private static String password;
 	private static String url;
-	public static Connection getConnection() throws Exception {
-=======
 	
-	//Padrão de Projeto Singleton - uma única instância da classe 
-	private static ConnectionFactory INSTANCE; //Declaração de uma variavel do tipo ConnectionFactory
-	
-	private ConnectionFactory() { // Construtor privado, para evitar a criação instâncias da classe.
-	}
-	public static ConnectionFactory getINSTANCE() { //Método para a criação de uma única instância da classe
-		if(INSTANCE == null){
-			INSTANCE = new ConnectionFactory();
-		}
-		return INSTANCE;
-	}
-
 	public Connection getConnection() throws Exception {
->>>>>>> origin/FuncionarioCRUD
 		try {
 			System.out.println("Chegou no ConnectionFactory");
 			Class.forName("com.mysql.jdbc.Driver");
-<<<<<<< HEAD
 			login = "root";
 			password = "71463771";
 			url = "jdbc:mysql://localhost:3306/odonto";
 			return DriverManager.getConnection(url, login, password);
-=======
-			String login = "root";
-			String senha = "";
-			String url = "jdbc:mysql://localhost:3306/odonto";
-			return DriverManager.getConnection(url, login, senha);
->>>>>>> origin/FuncionarioCRUD
 		}
 		catch(Exception e) {
 			System.out.println("Erro Ao conectar");

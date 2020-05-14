@@ -11,47 +11,23 @@ import br.com.odonto.model.LoginModel;
 import br.com.odonto.util.ConnectionFactory;
 
 public class LoginDAO {
-	private static LoginDAO INSTANCE;
 	private ConnectionFactory connectionFactory;
 	private Connection con;
 	private PreparedStatement stmt;
 	private ResultSet rs;
 	private String sql;
-	
-<<<<<<< HEAD
-	Connection con;
-	PreparedStatement stmt;
-	ResultSet rs;
 	boolean check;
 	
 	public boolean checkLogin(LoginModel user) throws Exception {
 		
-		con = ConnectionFactory.getConnection();
-		stmt = null;
-		rs = null;
-		check = false;
-				
-=======
-	private LoginDAO() {
-		
-	}
-	public static LoginDAO getINSTANCE() {
-		if(INSTANCE == null) {
-			INSTANCE = new LoginDAO();
-		}
-		return INSTANCE;
-	}
-	
-	public boolean verificarLogin(String senha, String email) throws Exception{
->>>>>>> origin/FuncionarioCRUD
 		try {
 			boolean check = false;
-			connectionFactory = ConnectionFactory.getINSTANCE();
+			connectionFactory = new ConnectionFactory();
 			sql = "SELECT * FROM funcionario WHERE senha = ? and email = ?";
 			con = connectionFactory.getConnection();
 			stmt = con.prepareStatement(sql);
-			stmt.setString(1, senha);
-			stmt.setString(2, email);
+			stmt.setString(1, user.getLogin());
+			stmt.setString(2, user.getPassword());
 			rs = stmt.executeQuery();
 			if(rs.next()) {
 				check = true;
@@ -60,9 +36,5 @@ public class LoginDAO {
 		} finally {
 			connectionFactory.closeConnection(con, stmt, rs);
 		}
-<<<<<<< HEAD
-		return check;
-=======
->>>>>>> origin/FuncionarioCRUD
 	}
 }
