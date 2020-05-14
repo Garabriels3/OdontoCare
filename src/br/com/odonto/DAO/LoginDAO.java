@@ -31,8 +31,11 @@ public class LoginDAO {
 			rs = stmt.executeQuery();
 			if(rs.next()) {
 				check = true;
+				return check;
+			}else {
+				check = false;
+				return check;
 			}
-			return check;
 		} finally {
 			connectionFactory.closeConnection(con, stmt, rs);
 		}
