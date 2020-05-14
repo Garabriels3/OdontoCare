@@ -86,7 +86,7 @@ public class ClientRegisterView extends JFrame {
 		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setForeground(SystemColor.textHighlight);
-		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(65, 105, 225), null, new Color(123, 104, 238), new Color(65, 105, 225)));
+		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -96,8 +96,9 @@ public class ClientRegisterView extends JFrame {
 		panel.setBounds(0, 0, 30, 500);
 		contentPane.add(panel);
 		
-		JLabel lblNome = new JLabel("NOME COMPLETO");
-		lblNome.setFont(new Font("Verdana", Font.PLAIN, 15));
+		JLabel lblNome = new JLabel("Nome Completo");
+		lblNome.setForeground(Color.BLACK);
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNome.setBounds(59, 118, 159, 20);
 		contentPane.add(lblNome);
 		
@@ -129,12 +130,14 @@ public class ClientRegisterView extends JFrame {
 		contentPane.add(txtPhone);
 		
 		JLabel lblCpf = new JLabel("CPF");
-		lblCpf.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblCpf.setForeground(Color.BLACK);
+		lblCpf.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblCpf.setBounds(60, 56, 43, 20);
 		contentPane.add(lblCpf);
 		
-		JLabel lblCelular = new JLabel("CELULAR");
-		lblCelular.setFont(new Font("Verdana", Font.PLAIN, 15));
+		JLabel lblCelular = new JLabel("Celular");
+		lblCelular.setForeground(Color.BLACK);
+		lblCelular.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblCelular.setBounds(59, 180, 85, 20);
 		contentPane.add(lblCelular);
 		
@@ -147,8 +150,9 @@ public class ClientRegisterView extends JFrame {
 		txtBirthday.setBounds(61, 263, 380, 30);
 		contentPane.add(txtBirthday);
 		
-		JLabel lblDataDeNascimento = new JLabel("DATA DE NASCIMENTO");
-		lblDataDeNascimento.setFont(new Font("Verdana", Font.PLAIN, 15));
+		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento");
+		lblDataDeNascimento.setForeground(Color.BLACK);
+		lblDataDeNascimento.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblDataDeNascimento.setBounds(59, 242, 201, 20);
 		contentPane.add(lblDataDeNascimento);
 		
@@ -170,8 +174,9 @@ public class ClientRegisterView extends JFrame {
 		btnMinimize.setBounds(853, 0, 45, 45);
 		contentPane.add(btnMinimize);
 		
-		JLabel lblSe = new JLabel("SEXO");
-		lblSe.setFont(new Font("Verdana", Font.PLAIN, 15));
+		JLabel lblSe = new JLabel("Sexo");
+		lblSe.setForeground(Color.BLACK);
+		lblSe.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblSe.setBounds(59, 304, 65, 20);
 		contentPane.add(lblSe);
 		
@@ -185,7 +190,8 @@ public class ClientRegisterView extends JFrame {
 		contentPane.add(cbSex);
 		
 		JLabel lblCep = new JLabel("CEP");
-		lblCep.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblCep.setForeground(Color.BLACK);
+		lblCep.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblCep.setBounds(533, 56, 43, 20);
 		contentPane.add(lblCep);
 		
@@ -198,8 +204,9 @@ public class ClientRegisterView extends JFrame {
 		txtStreet.setBounds(533, 139, 380, 30);
 		contentPane.add(txtStreet);
 		
-		JLabel lblLogradouro = new JLabel("LOGRADOURO");
-		lblLogradouro.setFont(new Font("Verdana", Font.PLAIN, 15));
+		JLabel lblLogradouro = new JLabel("Logradouro");
+		lblLogradouro.setForeground(Color.BLACK);
+		lblLogradouro.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblLogradouro.setBounds(533, 118, 127, 20);
 		contentPane.add(lblLogradouro);
 		
@@ -212,8 +219,9 @@ public class ClientRegisterView extends JFrame {
 		txtNeighborhood.setBounds(533, 201, 380, 30);
 		contentPane.add(txtNeighborhood);
 		
-		JLabel lblBairro = new JLabel("BAIRRO");
-		lblBairro.setFont(new Font("Verdana", Font.PLAIN, 15));
+		JLabel lblBairro = new JLabel("Bairro");
+		lblBairro.setForeground(Color.BLACK);
+		lblBairro.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblBairro.setBounds(533, 180, 95, 20);
 		contentPane.add(lblBairro);
 		
@@ -226,8 +234,9 @@ public class ClientRegisterView extends JFrame {
 		txtCity.setBounds(533, 263, 380, 30);
 		contentPane.add(txtCity);
 		
-		JLabel lblCidade = new JLabel("CIDADE");
-		lblCidade.setFont(new Font("Verdana", Font.PLAIN, 15));
+		JLabel lblCidade = new JLabel("Cidade");
+		lblCidade.setForeground(Color.BLACK);
+		lblCidade.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblCidade.setBounds(533, 242, 95, 20);
 		contentPane.add(lblCidade);
 		
@@ -240,15 +249,16 @@ public class ClientRegisterView extends JFrame {
 		txtState.setBounds(533, 325, 380, 30);
 		contentPane.add(txtState);
 		
-		JLabel lblEstado = new JLabel("ESTADO");
-		lblEstado.setFont(new Font("Verdana", Font.PLAIN, 15));
+		JLabel lblEstado = new JLabel("Estado");
+		lblEstado.setForeground(Color.BLACK);
+		lblEstado.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblEstado.setBounds(533, 304, 95, 20);
 		contentPane.add(lblEstado);
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSalvar.setForeground(Color.WHITE);
-		btnSalvar.setFont(new Font("Verdana", Font.PLAIN, 18));
+		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSalvar.setBorder(null);
 		btnSalvar.setBackground(new Color(0, 102, 255));
 		btnSalvar.setBounds(59, 391, 184, 40);
@@ -257,7 +267,7 @@ public class ClientRegisterView extends JFrame {
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAlterar.setForeground(Color.WHITE);
-		btnAlterar.setFont(new Font("Verdana", Font.PLAIN, 18));
+		btnAlterar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAlterar.setBorder(null);
 		btnAlterar.setBackground(new Color(0, 102, 255));
 		btnAlterar.setBounds(257, 391, 184, 40);
@@ -266,7 +276,7 @@ public class ClientRegisterView extends JFrame {
 		JButton btnExcluir = new JButton("Consultar");
 		btnExcluir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnExcluir.setForeground(Color.WHITE);
-		btnExcluir.setFont(new Font("Verdana", Font.PLAIN, 18));
+		btnExcluir.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnExcluir.setBorder(null);
 		btnExcluir.setBackground(new Color(0, 102, 255));
 		btnExcluir.setBounds(59, 442, 184, 40);
@@ -275,7 +285,7 @@ public class ClientRegisterView extends JFrame {
 		JButton btnConsultar = new JButton("Excluir");
 		btnConsultar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnConsultar.setForeground(Color.WHITE);
-		btnConsultar.setFont(new Font("Verdana", Font.PLAIN, 18));
+		btnConsultar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnConsultar.setBorder(null);
 		btnConsultar.setBackground(new Color(0, 102, 255));
 		btnConsultar.setBounds(257, 442, 184, 40);
@@ -291,22 +301,22 @@ public class ClientRegisterView extends JFrame {
 		});
 		draggWindow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		draggWindow.setBackground(Color.WHITE);
-		draggWindow.setBounds(29, 0, 826, 45);
+		draggWindow.setBounds(0, 0, 855, 45);
 		contentPane.add(draggWindow);
 		draggWindow.setLayout(null);
 		
 		JLabel lblCadastrar = new JLabel("Sign Up");
-		lblCadastrar.setBounds(379, 0, 150, 44);
+		lblCadastrar.setBounds(0, 0, 855, 44);
 		draggWindow.add(lblCadastrar);
 		lblCadastrar.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCadastrar.setForeground(Color.LIGHT_GRAY);
-		lblCadastrar.setFont(new Font("Verdana", Font.BOLD, 35));
+		lblCadastrar.setFont(new Font("Verdana", Font.BOLD, 30));
 		
 		JButton btnFindCep = new JButton("Buscar Endere\u00E7o");
 	
 		btnFindCep.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnFindCep.setForeground(Color.WHITE);
-		btnFindCep.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnFindCep.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnFindCep.setBorder(null);
 		btnFindCep.setBackground(new Color(0, 102, 255));
 		btnFindCep.setBounds(738, 69, 175, 44);
@@ -344,7 +354,7 @@ public class ClientRegisterView extends JFrame {
 			}
 		});
 		btnVoltar.setForeground(Color.WHITE);
-		btnVoltar.setFont(new Font("Verdana", Font.PLAIN, 18));
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnVoltar.setBorder(null);
 		btnVoltar.setBackground(new Color(0, 102, 255));
 		btnVoltar.setBounds(640, 417, 184, 40);

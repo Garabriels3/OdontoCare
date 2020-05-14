@@ -86,8 +86,8 @@ public class LoginView extends JFrame {
 		panel.setLayout(null);
 		
 		txtEmail = new JTextField();
-		txtEmail.setFont(new Font("Verdana", Font.PLAIN, 14));
-		txtEmail.setForeground(UIManager.getColor("SplitPaneDivider.draggingColor"));
+		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtEmail.setForeground(Color.DARK_GRAY);
 		txtEmail.setCaretColor(UIManager.getColor("ComboBox.disabledForeground"));
 		txtEmail.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
 		txtEmail.setBounds(440, 188, 222, 42);
@@ -114,7 +114,7 @@ public class LoginView extends JFrame {
 		JButton btnSignUp = new JButton("Login");
 		
 		btnSignUp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnSignUp.setFont(new Font("Verdana", Font.PLAIN, 18));
+		btnSignUp.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSignUp.setForeground(new Color(255, 255, 255));
 		btnSignUp.setBorder(null);
 		btnSignUp.setBackground(new Color(0, 102, 255));
@@ -122,27 +122,27 @@ public class LoginView extends JFrame {
 		background.add(btnSignUp);
 		
 		JLabel lblSingUp = new JLabel("Sign In");
-		lblSingUp.setFont(new Font("Verdana", Font.BOLD, 35));
-		lblSingUp.setForeground(new Color(192, 192, 192));
+		lblSingUp.setFont(new Font("Tahoma", Font.BOLD, 35));
+		lblSingUp.setForeground(Color.LIGHT_GRAY);
 		lblSingUp.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSingUp.setBounds(456, 56, 184, 53);
+		lblSingUp.setBounds(361, 56, 358, 53);
 		background.add(lblSingUp);
 		
 		JLabel lblEmail2 = new JLabel("Email");
-		lblEmail2.setForeground(new Color(192, 192, 192));
-		lblEmail2.setFont(new Font("Verdana", Font.PLAIN, 13));
-		lblEmail2.setBounds(440, 166, 46, 17);
+		lblEmail2.setForeground(Color.BLACK);
+		lblEmail2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblEmail2.setBounds(440, 166, 37, 17);
 		background.add(lblEmail2);
 		
 		JLabel lblSenha = new JLabel("Senha");
-		lblSenha.setForeground(Color.LIGHT_GRAY);
-		lblSenha.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblSenha.setForeground(Color.BLACK);
+		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblSenha.setBounds(440, 246, 46, 14);
 		background.add(lblSenha);
 		
 		JButton btnResetPassword = new JButton("Clique aqui para redefinir sua senha!");
 		btnResetPassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnResetPassword.setFont(new Font("Verdana", Font.PLAIN, 13));
+		btnResetPassword.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnResetPassword.setForeground(new Color(51, 51, 255));
 		btnResetPassword.setBackground(new Color(255, 255, 255));
 		btnResetPassword.setBorder(null);
@@ -155,6 +155,7 @@ public class LoginView extends JFrame {
 		txtPassword.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
 		txtPassword.setBounds(440, 265, 222, 42);
 		background.add(txtPassword);
+
 		
 		Box horizontalBox = Box.createHorizontalBox();
 		horizontalBox.setBounds(381, 80, -16, -18);
@@ -194,7 +195,7 @@ public class LoginView extends JFrame {
 			}
 		});
 		btnCadastrar.setForeground(Color.WHITE);
-		btnCadastrar.setFont(new Font("Verdana", Font.PLAIN, 18));
+		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnCadastrar.setBorder(null);
 		btnCadastrar.setBackground(new Color(0, 102, 255));
 		btnCadastrar.setBounds(456, 390, 184, 45);
@@ -216,6 +217,7 @@ public class LoginView extends JFrame {
 		// Method to make Login
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				loginController = new LoginController();
 				try {
 				LoginController loginController = new LoginController();
 				String email = txtEmail.getText();

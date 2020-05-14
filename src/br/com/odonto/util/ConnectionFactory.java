@@ -9,7 +9,7 @@ public class ConnectionFactory {
 	private static String login;
 	private static String password;
 	private static String url;
-	
+
 	public Connection getConnection() throws Exception {
 		try {
 			System.out.println("Chegou no ConnectionFactory");

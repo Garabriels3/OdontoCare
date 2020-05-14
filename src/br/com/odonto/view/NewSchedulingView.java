@@ -128,19 +128,20 @@ public class NewSchedulingView extends JFrame {
 		});
 		draggWindow.setLayout(null);
 		draggWindow.setBackground(Color.WHITE);
-		draggWindow.setBounds(27, 0, 642, 45);
+		draggWindow.setBounds(0, 0, 669, 45);
 		contentPane.add(draggWindow);
 		
 		lblNovoAgendamento = new JLabel("Novo Agendamento");
-		lblNovoAgendamento.setBounds(116, 0, 441, 45);
+		lblNovoAgendamento.setBounds(30, 0, 639, 45);
 		draggWindow.add(lblNovoAgendamento);
 		lblNovoAgendamento.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNovoAgendamento.setForeground(Color.LIGHT_GRAY);
-		lblNovoAgendamento.setFont(new Font("Verdana", Font.BOLD, 40));
+		lblNovoAgendamento.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblNovoAgendamento.setBackground(Color.WHITE);
 		
-		lblNomeCompleto = new JLabel("NOME COMPLETO");
-		lblNomeCompleto.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblNomeCompleto = new JLabel("Nome Completo");
+		lblNomeCompleto.setForeground(Color.BLACK);
+		lblNomeCompleto.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNomeCompleto.setBounds(41, 56, 132, 20);
 		contentPane.add(lblNomeCompleto);
 		
@@ -153,9 +154,10 @@ public class NewSchedulingView extends JFrame {
 		txtNome.setBounds(42, 77, 380, 30);
 		contentPane.add(txtNome);
 		
-		lblData = new JLabel("DATA");
+		lblData = new JLabel("Data");
+		lblData.setForeground(Color.BLACK);
 		lblData.setHorizontalAlignment(SwingConstants.LEFT);
-		lblData.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblData.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblData.setBounds(40, 118, 41, 20);
 		contentPane.add(lblData);
 		
@@ -168,8 +170,9 @@ public class NewSchedulingView extends JFrame {
 		textField_1.setBounds(42, 139, 98, 30);
 		contentPane.add(textField_1);
 		
-		lblDuraoDaConsulta = new JLabel("DURA\u00C7\u00C3O DA CONSULTA");
-		lblDuraoDaConsulta.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblDuraoDaConsulta = new JLabel("Dura\u00E7\u00E3o da Consulta");
+		lblDuraoDaConsulta.setForeground(Color.BLACK);
+		lblDuraoDaConsulta.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblDuraoDaConsulta.setBounds(40, 180, 188, 20);
 		contentPane.add(lblDuraoDaConsulta);
 		
@@ -191,9 +194,10 @@ public class NewSchedulingView extends JFrame {
 		txtHorario.setBounds(492, 139, 98, 30);
 		contentPane.add(txtHorario);
 		
-		lblHorario = new JLabel("HOR\u00C1RIO");
+		lblHorario = new JLabel("Hor\u00E1rio");
+		lblHorario.setForeground(Color.BLACK);
 		lblHorario.setHorizontalAlignment(SwingConstants.LEFT);
-		lblHorario.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblHorario.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblHorario.setBounds(490, 118, 71, 20);
 		contentPane.add(lblHorario);
 		
@@ -206,19 +210,21 @@ public class NewSchedulingView extends JFrame {
 		txtMotivoConsulta.setBounds(494, 201, 240, 30);
 		contentPane.add(txtMotivoConsulta);
 		
-		lblMotivoDaConsulta = new JLabel("MOTIVO DA CONSULTA");
-		lblMotivoDaConsulta.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblMotivoDaConsulta = new JLabel("Motivo da Consulta");
+		lblMotivoDaConsulta.setForeground(Color.BLACK);
+		lblMotivoDaConsulta.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblMotivoDaConsulta.setBounds(492, 180, 175, 20);
 		contentPane.add(lblMotivoDaConsulta);
 		
-		lblDentistaResponsvel = new JLabel("DENTISTA RESPONS\u00C1VEL");
-		lblDentistaResponsvel.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblDentistaResponsvel = new JLabel("Dentista Respons\u00E1vel");
+		lblDentistaResponsvel.setForeground(Color.BLACK);
+		lblDentistaResponsvel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblDentistaResponsvel.setBounds(40, 242, 189, 20);
 		contentPane.add(lblDentistaResponsvel);
 		
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.setForeground(Color.WHITE);
-		btnSalvar.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnSalvar.setBorder(null);
 		btnSalvar.setBackground(new Color(0, 102, 255));
 		btnSalvar.setBounds(79, 359, 184, 45);
@@ -230,7 +236,7 @@ public class NewSchedulingView extends JFrame {
 			}
 		});
 		btnExcluir.setForeground(Color.WHITE);
-		btnExcluir.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnExcluir.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnExcluir.setBorder(null);
 		btnExcluir.setBackground(new Color(0, 102, 255));
 		btnExcluir.setBounds(293, 359, 184, 45);
@@ -252,7 +258,7 @@ public class NewSchedulingView extends JFrame {
 			}
 		});
 		btnVoltar.setForeground(Color.WHITE);
-		btnVoltar.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnVoltar.setBorder(null);
 		btnVoltar.setBackground(new Color(0, 102, 255));
 		btnVoltar.setBounds(506, 359, 184, 45);
