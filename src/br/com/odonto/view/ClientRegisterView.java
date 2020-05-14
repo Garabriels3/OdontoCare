@@ -36,6 +36,11 @@ import java.awt.Cursor;
 import javax.swing.JFormattedTextField;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
+import java.awt.event.MouseAdapter;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.SwingConstants;
 
 public class ClientRegisterView extends JFrame {
 
@@ -49,7 +54,8 @@ public class ClientRegisterView extends JFrame {
 	private JTextField txtState;
 	private JTextField txtStreet;
 	private ClientRegisterView crv;
-	private LoginView lv;
+	private SchedulingView sch;
+	private int x,y;
 	String cep;
 	/**
 	 * Launch the application.
@@ -75,7 +81,7 @@ public class ClientRegisterView extends JFrame {
 		setForeground(new Color(65, 105, 225));
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 939, 489);
+		setBounds(100, 100, 943, 500);
 		contentPane = new JPanel();
 		contentPane.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		contentPane.setBackground(new Color(255, 255, 255));
@@ -87,21 +93,21 @@ public class ClientRegisterView extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 102, 255));
 		panel.setForeground(new Color(0, 102, 255));
-		panel.setBounds(0, 0, 30, 489);
+		panel.setBounds(0, 0, 30, 500);
 		contentPane.add(panel);
 		
 		JLabel lblNome = new JLabel("NOME COMPLETO");
 		lblNome.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblNome.setBounds(48, 87, 159, 20);
+		lblNome.setBounds(59, 118, 159, 20);
 		contentPane.add(lblNome);
 		
 		txtCPF = new JTextField();
-		txtCPF.setForeground(Color.DARK_GRAY);
+		txtCPF.setForeground(UIManager.getColor("SplitPaneDivider.draggingColor"));
 		txtCPF.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtCPF.setColumns(10);
 		txtCPF.setCaretColor(SystemColor.textInactiveText);
-		txtCPF.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, new Color(227, 227, 227), null));
-		txtCPF.setBounds(50, 46, 380, 30);
+		txtCPF.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtCPF.setBounds(61, 77, 380, 30);
 		contentPane.add(txtCPF);
 		
 		txtNameComplete = new JTextField();
@@ -109,8 +115,8 @@ public class ClientRegisterView extends JFrame {
 		txtNameComplete.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtNameComplete.setColumns(10);
 		txtNameComplete.setCaretColor(SystemColor.textInactiveText);
-		txtNameComplete.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, new Color(227, 227, 227), null));
-		txtNameComplete.setBounds(50, 112, 380, 30);
+		txtNameComplete.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtNameComplete.setBounds(61, 139, 380, 30);
 		contentPane.add(txtNameComplete);
 		
 		txtPhone = new JTextField();
@@ -118,18 +124,18 @@ public class ClientRegisterView extends JFrame {
 		txtPhone.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtPhone.setColumns(10);
 		txtPhone.setCaretColor(SystemColor.textInactiveText);
-		txtPhone.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, new Color(227, 227, 227), null));
-		txtPhone.setBounds(50, 175, 380, 30);
+		txtPhone.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtPhone.setBounds(61, 201, 380, 30);
 		contentPane.add(txtPhone);
 		
 		JLabel lblCpf = new JLabel("CPF");
 		lblCpf.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblCpf.setBounds(49, 25, 43, 20);
+		lblCpf.setBounds(60, 56, 43, 20);
 		contentPane.add(lblCpf);
 		
 		JLabel lblCelular = new JLabel("CELULAR");
 		lblCelular.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblCelular.setBounds(48, 153, 85, 20);
+		lblCelular.setBounds(59, 180, 85, 20);
 		contentPane.add(lblCelular);
 		
 		txtBirthday = new JTextField();
@@ -137,13 +143,13 @@ public class ClientRegisterView extends JFrame {
 		txtBirthday.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtBirthday.setColumns(10);
 		txtBirthday.setCaretColor(SystemColor.textInactiveText);
-		txtBirthday.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, new Color(227, 227, 227), null));
-		txtBirthday.setBounds(50, 241, 380, 30);
+		txtBirthday.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtBirthday.setBounds(61, 263, 380, 30);
 		contentPane.add(txtBirthday);
 		
 		JLabel lblDataDeNascimento = new JLabel("DATA DE NASCIMENTO");
 		lblDataDeNascimento.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblDataDeNascimento.setBounds(48, 216, 201, 20);
+		lblDataDeNascimento.setBounds(59, 242, 201, 20);
 		contentPane.add(lblDataDeNascimento);
 		
 		JButton btnClose = new JButton("X");
@@ -152,7 +158,7 @@ public class ClientRegisterView extends JFrame {
 		btnClose.setFont(new Font("Verdana", Font.PLAIN, 17));
 		btnClose.setBorder(null);
 		btnClose.setBackground(new Color(0, 102, 255));
-		btnClose.setBounds(894, 0, 45, 45);
+		btnClose.setBounds(898, 0, 45, 45);
 		contentPane.add(btnClose);
 		
 		JButton btnMinimize = new JButton("-");
@@ -161,25 +167,26 @@ public class ClientRegisterView extends JFrame {
 		btnMinimize.setFont(new Font("Verdana", Font.PLAIN, 24));
 		btnMinimize.setBorder(null);
 		btnMinimize.setBackground(new Color(0, 102, 255));
-		btnMinimize.setBounds(849, 0, 45, 45);
+		btnMinimize.setBounds(853, 0, 45, 45);
 		contentPane.add(btnMinimize);
 		
 		JLabel lblSe = new JLabel("SEXO");
 		lblSe.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblSe.setBounds(48, 282, 65, 20);
+		lblSe.setBounds(59, 304, 65, 20);
 		contentPane.add(lblSe);
 		
 		JComboBox cbSex = new JComboBox();
-		cbSex.setBackground(new Color(220, 220, 220));
-		cbSex.setForeground(new Color(0, 0, 0));
+		cbSex.setBorder(null);
+		cbSex.setBackground(Color.WHITE);
+		cbSex.setForeground(Color.BLACK);
 		cbSex.setFont(new Font("Verdana", Font.PLAIN, 14));
 		cbSex.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Feminino"}));
-		cbSex.setBounds(51, 306, 379, 37);
+		cbSex.setBounds(62, 325, 379, 37);
 		contentPane.add(cbSex);
 		
 		JLabel lblCep = new JLabel("CEP");
 		lblCep.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblCep.setBounds(522, 39, 43, 20);
+		lblCep.setBounds(533, 56, 43, 20);
 		contentPane.add(lblCep);
 		
 		txtStreet = new JTextField();
@@ -187,13 +194,13 @@ public class ClientRegisterView extends JFrame {
 		txtStreet.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtStreet.setColumns(10);
 		txtStreet.setCaretColor(SystemColor.textInactiveText);
-		txtStreet.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, new Color(227, 227, 227), null));
-		txtStreet.setBounds(522, 148, 380, 30);
+		txtStreet.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtStreet.setBounds(533, 139, 380, 30);
 		contentPane.add(txtStreet);
 		
 		JLabel lblLogradouro = new JLabel("LOGRADOURO");
 		lblLogradouro.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblLogradouro.setBounds(522, 117, 127, 20);
+		lblLogradouro.setBounds(533, 118, 127, 20);
 		contentPane.add(lblLogradouro);
 		
 		txtNeighborhood = new JTextField();
@@ -201,13 +208,13 @@ public class ClientRegisterView extends JFrame {
 		txtNeighborhood.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtNeighborhood.setColumns(10);
 		txtNeighborhood.setCaretColor(SystemColor.textInactiveText);
-		txtNeighborhood.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, new Color(227, 227, 227), null));
-		txtNeighborhood.setBounds(522, 230, 380, 30);
+		txtNeighborhood.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtNeighborhood.setBounds(533, 201, 380, 30);
 		contentPane.add(txtNeighborhood);
 		
 		JLabel lblBairro = new JLabel("BAIRRO");
 		lblBairro.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblBairro.setBounds(522, 199, 95, 20);
+		lblBairro.setBounds(533, 180, 95, 20);
 		contentPane.add(lblBairro);
 		
 		txtCity = new JTextField();
@@ -215,13 +222,13 @@ public class ClientRegisterView extends JFrame {
 		txtCity.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtCity.setColumns(10);
 		txtCity.setCaretColor(SystemColor.textInactiveText);
-		txtCity.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, new Color(227, 227, 227), null));
-		txtCity.setBounds(522, 293, 380, 30);
+		txtCity.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtCity.setBounds(533, 263, 380, 30);
 		contentPane.add(txtCity);
 		
 		JLabel lblCidade = new JLabel("CIDADE");
 		lblCidade.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblCidade.setBounds(522, 271, 95, 20);
+		lblCidade.setBounds(533, 242, 95, 20);
 		contentPane.add(lblCidade);
 		
 		txtState = new JTextField();
@@ -229,56 +236,71 @@ public class ClientRegisterView extends JFrame {
 		txtState.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtState.setColumns(10);
 		txtState.setCaretColor(SystemColor.textInactiveText);
-		txtState.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, new Color(227, 227, 227), null));
-		txtState.setBounds(522, 359, 380, 30);
+		txtState.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtState.setBounds(533, 325, 380, 30);
 		contentPane.add(txtState);
 		
 		JLabel lblEstado = new JLabel("ESTADO");
 		lblEstado.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblEstado.setBounds(522, 334, 95, 20);
+		lblEstado.setBounds(533, 304, 95, 20);
 		contentPane.add(lblEstado);
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSalvar.setForeground(Color.WHITE);
-		btnSalvar.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnSalvar.setFont(new Font("Verdana", Font.PLAIN, 18));
 		btnSalvar.setBorder(null);
 		btnSalvar.setBackground(new Color(0, 102, 255));
-		btnSalvar.setBounds(48, 365, 184, 40);
+		btnSalvar.setBounds(59, 391, 184, 40);
 		contentPane.add(btnSalvar);
 		
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAlterar.setForeground(Color.WHITE);
-		btnAlterar.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnAlterar.setFont(new Font("Verdana", Font.PLAIN, 18));
 		btnAlterar.setBorder(null);
 		btnAlterar.setBackground(new Color(0, 102, 255));
-		btnAlterar.setBounds(246, 365, 184, 40);
+		btnAlterar.setBounds(257, 391, 184, 40);
 		contentPane.add(btnAlterar);
 		
 		JButton btnExcluir = new JButton("Consultar");
 		btnExcluir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnExcluir.setForeground(Color.WHITE);
-		btnExcluir.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnExcluir.setFont(new Font("Verdana", Font.PLAIN, 18));
 		btnExcluir.setBorder(null);
 		btnExcluir.setBackground(new Color(0, 102, 255));
-		btnExcluir.setBounds(48, 416, 184, 40);
+		btnExcluir.setBounds(59, 442, 184, 40);
 		contentPane.add(btnExcluir);
 		
 		JButton btnConsultar = new JButton("Excluir");
 		btnConsultar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnConsultar.setForeground(Color.WHITE);
-		btnConsultar.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnConsultar.setFont(new Font("Verdana", Font.PLAIN, 18));
 		btnConsultar.setBorder(null);
 		btnConsultar.setBackground(new Color(0, 102, 255));
-		btnConsultar.setBounds(246, 416, 184, 40);
+		btnConsultar.setBounds(257, 442, 184, 40);
 		contentPane.add(btnConsultar);
 		
 		JPanel draggWindow = new JPanel();
+		draggWindow.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				x = e.getX();
+				y = e.getY();
+			}
+		});
 		draggWindow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		draggWindow.setBackground(Color.WHITE);
-		draggWindow.setBounds(29, 4, 810, 20);
+		draggWindow.setBounds(29, 0, 826, 45);
 		contentPane.add(draggWindow);
+		draggWindow.setLayout(null);
+		
+		JLabel lblCadastrar = new JLabel("Sign Up");
+		lblCadastrar.setBounds(379, 0, 150, 44);
+		draggWindow.add(lblCadastrar);
+		lblCadastrar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCadastrar.setForeground(Color.LIGHT_GRAY);
+		lblCadastrar.setFont(new Font("Verdana", Font.BOLD, 35));
 		
 		JButton btnFindCep = new JButton("Buscar Endere\u00E7o");
 	
@@ -287,7 +309,7 @@ public class ClientRegisterView extends JFrame {
 		btnFindCep.setFont(new Font("Verdana", Font.PLAIN, 16));
 		btnFindCep.setBorder(null);
 		btnFindCep.setBackground(new Color(0, 102, 255));
-		btnFindCep.setBounds(727, 63, 175, 44);
+		btnFindCep.setBounds(738, 69, 175, 44);
 		contentPane.add(btnFindCep);
 		
 		JFormattedTextField txtCep = new JFormattedTextField(new MaskFormatter("#####-###"));
@@ -299,8 +321,8 @@ public class ClientRegisterView extends JFrame {
 		});
 		txtCep.setToolTipText("");
 		txtCep.setFont(new Font("Verdana", Font.PLAIN, 11));
-		txtCep.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(192, 192, 192), null, SystemColor.controlHighlight, null));
-		txtCep.setBounds(522, 70, 195, 30);
+		txtCep.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtCep.setBounds(533, 79, 195, 30);
 		
 
 		contentPane.add(txtCep);
@@ -310,9 +332,9 @@ public class ClientRegisterView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					crv = new ClientRegisterView();
-					lv = new LoginView();
-					lv.setLocationRelativeTo(null);
-					lv.setVisible(true);
+					sch = new SchedulingView();
+					sch.setLocationRelativeTo(null);
+					sch.setVisible(true);
 					crv.setVisible(false);
 					dispose();
 				} catch (Exception e1) {
@@ -322,10 +344,10 @@ public class ClientRegisterView extends JFrame {
 			}
 		});
 		btnVoltar.setForeground(Color.WHITE);
-		btnVoltar.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnVoltar.setFont(new Font("Verdana", Font.PLAIN, 18));
 		btnVoltar.setBorder(null);
 		btnVoltar.setBackground(new Color(0, 102, 255));
-		btnVoltar.setBounds(645, 416, 184, 40);
+		btnVoltar.setBounds(640, 417, 184, 40);
 		contentPane.add(btnVoltar);
 		
 		// MARK: METHODS
@@ -348,8 +370,9 @@ public class ClientRegisterView extends JFrame {
 		draggWindow.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
-				Point cordinate = e.getLocationOnScreen();
-				setLocation(cordinate);
+				int xx = e.getXOnScreen();
+				int yy = e.getYOnScreen();
+				setLocation(xx-x,yy-y);
 			}
 		});
 		

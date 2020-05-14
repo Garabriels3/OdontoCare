@@ -32,10 +32,10 @@ public class CepApi {
 		this.clientHTTP = HttpClients.createDefault(); // Inicialização do clientHTTP
 	}
 	
-	// Uunica Função Publica que faz o Singleton, que é o conceito de instancia unica da classe
+	// Função Publica que faz o Singleton, que é o conceito de instancia unica da classe
 	public static CepApi getInstance() {
 		if (instance == null) {
-			instance = new CepApi();
+			instance = new CepApi(); 
 		}
 		return instance; // A Func retorna uma instancia da classe, que pode ser acessado por outras classes
 	}
@@ -57,7 +57,7 @@ public class CepApi {
 					if (status >= 200 && status < 300) { // Aqui testamos para verificar se o código está entre 200 e 300, que são códigos de sucesso de retorno da API
 						entity = response.getEntity(); // caso der true, inicializamos o response, pegando a Entity
 						
-						return entity != null ? EntityUtils.toString(entity) : null; // Fazemos mais uma verificação, para assegurar que o programa não irá crashar
+						return entity != null ? EntityUtils.toString(entity) : null; //Sendo a requisição bem sucedida ou tendo retornado algum erro, normalmente iremos querer obter o conteúdo retornado e para isso utilizaremos o objeto HttpEntity
 					}else {
 						throw new ClientProtocolException("Unexpected response status: " + status); // Aqui ele retornara o código acima de 299, caso de algum erro(URL ERRADA, API OFFLINE, ETC..)
 					}

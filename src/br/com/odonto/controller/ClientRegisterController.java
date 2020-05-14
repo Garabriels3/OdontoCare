@@ -12,7 +12,7 @@ public class ClientRegisterController {
 	
 	public CepModel getAdress(String path) {
 		if(path != null && path.length() == 8) { // Checamos aqui, se o path, que é o nosso CEP, não está vazio, o que poderia ocasionar um Crash na Service, caso não verificado
-			data = registerDao.getApi(path);
+			data = registerDao.convertApi(path);
 		}else {
 			JOptionPane.showInternalMessageDialog(null, "Campo Cep não preenchido corretamente"); // caso esteja vazio, essa camada é responsavel, por avisar o usuario, e não deixar prosseguir para proxima camada
 		}

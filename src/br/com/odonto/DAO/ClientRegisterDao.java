@@ -17,7 +17,7 @@ public class ClientRegisterDao {
 	private Type type;
 	private CepApi instance;
 	
-	public CepModel getApi(String path) {
+	public CepModel convertApi(String path) {
 		instance = CepApi.getInstance(); // Usamos a instancia do Singleton, para instanciar a classe, de forma Unica
 		json = instance.doRequest(path); // Aqui atribuimos a variavel json, o retorno de doRequest, que retornará o JSON puro sem conversão
 		type = new TypeToken<CepModel>() {}.getType(); // Aqui fazemos um TypeToken, do tipo Generico CepModel
@@ -25,7 +25,6 @@ public class ClientRegisterDao {
 			data = gson.fromJson(json, type); // Inicializamos a var data com os dados vindos da API de forma Convertida, para Objeto, para que possamos acessar
 		
 		return data; // retorna os dados da API, agora já convertidos objetos manipulaveis dentro da linguagem Java
-		
 	}
 }
 
