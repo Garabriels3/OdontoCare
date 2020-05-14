@@ -7,12 +7,12 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 	
-	//Padrão de Projeto Singleton - uma única instância da classe 
-	private static ConnectionFactory INSTANCE; //Declaração de uma variavel do tipo ConnectionFactory
 	
-	private ConnectionFactory() { // Construtor privado, para evitar a criação instâncias da classe.
+	private static ConnectionFactory INSTANCE;
+	
+	private ConnectionFactory() {
 	}
-	public static ConnectionFactory getINSTANCE() { //Método para a criação de uma única instância da classe
+	public static ConnectionFactory getINSTANCE() {
 		if(INSTANCE == null){
 			INSTANCE = new ConnectionFactory();
 		}

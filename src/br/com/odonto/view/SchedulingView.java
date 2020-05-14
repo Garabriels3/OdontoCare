@@ -110,7 +110,7 @@ public class SchedulingView extends JFrame {
 				y = e.getY();
 			}
 		});
-		draggWindow.setBounds(29, 0, 676, 45);
+		draggWindow.setBounds(0, 0, 705, 45);
 		draggWindow.setLayout(null);
 		draggWindow.setBackground(Color.WHITE);
 		contentPane.add(draggWindow);
@@ -121,7 +121,7 @@ public class SchedulingView extends JFrame {
 		lblAgendamentos.setBackground(Color.WHITE);
 		lblAgendamentos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAgendamentos.setForeground(Color.LIGHT_GRAY);
-		lblAgendamentos.setFont(new Font("Verdana", Font.BOLD, 40));
+		lblAgendamentos.setFont(new Font("Tahoma", Font.BOLD, 30));
 		
 		btnCadastroCliente = new JButton("Cadastrar Cliente");
 		btnCadastroCliente.addActionListener(new ActionListener() {
@@ -139,7 +139,7 @@ public class SchedulingView extends JFrame {
 			}
 		});
 		btnCadastroCliente.setForeground(Color.WHITE);
-		btnCadastroCliente.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnCadastroCliente.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnCadastroCliente.setBorder(null);
 		btnCadastroCliente.setBackground(new Color(0, 102, 255));
 		btnCadastroCliente.setBounds(584, 71, 184, 45);
@@ -161,7 +161,7 @@ public class SchedulingView extends JFrame {
 			}
 		});
 		btnNovoAgendamento.setForeground(Color.WHITE);
-		btnNovoAgendamento.setFont(new Font("Verdana", Font.PLAIN, 16));
+		btnNovoAgendamento.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNovoAgendamento.setBorder(null);
 		btnNovoAgendamento.setBackground(new Color(0, 102, 255));
 		btnNovoAgendamento.setBounds(584, 132, 184, 45);

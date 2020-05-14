@@ -21,7 +21,7 @@ public class LoginController {
 	public boolean verificarLogin(String senha, String email)throws Exception{
 		loginDAO = LoginDAO.getINSTANCE();
 		boolean check = false;
-		if(senha != null && senha.length() > 0 && email != null && email.length() > 0) {
+		if(senha.length() > 0 && email.length() > 0) {
 			return loginDAO.verificarLogin(senha, email);
 		}
 		return check;

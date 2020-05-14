@@ -53,6 +53,7 @@ public class EmployeeRegisterView extends JFrame {
 	private JButton btnCadastrar;
 	private JPasswordField txtSenha;
 	private int x,y;
+	private JLabel lblResultado;
 
 	/**
 	 * Launch the application.
@@ -86,10 +87,17 @@ public class EmployeeRegisterView extends JFrame {
 		panel = new JPanel();
 		panel.setForeground(new Color(0, 102, 255));
 		panel.setBackground(new Color(0, 102, 255));
-		panel.setBounds(0, 0, 30, 435);
+		panel.setBounds(0, 0, 30, 446);
 		contentPane.add(panel);
 		
 		draggWindow = new JPanel();
+		draggWindow.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				x = e.getX();
+				y = e.getY();
+			}
+		});
 		draggWindow.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
@@ -98,17 +106,10 @@ public class EmployeeRegisterView extends JFrame {
 				setLocation(xx-x,yy-y);
 			}
 		});
-		draggWindow.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				x = e.getX();
-				y = e.getY();
-			}
-		});
-		draggWindow.setLayout(null);
 		draggWindow.setBackground(Color.WHITE);
-		draggWindow.setBounds(30, 0, 676, 45);
+		draggWindow.setBounds(0, 0, 706, 45);
 		contentPane.add(draggWindow);
+		draggWindow.setLayout(null);
 		
 		btnMinimize = new JButton("-");
 		btnMinimize.addActionListener(new ActionListener() {
@@ -136,8 +137,9 @@ public class EmployeeRegisterView extends JFrame {
 		btnClose.setBounds(748, 0, 45, 45);
 		contentPane.add(btnClose);
 		
-		lblNome = new JLabel("NOME COMPLETO");
-		lblNome.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblNome = new JLabel("Nome Completo");
+		lblNome.setForeground(Color.BLACK);
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNome.setBounds(50, 118, 159, 20);
 		contentPane.add(lblNome);
 		
@@ -169,12 +171,14 @@ public class EmployeeRegisterView extends JFrame {
 		contentPane.add(txtFuncao);
 		
 		lblCpf = new JLabel("CPF");
-		lblCpf.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblCpf.setForeground(Color.BLACK);
+		lblCpf.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblCpf.setBounds(51, 56, 43, 20);
 		contentPane.add(lblCpf);
 		
-		lblFuno = new JLabel("FUN\u00C7\u00C3O");
-		lblFuno.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblFuno = new JLabel("Fun\u00E7\u00E3o");
+		lblFuno.setForeground(Color.BLACK);
+		lblFuno.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblFuno.setBounds(50, 180, 85, 20);
 		contentPane.add(lblFuno);
 		
@@ -187,13 +191,15 @@ public class EmployeeRegisterView extends JFrame {
 		txtEmail.setBounds(52, 263, 380, 30);
 		contentPane.add(txtEmail);
 		
-		lblEmail = new JLabel("E-MAIL");
-		lblEmail.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblEmail = new JLabel("Email");
+		lblEmail.setForeground(Color.BLACK);
+		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblEmail.setBounds(50, 242, 201, 20);
 		contentPane.add(lblEmail);
 		
-		lblSenha = new JLabel("SENHA");
-		lblSenha.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblSenha = new JLabel("Senha");
+		lblSenha.setForeground(Color.BLACK);
+		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblSenha.setBounds(50, 304, 201, 20);
 		contentPane.add(lblSenha);
 		
@@ -213,7 +219,7 @@ public class EmployeeRegisterView extends JFrame {
 			}
 		});
 		btnVoltar.setForeground(Color.WHITE);
-		btnVoltar.setFont(new Font("Verdana", Font.PLAIN, 18));
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnVoltar.setBorder(null);
 		btnVoltar.setBackground(new Color(0, 102, 255));
 		btnVoltar.setBounds(529, 298, 184, 45);
@@ -222,22 +228,35 @@ public class EmployeeRegisterView extends JFrame {
 		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean check = false;
+				employeeRegisterController = EmployeeRegisterController.getINSTANCE();
+				String cpf = txtCPF.getText();
+				String nome = txtNome.getText();
+				String funcao = txtNome.getText();
+				String email = txtNome.getText();
+				String senha = txtNome.getText();
 				try {
-					employeeRegisterController = EmployeeRegisterController.getINSTANCE();
-					employee = new EmployeeRegisterModel();
-					employee.setCpf(txtCPF.getText());
-					employee.setNome(txtNome.getText());
-					employee.setFuncao(txtFuncao.getText());
-					employee.setEmail(txtEmail.getText());
-					employee.setSenha(txtSenha.getText());
-					employeeRegisterController.salvarDados(employee);				
+					check = employeeRegisterController.salvarDados(cpf, nome, funcao, email, senha);		
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
+				if(check) {	
+					lblResultado.setText("Cadastrado com sucesso");
+					lblResultado.setVisible(true);
+					txtCPF.setText(null);
+					txtNome.setText(null);
+					txtFuncao.setText(null);
+					txtEmail.setText(null);
+					txtSenha.setText(null);
+				}else {
+					lblResultado.setText("Erro ao cadastrar");
+					lblResultado.setVisible(true);
+				}
+				
 			}
 		});
 		btnCadastrar.setForeground(Color.WHITE);
-		btnCadastrar.setFont(new Font("Verdana", Font.PLAIN, 18));
+		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnCadastrar.setBorder(null);
 		btnCadastrar.setBackground(new Color(0, 102, 255));
 		btnCadastrar.setBounds(529, 359, 184, 45);
@@ -255,5 +274,13 @@ public class EmployeeRegisterView extends JFrame {
 		txtSenha.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
 		txtSenha.setBounds(52, 325, 380, 30);
 		contentPane.add(txtSenha);
+		
+		lblResultado = new JLabel("Resultado");
+		lblResultado.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblResultado.setHorizontalAlignment(SwingConstants.CENTER);
+		lblResultado.setForeground(Color.RED);
+		lblResultado.setBounds(50, 384, 382, 30);
+		lblResultado.setVisible(false);
+		contentPane.add(lblResultado);
 	}
 }
