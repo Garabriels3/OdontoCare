@@ -56,6 +56,7 @@ public class ClientRegisterView extends JFrame {
 	private JTextField txtStreet;
 	private ClientRegisterView crv;
 	private ClientRegisterController clientRegisterController;
+	private ClientRegisterModel client;
 	private SchedulingView sch;
 	private int x,y;
 	String cep;
@@ -266,7 +267,7 @@ public class ClientRegisterView extends JFrame {
 			}
 		});
 		txtCep.setToolTipText("");
-		txtCep.setFont(new Font("Verdana", Font.PLAIN, 11));
+		txtCep.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtCep.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
 		txtCep.setBounds(533, 79, 195, 30);
 		
@@ -329,7 +330,11 @@ public class ClientRegisterView extends JFrame {
 		btnAlterar.setBounds(257, 391, 184, 40);
 		contentPane.add(btnAlterar);
 		
-		JButton btnExcluir = new JButton("Consultar");
+		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnExcluir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnExcluir.setForeground(Color.WHITE);
 		btnExcluir.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -338,7 +343,29 @@ public class ClientRegisterView extends JFrame {
 		btnExcluir.setBounds(59, 442, 184, 40);
 		contentPane.add(btnExcluir);
 		
-		JButton btnConsultar = new JButton("Excluir");
+		JButton btnConsultar = new JButton("Consultar");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				clientRegisterController = new ClientRegisterController();
+				String cpf = txtCPF.getText();
+				try {
+					client = clientRegisterController.consultClientData(cpf);
+					txtNameComplete.setText(client.getName());
+					txtPhone.setText(client.getPhone());
+					txtBirthday.setText(client.getBirthday());
+					cbSex.setSelectedItem(client.getSex());
+					txtCep.setText(client.getCep());
+					txtStreet.setText(client.getStreet());
+					txtNeighborhood.setText(client.getNeighborhood());
+					txtCity.setText(client.getCity());
+					txtState.setText(client.getState());
+				} catch (Exception e2) {
+					lblResultado.setText("Erro ao consultar os dados");
+					lblResultado.setVisible(true);
+					e2.printStackTrace();
+				}
+			}
+		});
 		btnConsultar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnConsultar.setForeground(Color.WHITE);
 		btnConsultar.setFont(new Font("Tahoma", Font.PLAIN, 18));

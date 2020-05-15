@@ -38,6 +38,9 @@ public class ClientRegisterController {
 		return success;
 	}
 
+	public ClientRegisterModel consultClientData(String cpf) throws Exception{
+		return registerDao.consultClientData(cpf);
+	}
 }
 
 
