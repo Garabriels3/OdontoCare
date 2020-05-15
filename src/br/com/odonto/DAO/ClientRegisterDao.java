@@ -40,11 +40,10 @@ public class ClientRegisterDao {
 	public boolean saveClientData(ClientRegisterModel client)throws Exception {
 		try {
 			connectionFactory = new ConnectionFactory();
-
 			sql = "INSERT INTO cliente (cpf_cliente,nome_cliente,cel_cliente,dataNascimento,sexo,cep,logradouro,bairro,cidade,estado) VALUES (?,?,?,?,?,?,?,?,?,?)";
 				con = connectionFactory.getConnection();
 				stmt = con.prepareStatement(sql);
-				stmt.setString(1,client.getCep());
+				stmt.setString(1,client.getCpf());
 				stmt.setString(2,client.getName());
 				stmt.setString(3,client.getPhone());
 				stmt.setString(4,client.getBirthday());

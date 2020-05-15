@@ -9,7 +9,6 @@ import br.com.odonto.service.CepApi;
 
 public class ClientRegisterController {
 	ClientRegisterModel client;
-	boolean success;
 	ClientRegisterDao registerDao = new ClientRegisterDao(); // instancia da DAO
 	CepModel data; // Variavel para pegar o retorno da função da DAO
 
@@ -30,7 +29,7 @@ public class ClientRegisterController {
 
 	public boolean saveClientData(String cpf, String name, String phone, String birthday, String sex,String cep,
 			String street, String neighborhood, String city, String state)throws Exception {	
-		success = false;
+		boolean success = false;
 		if(cpf.length() > 0 && name.length() > 0 && phone.length() > 0 && sex.length() > 0 && cep.length() > 0 &&
 				street.length() > 0 && neighborhood.length() > 0 && city.length() > 0 && state.length() > 0) {		
 			client = new ClientRegisterModel(cpf, name, phone, birthday, sex, cep, street, neighborhood, city, state);

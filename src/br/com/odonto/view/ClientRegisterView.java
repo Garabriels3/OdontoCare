@@ -289,13 +289,13 @@ public class ClientRegisterView extends JFrame {
 				String city = txtCity.getText();
 				String state = txtState.getText();
 				try {
-					System.out.println("Chegou no TRY");
 					success = clientRegisterController.saveClientData(cpf, name, phone, birthday, sex, cep, street, neighborhood, city, state);
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
 				if(success) {
 					lblResultado.setText("Dados salvos com sucesso");
+					lblResultado.setVisible(true);
 					txtCPF.setText(null);
 					txtNameComplete.setText(null);
 					txtPhone.setText(null);
@@ -308,6 +308,7 @@ public class ClientRegisterView extends JFrame {
 					txtState.setText(null);
 				}else {
 					lblResultado.setText("Erro ao salvar os dados");
+					lblResultado.setVisible(true);
 				}
 			}
 		});
