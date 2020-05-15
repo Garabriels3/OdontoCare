@@ -27,10 +27,10 @@ public class EmployeeRegisterDAO {
 				con = connectionFactory.getConnection();
 				stmt = con.prepareStatement(sql);
 				stmt.setString(1, employee.getCpf());
-				stmt.setString(2, employee.getNome());
-				stmt.setString(3, employee.getFuncao());
+				stmt.setString(2, employee.getName());
+				stmt.setString(3, employee.getOccupation());
 				stmt.setString(4, employee.getEmail());
-				stmt.setString(5, employee.getSenha());
+				stmt.setString(5, employee.getPassword());
 				int i = stmt.executeUpdate();
 				if( i > 0) {
 					check = true;

@@ -2,20 +2,20 @@ package br.com.odonto.model;
 
 public class EmployeeRegisterModel {
 	private String cpf;
-	private String nome;
-	private String funcao;
+	private String name;
+	private String occupation;
 	private String email;
-	private String senha;
+	private String password;
 	
 	public EmployeeRegisterModel() {
 		
 	}
-	public EmployeeRegisterModel(String cpf, String nome, String funcao, String email, String senha) {
+	public EmployeeRegisterModel(String cpf, String name, String occupation, String email, String password) {
 		this.cpf = cpf;
-		this.nome = nome;
-		this.funcao = funcao;
+		this.name = name;
+		this.occupation = occupation;
 		this.email = email;
-		this.senha = senha;
+		this.password = password;
 	}
 	public String getCpf() {
 		return cpf;
@@ -23,17 +23,17 @@ public class EmployeeRegisterModel {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getFuncao() {
-		return funcao;
+	public String getOccupation() {
+		return occupation;
 	}
-	public void setFuncao(String funcao) {
-		this.funcao = funcao;
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
 	}
 	public String getEmail() {
 		return email;
@@ -41,11 +41,11 @@ public class EmployeeRegisterModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }
