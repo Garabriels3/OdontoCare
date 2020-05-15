@@ -23,7 +23,7 @@ public class EmployeeRegisterDAO {
 		try {
 			connectionFactory = new ConnectionFactory();
 
-			sql = "INSERT INTO funcionario (cpf,nome,funcao,email,senha)VALUES (?,?,?,?,?)";
+			sql = "INSERT INTO funcionario (cpf_func,nome_func,funcao,email_func,senha_func) VALUES (?,?,?,?,?)";
 				con = connectionFactory.getConnection();
 				stmt = con.prepareStatement(sql);
 				stmt.setString(1, employee.getCpf());

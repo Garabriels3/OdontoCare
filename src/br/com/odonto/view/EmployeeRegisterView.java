@@ -232,9 +232,9 @@ public class EmployeeRegisterView extends JFrame {
 				employeeRegisterController = EmployeeRegisterController.getINSTANCE();
 				String cpf = txtCPF.getText();
 				String nome = txtNome.getText();
-				String funcao = txtNome.getText();
-				String email = txtNome.getText();
-				String senha = txtNome.getText();
+				String funcao = txtFuncao.getText();
+				String email = txtEmail.getText();
+				String senha = txtSenha.getText();
 				try {
 					check = employeeRegisterController.salvarDados(cpf, nome, funcao, email, senha);		
 				} catch (Exception e2) {

@@ -26,6 +26,7 @@ public class ClientRegisterDao {
 		
 		return data; // retorna os dados da API, agora já convertidos objetos manipulaveis dentro da linguagem Java
 	}
+
 }
 
 

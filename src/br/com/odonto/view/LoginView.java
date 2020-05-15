@@ -52,6 +52,7 @@ public class LoginView extends JFrame {
 	private JButton btnCadastrar;
 	private ClientRegisterView crv;
 	private LoginView lv;
+	private LoginController lc;
 	private EmployeeRegisterView erv;
 	private SchedulingView sch;
 	int x,y;
@@ -217,16 +218,14 @@ public class LoginView extends JFrame {
 		// Method to make Login
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				loginController = new LoginController();
-				try {
-				LoginController loginController = new LoginController();
+				boolean success = false;
+				lc = new LoginController();
 				String email = txtEmail.getText();
 				String password = txtPassword.getText();
-				success = loginController.signIn(email, password);
-				
-				if(success == true) {
-					lblError.setVisible(false);
-					JOptionPane.showMessageDialog(null, "Usuario Logado");
+				try {
+					success = lc.signIn(email, password);			
+				}catch(Exception e2){
+				 e2.printStackTrace();
 				}
 				if(success) {
 					lblError.setVisible(false);
@@ -238,9 +237,6 @@ public class LoginView extends JFrame {
 					dispose();
 				}else {
 					lblError.setVisible(true);
-				}
-				}catch(Exception err) {
-					JOptionPane.showMessageDialog(null, "Erro: " + err);
 				}
 			}
 		});

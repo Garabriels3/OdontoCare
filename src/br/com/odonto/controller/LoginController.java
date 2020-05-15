@@ -11,8 +11,7 @@ public class LoginController {
 	private LoginModel user;
 	private LoginDAO loginDAO;
 	
-		public boolean signIn(String login, String password) throws Exception {
-			
+		public boolean signIn(String login, String password) throws Exception {		
 			if(login != null && login.length() > 0 && password != null && password.length() > 0) {
 				 user = new LoginModel(login, password);
 				 loginDAO = new LoginDAO();

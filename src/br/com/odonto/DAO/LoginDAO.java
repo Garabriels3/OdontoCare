@@ -23,7 +23,7 @@ public class LoginDAO {
 		try {
 			boolean check = false;
 			connectionFactory = new ConnectionFactory();
-			sql = "SELECT * FROM funcionario WHERE senha = ? and email = ?";
+			sql = "SELECT * FROM funcionario WHERE email_func = ? and senha_func = ?";
 			con = connectionFactory.getConnection();
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, user.getLogin());
