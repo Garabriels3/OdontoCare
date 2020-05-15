@@ -5,10 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import br.com.odonto.model.EmployeeRegisterModel;
+import br.com.odonto.model.EmployeeModel;
 import br.com.odonto.util.ConnectionFactory;
 
-public class EmployeeRegisterDAO {
+public class EmployeeDAO {
 	private ConnectionFactory connectionFactory;
 	private Connection con = null;
 	private PreparedStatement stmt = null;
@@ -16,10 +16,10 @@ public class EmployeeRegisterDAO {
 	private String sql = null;
 	boolean success;
 	
-	public EmployeeRegisterDAO() {	
+	public EmployeeDAO() {	
 	}
 	
-	public boolean salvarDados(EmployeeRegisterModel employee) throws Exception{
+	public boolean salvarDados(EmployeeModel employee) throws Exception{
 		try {
 			connectionFactory = new ConnectionFactory();
 

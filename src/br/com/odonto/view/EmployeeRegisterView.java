@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import br.com.odonto.controller.EmployeeRegisterController;
-import br.com.odonto.model.EmployeeRegisterModel;
+import br.com.odonto.controller.EmployeeController;
+import br.com.odonto.model.EmployeeModel;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -30,8 +30,8 @@ import java.awt.event.MouseMotionAdapter;
 
 public class EmployeeRegisterView extends JFrame {
 	
-	private EmployeeRegisterController employeeRegisterController;
-	private EmployeeRegisterModel employee;
+	private EmployeeController employeeRegisterController;
+	private EmployeeModel employee;
 	private EmployeeRegisterView erv;
 	private LoginView lv;
 	private JPanel contentPane;
@@ -229,7 +229,7 @@ public class EmployeeRegisterView extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean check = false;
-				employeeRegisterController = EmployeeRegisterController.getINSTANCE();
+				employeeRegisterController = EmployeeController.getINSTANCE();
 				String cpf = txtCPF.getText();
 				String nome = txtNome.getText();
 				String funcao = txtFuncao.getText();

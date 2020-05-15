@@ -1,6 +1,6 @@
 package br.com.odonto.model;
 
-public class ClientRegisterModel {
+public class ClientModel {
 	private String cpf;
 	private String name;
 	private String phone;
@@ -12,11 +12,11 @@ public class ClientRegisterModel {
 	private String city;
 	private String state;
 	
-	public ClientRegisterModel() {
+	public ClientModel() {
 		
 	}
 
-	public ClientRegisterModel(String cpf, String name, String phone, String birthday, String sex, String cep,
+	public ClientModel(String cpf, String name, String phone, String birthday, String sex, String cep,
 			String street, String neighborhood, String city, String state) {
 		this.cpf = cpf;
 		this.name = name;

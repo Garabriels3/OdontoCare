@@ -2,7 +2,7 @@ package br.com.odonto.controller;
 
 import javax.swing.JOptionPane;
 
-import br.com.odonto.DAO.EmployeeRegisterDAO;
+import br.com.odonto.DAO.EmployeeDAO;
 import br.com.odonto.DAO.LoginDAO;
 import br.com.odonto.model.LoginModel;
 

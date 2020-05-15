@@ -1,16 +1,16 @@
 package br.com.odonto.model;
 
-public class EmployeeRegisterModel {
+public class EmployeeModel {
 	private String cpf;
 	private String name;
 	private String occupation;
 	private String email;
 	private String password;
 	
-	public EmployeeRegisterModel() {
+	public EmployeeModel() {
 		
 	}
-	public EmployeeRegisterModel(String cpf, String name, String occupation, String email, String password) {
+	public EmployeeModel(String cpf, String name, String occupation, String email, String password) {
 		this.cpf = cpf;
 		this.name = name;
 		this.occupation = occupation;

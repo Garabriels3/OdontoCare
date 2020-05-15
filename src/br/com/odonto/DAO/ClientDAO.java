@@ -11,11 +11,11 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import br.com.odonto.model.CepModel;
-import br.com.odonto.model.ClientRegisterModel;
+import br.com.odonto.model.ClientModel;
 import br.com.odonto.service.CepApi;
 import br.com.odonto.util.ConnectionFactory;
 
-public class ClientRegisterDao {
+public class ClientDAO {
 	private Gson gson = new GsonBuilder().create(); // Gson é uma library, que converte Json para Objeto manipulavel, ou de Obejto para Json (fromJson, toJson)
     private CepModel data; // Variavel do tipo da Model, para manipular a api através de objetos Java
 	private String json;
@@ -27,7 +27,7 @@ public class ClientRegisterDao {
 	private ResultSet rs = null;
 	private String sql = null;
 	boolean check;
-	private ClientRegisterModel client;
+	private ClientModel client;
 	
 	public CepModel convertApi(String path) {
 		instance = CepApi.getInstance(); // Usamos a instancia do Singleton, para instanciar a classe, de forma Unica
@@ -38,7 +38,7 @@ public class ClientRegisterDao {
 		
 		return data; // retorna os dados da API, agora já convertidos objetos manipulaveis dentro da linguagem Java
 	}
-	public boolean saveClientData(ClientRegisterModel client)throws Exception {
+	public boolean saveClientData(ClientModel client)throws Exception {
 		try {
 			connectionFactory = new ConnectionFactory();
 			sql = "INSERT INTO cliente (cpf_cliente,nome_cliente,cel_cliente,dataNascimento,sexo,cep,logradouro,bairro,cidade,estado) VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -64,7 +64,7 @@ public class ClientRegisterDao {
 		}
 		
 	}
-	public ClientRegisterModel consultClientData(String cpf)throws Exception{
+	public ClientModel consultClientData(String cpf)throws Exception{
 		try {
 			connectionFactory = new ConnectionFactory();
 			sql = "SELECT * FROM cliente WHERE cpf_cliente = ?";
@@ -82,14 +82,14 @@ public class ClientRegisterDao {
 				String neighborhood = rs.getString("bairro");
 				String city = rs.getString("cidade");
 				String state = rs.getString("estado");
-				client = new ClientRegisterModel(cpf, name, phone, birthday, sex, cep, street, neighborhood, city, state);
+				client = new ClientModel(cpf, name, phone, birthday, sex, cep, street, neighborhood, city, state);
 			}	
 			return client;
 		} finally {
 			connectionFactory.closeConnection(con, stmt, rs);
 		}
 	}
-	public boolean updateClientData(ClientRegisterModel client)throws Exception{
+	public boolean updateClientData(ClientModel client)throws Exception{
 		connectionFactory = new ConnectionFactory();
 		sql = "UPDATE cliente SET nome_cliente=?,cel_cliente=?,dataNascimento=?,sexo=?,"
 				+ "cep=?,logradouro=?,bairro=?,cidade=?,estado=? WHERE cpf_cliente = ?";

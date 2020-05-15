@@ -8,9 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.MaskFormatter;
 
-import br.com.odonto.controller.ClientRegisterController;
+import br.com.odonto.controller.ClientController;
 import br.com.odonto.model.CepModel;
-import br.com.odonto.model.ClientRegisterModel;
+import br.com.odonto.model.ClientModel;
 
 import java.awt.Window.Type;
 import java.awt.Dialog.ModalExclusionType;
@@ -55,8 +55,8 @@ public class ClientRegisterView extends JFrame {
 	private JTextField txtState;
 	private JTextField txtStreet;
 	private ClientRegisterView crv;
-	private ClientRegisterController clientRegisterController;
-	private ClientRegisterModel client;
+	private ClientController clientController;
+	private ClientModel client;
 	private SchedulingView sch;
 	private int x,y;
 	String cep;
@@ -278,7 +278,7 @@ public class ClientRegisterView extends JFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean success = false;
-				clientRegisterController = new ClientRegisterController();
+				clientController = new ClientController();
 				String cpf = txtCPF.getText();
 				String name = txtNameComplete.getText();
 				String phone = txtPhone.getText();
@@ -290,7 +290,7 @@ public class ClientRegisterView extends JFrame {
 				String city = txtCity.getText();
 				String state = txtState.getText();
 				try {
-					success = clientRegisterController.saveClientData(cpf, name, phone, birthday, sex, cep, street, neighborhood, city, state);
+					success = clientController.saveClientData(cpf, name, phone, birthday, sex, cep, street, neighborhood, city, state);
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -325,7 +325,7 @@ public class ClientRegisterView extends JFrame {
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean success = false;
-				clientRegisterController = new ClientRegisterController();
+				clientController = new ClientController();
 				String cpf = txtCPF.getText();
 				String name = txtNameComplete.getText();
 				String phone = txtPhone.getText();
@@ -337,7 +337,7 @@ public class ClientRegisterView extends JFrame {
 				String city = txtCity.getText();
 				String state = txtState.getText();
 				try {
-					success = clientRegisterController.updateClientData(cpf, name, phone, birthday, sex, cep, street, neighborhood, city, state);
+					success = clientController.updateClientData(cpf, name, phone, birthday, sex, cep, street, neighborhood, city, state);
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -373,9 +373,9 @@ public class ClientRegisterView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				boolean success = false;
 				String cpf = txtCPF.getText();
-				clientRegisterController = new ClientRegisterController();
+				clientController = new ClientController();
 				try {
-					success = clientRegisterController.excludeClientData(cpf);
+					success = clientController.excludeClientData(cpf);
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -399,10 +399,10 @@ public class ClientRegisterView extends JFrame {
 		JButton btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clientRegisterController = new ClientRegisterController();
+				clientController = new ClientController();
 				String cpf = txtCPF.getText();
 				try {
-					client = clientRegisterController.consultClientData(cpf);
+					client = clientController.consultClientData(cpf);
 					txtNameComplete.setText(client.getName());
 					txtPhone.setText(client.getPhone());
 					txtBirthday.setText(client.getBirthday());
@@ -519,7 +519,7 @@ public class ClientRegisterView extends JFrame {
 		btnFindCep.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ClientRegisterController controller = new ClientRegisterController();
+				ClientController controller = new ClientController();
 				 
 				cep = txtCep.getText().replace("-", ""); // Pegar o CEP digitado pelo usuario
 		try {

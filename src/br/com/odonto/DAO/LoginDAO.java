@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.odonto.model.EmployeeRegisterModel;
+import br.com.odonto.model.EmployeeModel;
 import br.com.odonto.model.LoginModel;
 import br.com.odonto.util.ConnectionFactory;
 
