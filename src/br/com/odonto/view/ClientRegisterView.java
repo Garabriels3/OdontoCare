@@ -322,6 +322,44 @@ public class ClientRegisterView extends JFrame {
 		contentPane.add(btnSalvar);
 		
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean success = false;
+				clientRegisterController = new ClientRegisterController();
+				String cpf = txtCPF.getText();
+				String name = txtNameComplete.getText();
+				String phone = txtPhone.getText();
+				String birthday = txtBirthday.getText();
+				String sex = String.valueOf(cbSex.getSelectedItem());
+				String cep = txtCep.getText();
+				String street = txtStreet.getText();
+				String neighborhood = txtNeighborhood.getText();
+				String city = txtCity.getText();
+				String state = txtState.getText();
+				try {
+					success = clientRegisterController.updateClientData(cpf, name, phone, birthday, sex, cep, street, neighborhood, city, state);
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+				if(success) {
+					lblResultado.setText("Dados alterados com sucesso");
+					lblResultado.setVisible(true);
+					txtCPF.setText(null);
+					txtNameComplete.setText(null);
+					txtPhone.setText(null);
+					txtBirthday.setText(null);
+					cbSex.setSelectedIndex(0);
+					txtCep.setText(null);
+					txtStreet.setText(null);
+					txtNeighborhood.setText(null);
+					txtCity.setText(null);
+					txtState.setText(null);
+				}else {
+					lblResultado.setText("Erro ao alterar os dados");
+					lblResultado.setVisible(true);
+				}
+			}
+		});
 		btnAlterar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAlterar.setForeground(Color.WHITE);
 		btnAlterar.setFont(new Font("Tahoma", Font.PLAIN, 18));

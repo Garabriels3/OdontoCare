@@ -64,11 +64,9 @@ public class ClientRegisterDao {
 		}
 		
 	}
-
 	public ClientRegisterModel consultClientData(String cpf)throws Exception{
 		try {
 			connectionFactory = new ConnectionFactory();
-			System.out.println("chegou no connectionFactory");
 			sql = "SELECT * FROM cliente WHERE cpf_cliente = ?";
 			con = connectionFactory.getConnection();
 			stmt = con.prepareStatement(sql);
@@ -90,6 +88,28 @@ public class ClientRegisterDao {
 		} finally {
 			connectionFactory.closeConnection(con, stmt, rs);
 		}
+	}
+	public boolean updateClientData(ClientRegisterModel client)throws Exception{
+		connectionFactory = new ConnectionFactory();
+		sql = "UPDATE cliente SET nome_cliente=?,cel_cliente=?,dataNascimento=?,sexo=?,"
+				+ "cep=?,logradouro=?,bairro=?,cidade=?,estado=? WHERE cpf_cliente = ?";
+		con = connectionFactory.getConnection();
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1,client.getName());
+		stmt.setString(2,client.getPhone());
+		stmt.setString(3,client.getBirthday());
+		stmt.setString(4,client.getSex());
+		stmt.setString(5,client.getCep());
+		stmt.setString(6,client.getStreet());
+		stmt.setString(7,client.getNeighborhood());
+		stmt.setString(8,client.getCity());
+		stmt.setString(9,client.getState());
+		stmt.setString(10,client.getCpf());
+		int i = stmt.executeUpdate();
+		if( i > 0) {
+			check = true;
+		}			
+		return check;
 	}
 }
 
