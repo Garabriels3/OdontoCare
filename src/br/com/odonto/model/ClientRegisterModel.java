@@ -3,31 +3,31 @@ package br.com.odonto.model;
 public class ClientRegisterModel {
 	private String cpf;
 	private String name;
-	private String cellphone;
+	private String phone;
 	private String birthday;
 	private String sex;
 	private String cep;
-	private String loradouro;
-	private String bairro;
-	private String cidade;
-	private String estado;
+	private String street;
+	private String neighborhood;
+	private String city;
+	private String state;
 	
 	public ClientRegisterModel() {
 		
 	}
 
-	public ClientRegisterModel(String cpf, String name, String cellphone, String birthday, String sex, String cep,
-			String loradouro, String bairro, String cidade, String estado) {
+	public ClientRegisterModel(String cpf, String name, String phone, String birthday, String sex, String cep,
+			String street, String neighborhood, String city, String state) {
 		this.cpf = cpf;
 		this.name = name;
-		this.cellphone = cellphone;
+		this.phone = phone;
 		this.birthday = birthday;
 		this.sex = sex;
 		this.cep = cep;
-		this.loradouro = loradouro;
-		this.bairro = bairro;
-		this.cidade = cidade;
-		this.estado = estado;
+		this.street = street;
+		this.neighborhood = neighborhood;
+		this.city = city;
+		this.state = state;
 	}
 
 	public String getCpf() {
@@ -46,12 +46,12 @@ public class ClientRegisterModel {
 		this.name = name;
 	}
 
-	public String getCellphone() {
-		return cellphone;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setCellphone(String cellphone) {
-		this.cellphone = cellphone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getBirthday() {
@@ -78,36 +78,36 @@ public class ClientRegisterModel {
 		this.cep = cep;
 	}
 
-	public String getLoradouro() {
-		return loradouro;
+	public String getStreet() {
+		return street;
 	}
 
-	public void setLoradouro(String loradouro) {
-		this.loradouro = loradouro;
+	public void setStreet(String street) {
+		this.street = street;
 	}
 
-	public String getBairro() {
-		return bairro;
+	public String getNeighborhood() {
+		return neighborhood;
 	}
 
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
+	public void setNeighborhood(String neighborhood) {
+		this.neighborhood = neighborhood;
 	}
 
-	public String getCidade() {
-		return cidade;
+	public String getCity() {
+		return city;
 	}
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
-	public String getEstado() {
-		return estado;
+	public String getState() {
+		return state;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 	

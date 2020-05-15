@@ -14,7 +14,7 @@ public class EmployeeRegisterDAO {
 	private PreparedStatement stmt = null;
 	private ResultSet rs = null;
 	private String sql = null;
-	boolean check;
+	boolean success;
 	
 	public EmployeeRegisterDAO() {	
 	}
@@ -33,9 +33,9 @@ public class EmployeeRegisterDAO {
 				stmt.setString(5, employee.getPassword());
 				int i = stmt.executeUpdate();
 				if( i > 0) {
-					check = true;
+					success = true;
 				}			
-				return check;
+				return success;
 		} finally {
 			connectionFactory.closeConnection(con, stmt);
 		}

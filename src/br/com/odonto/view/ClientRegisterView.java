@@ -10,6 +10,7 @@ import javax.swing.text.MaskFormatter;
 
 import br.com.odonto.controller.ClientRegisterController;
 import br.com.odonto.model.CepModel;
+import br.com.odonto.model.ClientRegisterModel;
 
 import java.awt.Window.Type;
 import java.awt.Dialog.ModalExclusionType;
@@ -54,9 +55,11 @@ public class ClientRegisterView extends JFrame {
 	private JTextField txtState;
 	private JTextField txtStreet;
 	private ClientRegisterView crv;
+	private ClientRegisterController clientRegisterController;
 	private SchedulingView sch;
 	private int x,y;
 	String cep;
+	private JLabel lblResultado;
 	/**
 	 * Launch the application.
 	 */
@@ -255,7 +258,59 @@ public class ClientRegisterView extends JFrame {
 		lblEstado.setBounds(533, 304, 95, 20);
 		contentPane.add(lblEstado);
 		
+		JFormattedTextField txtCep = new JFormattedTextField(new MaskFormatter("#####-###"));
+		txtCep.addInputMethodListener(new InputMethodListener() {
+			public void caretPositionChanged(InputMethodEvent event) {
+			}
+			public void inputMethodTextChanged(InputMethodEvent event) {
+			}
+		});
+		txtCep.setToolTipText("");
+		txtCep.setFont(new Font("Verdana", Font.PLAIN, 11));
+		txtCep.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
+		txtCep.setBounds(533, 79, 195, 30);
+		
+
+		contentPane.add(txtCep);
+		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean success = false;
+				clientRegisterController = new ClientRegisterController();
+				String cpf = txtCPF.getText();
+				String name = txtNameComplete.getText();
+				String phone = txtPhone.getText();
+				String birthday = txtBirthday.getText();
+				String sex = String.valueOf(cbSex.getSelectedItem());
+				String cep = txtCep.getText();
+				String street = txtStreet.getText();
+				String neighborhood = txtNeighborhood.getText();
+				String city = txtCity.getText();
+				String state = txtState.getText();
+				try {
+					System.out.println("Chegou no TRY");
+					success = clientRegisterController.saveClientData(cpf, name, phone, birthday, sex, cep, street, neighborhood, city, state);
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+				if(success) {
+					lblResultado.setText("Dados salvos com sucesso");
+					txtCPF.setText(null);
+					txtNameComplete.setText(null);
+					txtPhone.setText(null);
+					txtBirthday.setText(null);
+					cbSex.setSelectedIndex(0);
+					txtCep.setText(null);
+					txtStreet.setText(null);
+					txtNeighborhood.setText(null);
+					txtCity.setText(null);
+					txtState.setText(null);
+				}else {
+					lblResultado.setText("Erro ao salvar os dados");
+				}
+			}
+		});
 		btnSalvar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSalvar.setForeground(Color.WHITE);
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -321,22 +376,7 @@ public class ClientRegisterView extends JFrame {
 		btnFindCep.setBackground(new Color(0, 102, 255));
 		btnFindCep.setBounds(738, 69, 175, 44);
 		contentPane.add(btnFindCep);
-		
-		JFormattedTextField txtCep = new JFormattedTextField(new MaskFormatter("#####-###"));
-		txtCep.addInputMethodListener(new InputMethodListener() {
-			public void caretPositionChanged(InputMethodEvent event) {
-			}
-			public void inputMethodTextChanged(InputMethodEvent event) {
-			}
-		});
-		txtCep.setToolTipText("");
-		txtCep.setFont(new Font("Verdana", Font.PLAIN, 11));
-		txtCep.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
-		txtCep.setBounds(533, 79, 195, 30);
-		
-
-		contentPane.add(txtCep);
-		
+				
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -357,8 +397,16 @@ public class ClientRegisterView extends JFrame {
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnVoltar.setBorder(null);
 		btnVoltar.setBackground(new Color(0, 102, 255));
-		btnVoltar.setBounds(640, 417, 184, 40);
+		btnVoltar.setBounds(633, 408, 184, 40);
 		contentPane.add(btnVoltar);
+		
+		lblResultado = new JLabel("New label");
+		lblResultado.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblResultado.setHorizontalAlignment(SwingConstants.CENTER);
+		lblResultado.setForeground(Color.RED);
+		lblResultado.setBounds(533, 459, 380, 30);
+		lblResultado.setVisible(false);
+		contentPane.add(lblResultado);
 		
 		// MARK: METHODS
 		
