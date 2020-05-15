@@ -54,6 +54,13 @@ public class ClientRegisterController {
 		}
 		return success;
 	}
+	public boolean excludeClientData(String cpf)throws Exception{
+		boolean success = false;
+		if(cpf.length() > 6) {
+			success = registerDao.excludeClientData(cpf);
+		}
+		return success;
+	}
 }
 
 

@@ -371,6 +371,21 @@ public class ClientRegisterView extends JFrame {
 		JButton btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean success = false;
+				String cpf = txtCPF.getText();
+				clientRegisterController = new ClientRegisterController();
+				try {
+					success = clientRegisterController.excludeClientData(cpf);
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+				if(success) {
+					lblResultado.setText("Dados excluidos com sucesso");
+					lblResultado.setVisible(true);
+				}else {
+					lblResultado.setText("Erro ao excluir os dados");
+					lblResultado.setVisible(true);
+				}
 			}
 		});
 		btnExcluir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

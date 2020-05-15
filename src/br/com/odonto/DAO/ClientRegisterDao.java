@@ -111,6 +111,23 @@ public class ClientRegisterDao {
 		}			
 		return check;
 	}
+	public boolean excludeClientData(String cpf)throws Exception{
+		try {
+			boolean success = false;
+			connectionFactory = new ConnectionFactory();
+			sql = "DELETE FROM cliente WHERE cpf_cliente=?";
+			con = connectionFactory.getConnection();
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1,cpf);
+			int i = stmt.executeUpdate();
+			if(i > 0) {
+				success = true;
+			}
+			return success;
+		} finally {
+			connectionFactory.closeConnection(con, stmt);
+		}
+	}
 }
 
 
