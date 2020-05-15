@@ -402,7 +402,7 @@ public class ClientRegisterView extends JFrame {
 				clientController = new ClientController();
 				String cpf = txtCPF.getText();
 				try {
-					client = clientController.consultClientData(cpf);
+					client = clientController.queryClientData(cpf);
 					txtNameComplete.setText(client.getName());
 					txtPhone.setText(client.getPhone());
 					txtBirthday.setText(client.getBirthday());

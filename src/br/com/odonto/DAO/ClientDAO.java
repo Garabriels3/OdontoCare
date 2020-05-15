@@ -64,7 +64,7 @@ public class ClientDAO {
 		}
 		
 	}
-	public ClientModel consultClientData(String cpf)throws Exception{
+	public ClientModel queryClientData(String cpf)throws Exception{
 		try {
 			connectionFactory = new ConnectionFactory();
 			sql = "SELECT * FROM cliente WHERE cpf_cliente = ?";

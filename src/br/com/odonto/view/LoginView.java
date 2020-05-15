@@ -177,7 +177,7 @@ public class LoginView extends JFrame {
 		JLabel lblError = new JLabel("Email ou senha invalidos!");
 		lblError.setFont(new Font("Verdana", Font.PLAIN, 16));
 		lblError.setForeground(new Color(204, 0, 0));
-		lblError.setBounds(447, 126, 242, 14);
+		lblError.setBounds(447, 126, 205, 14);
 		background.add(lblError);
 		
 		btnCadastrar = new JButton("Cadastrar");
