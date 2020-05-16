@@ -37,7 +37,6 @@ public class ClientController {
 		}
 		return success;
 	}
-
 	public ClientModel queryClientData(String cpf) throws Exception{
 		if(cpf.length() > 7){
 			return clientDAO.queryClientData(cpf);
@@ -61,6 +60,7 @@ public class ClientController {
 		}
 		return success;
 	}
+
 }
 
 

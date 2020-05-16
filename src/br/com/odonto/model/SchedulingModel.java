@@ -13,10 +13,9 @@ public class SchedulingModel {
 
 	}
 
-	public SchedulingModel(String cpf, String name, String duration, String schedule, String date, String dentist,
+	public SchedulingModel(String cpf, String duration, String schedule, String date, String dentist,
 			String reason) {
 		this.cpf = cpf;
-		this.name = name;
 		this.duration = duration;
 		this.schedule = schedule;
 		this.date = date;

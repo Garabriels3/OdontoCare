@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import br.com.odonto.controller.SchedulingController;
+import br.com.odonto.model.SchedulingModel;
 
 import java.awt.Color;
 import javax.swing.JButton;
@@ -25,6 +26,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class NewSchedulingView extends JFrame {
 
@@ -49,6 +51,7 @@ public class NewSchedulingView extends JFrame {
 	private NewSchedulingView nsch;
 	private SchedulingView sch;
 	private SchedulingController schedulingController;
+	private SchedulingModel scheduling;
 	private int x,y;
 	private JComboBox cbDentists;
 	private JButton btnExcluir;
@@ -169,7 +172,7 @@ public class NewSchedulingView extends JFrame {
 		lblData.setForeground(Color.BLACK);
 		lblData.setHorizontalAlignment(SwingConstants.LEFT);
 		lblData.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblData.setBounds(299, 197, 41, 20);
+		lblData.setBounds(322, 197, 41, 20);
 		contentPane.add(lblData);
 		
 		txtConsultationDate = new JTextField();
@@ -178,7 +181,7 @@ public class NewSchedulingView extends JFrame {
 		txtConsultationDate.setColumns(10);
 		txtConsultationDate.setCaretColor(SystemColor.textInactiveText);
 		txtConsultationDate.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, UIManager.getColor("Button.light"), null));
-		txtConsultationDate.setBounds(301, 218, 98, 30);
+		txtConsultationDate.setBounds(324, 218, 98, 30);
 		contentPane.add(txtConsultationDate);
 		
 		lblDuraoDaConsulta = new JLabel("Dura\u00E7\u00E3o da Consulta");
@@ -234,9 +237,10 @@ public class NewSchedulingView extends JFrame {
 		contentPane.add(lblDentistaResponsvel);
 
 		lblResultado = new JLabel("New label");
+		lblResultado.setHorizontalAlignment(SwingConstants.CENTER);
 		lblResultado.setFont(new Font("Verdana", Font.PLAIN, 16));
 		lblResultado.setForeground(new Color(204, 0, 0));
-		lblResultado.setBounds(497, 409, 205, 14);
+		lblResultado.setBounds(432, 405, 326, 27);
 		lblResultado.setVisible(false);
 		contentPane.add(lblResultado);
 		
@@ -263,12 +267,40 @@ public class NewSchedulingView extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		cbDentists = new JComboBox();
+		cbDentists.setModel(new DefaultComboBoxModel(new String[] {"Selecione um Dentista", "Juliana Almeida", "Theodoro Neves"}));
 		cbDentists.setBorder(null);
 		cbDentists.setBackground(Color.WHITE);
 		cbDentists.setBounds(40, 280, 376, 30);
 		contentPane.add(cbDentists);
 		
 		btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean success = false;
+				schedulingController = new SchedulingController();
+				String cpf = txtCPF.getText();
+				String date = txtConsultationDate.getText();
+				try {
+					success = schedulingController.excludeConsultation(cpf, date);
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+				if(success) {
+					lblResultado.setText("Consulta excluida com sucesso");
+					lblResultado.setVisible(true);
+					txtCPF.setText(null);
+					txtName.setText(null);
+					txtConsultationDuration.setText(null);
+					txtConsultationSchedule.setText(null);
+					txtConsultationDate.setText(null);
+					cbDentists.setSelectedIndex(0);
+					txtConsultationReason.setText(null);
+				}else {
+					lblResultado.setText("Erro ao excluir a consulta");
+					lblResultado.setVisible(true);
+				}
+			}
+		});
 		btnExcluir.setForeground(Color.WHITE);
 		btnExcluir.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnExcluir.setBorder(null);
@@ -277,6 +309,29 @@ public class NewSchedulingView extends JFrame {
 		contentPane.add(btnExcluir);
 		
 		btnConsultar = new JButton("Consultar");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				schedulingController = new SchedulingController();
+				scheduling = null;
+				String cpf = txtCPF.getText();
+				String date = txtConsultationDate.getText();
+				try {
+					scheduling = schedulingController.querySchedulingData(cpf, date);
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+				if(scheduling != null) {
+					txtConsultationDuration.setText(scheduling.getDuration());
+					txtConsultationSchedule.setText(scheduling.getSchedule());
+					txtConsultationReason.setText(scheduling.getReason());
+					cbDentists.setSelectedItem(scheduling.getDentist());
+					
+				}else {
+					lblResultado.setText("Erro aos consultar o agendamento");
+					lblResultado.setVisible(true);
+				}
+			}
+		});
 		btnConsultar.setForeground(Color.WHITE);
 		btnConsultar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnConsultar.setBorder(null);
@@ -285,6 +340,37 @@ public class NewSchedulingView extends JFrame {
 		contentPane.add(btnConsultar);
 		
 		btnAlterar = new JButton("Alterar");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				schedulingController = new SchedulingController();
+				boolean success = false;
+				String cpf = txtCPF.getText();
+				String duration = txtConsultationDuration.getText();
+				String schedule = txtConsultationSchedule.getText();
+				String date = txtConsultationDate.getText();
+				String dentist = String.valueOf(cbDentists.getSelectedItem());
+				String reason = txtConsultationReason.getText();
+				try {
+					success = schedulingController.updateConsultationData(cpf, duration, schedule, date, dentist, reason);
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+				if(success) {
+					lblResultado.setText("Agendamento atualizado com sucesso");
+					lblResultado.setVisible(true);
+					txtCPF.setText(null);
+					txtName.setText(null);
+					txtConsultationDuration.setText(null);
+					txtConsultationSchedule.setText(null);
+					txtConsultationDate.setText(null);
+					cbDentists.setSelectedIndex(0);
+					txtConsultationReason.setText(null);
+				}else {
+					lblResultado.setText("Erro ao atualizar agendamento");
+					lblResultado.setVisible(true);
+				}
+			}
+		});
 		btnAlterar.setForeground(Color.WHITE);
 		btnAlterar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnAlterar.setBorder(null);
@@ -293,6 +379,37 @@ public class NewSchedulingView extends JFrame {
 		contentPane.add(btnAlterar);
 		
 		btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				schedulingController = new SchedulingController();
+				boolean success = false;
+				String cpf = txtCPF.getText();
+				String duration = txtConsultationDuration.getText();
+				String schedule = txtConsultationSchedule.getText();
+				String date = txtConsultationDate.getText();
+				String dentist = String.valueOf(cbDentists.getSelectedItem());
+				String reason = txtConsultationReason.getText();
+				try {
+					success = schedulingController.saveConsultationData(cpf, duration, schedule, date, dentist, reason);
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+				if(success) {
+					lblResultado.setText("Agendamento realizado com sucesso");
+					lblResultado.setVisible(true);
+					txtCPF.setText(null);
+					txtName.setText(null);
+					txtConsultationDuration.setText(null);
+					txtConsultationSchedule.setText(null);
+					txtConsultationDate.setText(null);
+					cbDentists.setSelectedIndex(0);
+					txtConsultationReason.setText(null);
+				}else {
+					lblResultado.setText("Erro ao fazer o agendamento");
+					lblResultado.setVisible(true);
+				}
+			}
+		});
 		btnSalvar.setForeground(Color.WHITE);
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSalvar.setBorder(null);
