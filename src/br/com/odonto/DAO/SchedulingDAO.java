@@ -15,7 +15,6 @@ public class SchedulingDAO {
 	private PreparedStatement stmt = null;
 	private ResultSet rs = null;
 	private String sql = null;
-	boolean success;
 	
 	public String queryClientName(String cpf)throws Exception{
 		try {
@@ -36,7 +35,7 @@ public class SchedulingDAO {
 	}
 	public boolean saveConsultationData(SchedulingModel scheduling)throws Exception{
 		try {
-			success = false;
+			boolean success = false;
 			connectionFactory = new ConnectionFactory();
 			sql = "INSERT INTO agendamento (cpf_cliente,duracaoConsulta,dentista,dataConsulta,horarioConsulta,motivo) VALUES (?,?,?,?,?,?)";
 			con = connectionFactory.getConnection();
@@ -79,7 +78,7 @@ public class SchedulingDAO {
 	}
 	public boolean updateConsultationData(SchedulingModel scheduling)throws Exception{
 		try {
-			success = false;
+			boolean success = false;
 			connectionFactory = new ConnectionFactory();
 			sql = "UPDATE agendamento SET duracaoConsulta=?,dentista=?,dataConsulta=?,horarioConsulta=?,motivo=? WHERE cpf_cliente=?";
 			con = connectionFactory.getConnection();

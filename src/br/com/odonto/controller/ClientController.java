@@ -38,7 +38,7 @@ public class ClientController {
 		return success;
 	}
 	public ClientModel queryClientData(String cpf) throws Exception{
-		if(cpf.length() > 7){
+		if(cpf.length() > 10){
 			return clientDAO.queryClientData(cpf);
 		}
 		return null;	
@@ -55,7 +55,7 @@ public class ClientController {
 	}
 	public boolean excludeClientData(String cpf)throws Exception{
 		boolean success = false;
-		if(cpf.length() > 6) {
+		if(cpf.length() > 10) {
 			success = clientDAO.excludeClientData(cpf);
 		}
 		return success;

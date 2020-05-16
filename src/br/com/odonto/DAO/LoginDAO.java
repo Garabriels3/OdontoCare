@@ -16,12 +16,10 @@ public class LoginDAO {
 	private PreparedStatement stmt;
 	private ResultSet rs;
 	private String sql;
-	boolean check;
 	
 	public boolean checkLogin(LoginModel user) throws Exception {
-		
 		try {
-			boolean check = false;
+			boolean success = false;
 			connectionFactory = new ConnectionFactory();
 			sql = "SELECT * FROM funcionario WHERE email_func = ? and senha_func = ?";
 			con = connectionFactory.getConnection();
@@ -30,9 +28,9 @@ public class LoginDAO {
 			stmt.setString(2, user.getPassword());
 			rs = stmt.executeQuery();
 			if(rs.next()) {
-				check = true;
+				success = true;
 			}
-			return check;
+			return success;
 		} finally {
 			connectionFactory.closeConnection(con, stmt, rs);
 	

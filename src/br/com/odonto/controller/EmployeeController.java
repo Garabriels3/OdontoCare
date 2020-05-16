@@ -7,7 +7,7 @@ import br.com.odonto.model.EmployeeModel;
 
 public class EmployeeController {
 	private static EmployeeController INSTANCE;
-	private EmployeeDAO employeeRegisterDAO; 
+	private EmployeeDAO employeeRegisterDAO = new EmployeeDAO();; 
 	private EmployeeModel employee;
 	
 	private EmployeeController() {
@@ -18,16 +18,15 @@ public class EmployeeController {
 		}
 		return INSTANCE;
 	}
-	public boolean salvarDados(String cpf,String nome,String funcao,String email,String senha) throws Exception{
-		employeeRegisterDAO = new EmployeeDAO();
-		boolean check = false;
+	public boolean saveEmployeeData(String cpf,String nome,String funcao,String email,String senha) throws Exception{
+		boolean success = false;
 		if(cpf.length() > 0 && nome.length() > 0 && funcao.length() > 0 && email.length() > 0 && senha.length() > 0) {
 			if(nome.matches(".*\\d+.*") == false && funcao.matches(".*\\d+.*") == false && cpf.matches("[0-9]+")) {
 				employee = new EmployeeModel(cpf, nome, funcao, email, senha);
-				return employeeRegisterDAO.salvarDados(employee);
+				success = employeeRegisterDAO.saveEmployeeData(employee);
 			}
 		}
-		return check;	
+		return success;	
 	}
 	
 }

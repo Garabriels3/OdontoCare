@@ -14,15 +14,14 @@ public class EmployeeDAO {
 	private PreparedStatement stmt = null;
 	private ResultSet rs = null;
 	private String sql = null;
-	boolean success;
 	
 	public EmployeeDAO() {	
 	}
 	
-	public boolean salvarDados(EmployeeModel employee) throws Exception{
+	public boolean saveEmployeeData(EmployeeModel employee) throws Exception{
 		try {
+			boolean success = false;
 			connectionFactory = new ConnectionFactory();
-
 			sql = "INSERT INTO funcionario (cpf_func,nome_func,funcao,email_func,senha_func) VALUES (?,?,?,?,?)";
 				con = connectionFactory.getConnection();
 				stmt = con.prepareStatement(sql);

@@ -56,7 +56,6 @@ public class LoginView extends JFrame {
 	private EmployeeRegisterView erv;
 	private SchedulingView sch;
 	int x,y;
-	boolean success;
 	
 	/**
 	 * Create the frame.
@@ -228,7 +227,6 @@ public class LoginView extends JFrame {
 				 e2.printStackTrace();
 				}
 				if(success) {
-					lblError.setVisible(false);
 					sch = new SchedulingView();
 					lv = new LoginView();
 					sch.setLocationRelativeTo(null);

@@ -50,8 +50,8 @@ public class NewSchedulingView extends JFrame {
 	private JButton btnVoltar;
 	private NewSchedulingView nsch;
 	private SchedulingView sch;
-	private SchedulingController schedulingController;
-	private SchedulingModel scheduling;
+	private SchedulingController schedulingController = new SchedulingController();
+	private SchedulingModel schedulingModel;
 	private int x,y;
 	private JComboBox cbDentists;
 	private JButton btnExcluir;
@@ -277,7 +277,6 @@ public class NewSchedulingView extends JFrame {
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean success = false;
-				schedulingController = new SchedulingController();
 				String cpf = txtCPF.getText();
 				String date = txtConsultationDate.getText();
 				try {
@@ -311,20 +310,19 @@ public class NewSchedulingView extends JFrame {
 		btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				schedulingController = new SchedulingController();
-				scheduling = null;
+				schedulingModel = null;
 				String cpf = txtCPF.getText();
 				String date = txtConsultationDate.getText();
 				try {
-					scheduling = schedulingController.querySchedulingData(cpf, date);
+					schedulingModel = schedulingController.querySchedulingData(cpf, date);
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
-				if(scheduling != null) {
-					txtConsultationDuration.setText(scheduling.getDuration());
-					txtConsultationSchedule.setText(scheduling.getSchedule());
-					txtConsultationReason.setText(scheduling.getReason());
-					cbDentists.setSelectedItem(scheduling.getDentist());
+				if(schedulingModel != null) {
+					txtConsultationDuration.setText(schedulingModel.getDuration());
+					txtConsultationSchedule.setText(schedulingModel.getSchedule());
+					txtConsultationReason.setText(schedulingModel.getReason());
+					cbDentists.setSelectedItem(schedulingModel.getDentist());
 					
 				}else {
 					lblResultado.setText("Erro aos consultar o agendamento");
@@ -342,7 +340,6 @@ public class NewSchedulingView extends JFrame {
 		btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				schedulingController = new SchedulingController();
 				boolean success = false;
 				String cpf = txtCPF.getText();
 				String duration = txtConsultationDuration.getText();
@@ -381,7 +378,6 @@ public class NewSchedulingView extends JFrame {
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				schedulingController = new SchedulingController();
 				boolean success = false;
 				String cpf = txtCPF.getText();
 				String duration = txtConsultationDuration.getText();
@@ -436,7 +432,6 @@ public class NewSchedulingView extends JFrame {
 		btnBuscarCliente = new JButton("Buscar Cliente");
 		btnBuscarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				schedulingController = new SchedulingController();
 				String name = null , cpf = txtCPF.getText();
 				try {
 					name = schedulingController.queryClientName(cpf);

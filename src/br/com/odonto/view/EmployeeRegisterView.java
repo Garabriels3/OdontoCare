@@ -228,7 +228,7 @@ public class EmployeeRegisterView extends JFrame {
 		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean check = false;
+				boolean success = false;
 				employeeRegisterController = EmployeeController.getINSTANCE();
 				String cpf = txtCPF.getText();
 				String nome = txtNome.getText();
@@ -236,11 +236,11 @@ public class EmployeeRegisterView extends JFrame {
 				String email = txtEmail.getText();
 				String senha = txtSenha.getText();
 				try {
-					check = employeeRegisterController.salvarDados(cpf, nome, funcao, email, senha);		
+					success = employeeRegisterController.saveEmployeeData(cpf, nome, funcao, email, senha);		
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
-				if(check) {	
+				if(success) {	
 					lblResultado.setText("Cadastrado com sucesso");
 					lblResultado.setVisible(true);
 					txtCPF.setText(null);

@@ -26,7 +26,6 @@ public class ClientDAO {
 	private PreparedStatement stmt = null;
 	private ResultSet rs = null;
 	private String sql = null;
-	boolean check;
 	private ClientModel client;
 	
 	public CepModel convertApi(String path) {
@@ -40,6 +39,7 @@ public class ClientDAO {
 	}
 	public boolean saveClientData(ClientModel client)throws Exception {
 		try {
+			boolean success = false;
 			connectionFactory = new ConnectionFactory();
 			sql = "INSERT INTO cliente (cpf_cliente,nome_cliente,cel_cliente,dataNascimento,sexo,cep,logradouro,bairro,cidade,estado) VALUES (?,?,?,?,?,?,?,?,?,?)";
 			con = connectionFactory.getConnection();
@@ -56,9 +56,9 @@ public class ClientDAO {
 			stmt.setString(10,client.getState());
 			int i = stmt.executeUpdate();
 			if( i > 0) {
-				check = true;
+				success = true;
 			}			
-			return check;
+			return success;
 		} finally {
 			connectionFactory.closeConnection(con, stmt);
 		}
@@ -90,6 +90,7 @@ public class ClientDAO {
 		}
 	}
 	public boolean updateClientData(ClientModel client)throws Exception{
+		boolean success = false;
 		connectionFactory = new ConnectionFactory();
 		sql = "UPDATE cliente SET nome_cliente=?,cel_cliente=?,dataNascimento=?,sexo=?,"
 				+ "cep=?,logradouro=?,bairro=?,cidade=?,estado=? WHERE cpf_cliente = ?";
@@ -107,9 +108,9 @@ public class ClientDAO {
 		stmt.setString(10,client.getCpf());
 		int i = stmt.executeUpdate();
 		if( i > 0) {
-			check = true;
+			success = true;
 		}			
-		return check;
+		return success;
 	}
 	public boolean excludeClientData(String cpf)throws Exception{
 		try {
