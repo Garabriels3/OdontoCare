@@ -62,6 +62,13 @@ public class NewSchedulingView extends JFrame {
 	private JTextField txtCPF;
 	private JButton btnBuscarCliente;
 	private JLabel lblResultado;
+	private String clientCPF;
+	private String clientName;
+	private String clientDentist;
+	private String clientDate;
+	private String clientHours;
+	private String clientReason;
+	private String clientDuration;
 
 	/**
 	 * Launch the application.
@@ -452,6 +459,17 @@ public class NewSchedulingView extends JFrame {
 		btnBuscarCliente.setBackground(new Color(0, 102, 255));
 		btnBuscarCliente.setBounds(434, 80, 175, 44);
 		contentPane.add(btnBuscarCliente);
-
+		txtName.setText(clientName);;
+		
+	}
+	
+	public void receiveData(String CPF, String name, String dentist, String date, String hour, String duration, String reason) {
+		this.clientCPF = CPF;
+		this.clientName = name;
+		this.clientDentist = dentist;
+		this.clientDate = date;
+		this.clientHours = hour;
+		this.clientDuration = duration;
+		this.clientReason = reason;
 	}
 }

@@ -23,6 +23,17 @@ public class SchedulingModel {
 		this.reason = reason;
 	}
 
+	public SchedulingModel(String cpf2, String name2, String dentist2, String duration2, String date2, String schedule2,
+			String reason2) {
+		this.cpf = cpf2;
+		this.name = name2;
+		this.dentist = dentist2;
+		this.duration = duration2;
+		this.date = date2;
+		this.schedule = schedule2;
+		this.reason = reason2;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}

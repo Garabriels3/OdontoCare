@@ -23,6 +23,9 @@ import javax.swing.table.DefaultTableModel;
 
 import br.com.odonto.controller.SchedulingController;
 import br.com.odonto.model.SchedulingModel;
+import javax.swing.border.BevelBorder;
+import java.awt.SystemColor;
+import java.awt.Cursor;
 
 public class SchedulingView extends JFrame {
 
@@ -182,47 +185,56 @@ public class SchedulingView extends JFrame {
 		btnLogout.setBounds(584, 379, 184, 45);
 		contentPane.add(btnLogout);
 		
-		JLabel lblCpf = new JLabel("CPF ");
-		lblCpf.setBounds(106, 102, 30, 14);
-		contentPane.add(lblCpf);
-		
 		JLabel lblNome = new JLabel("NOME");
-		lblNome.setBounds(238, 102, 45, 14);
+		lblNome.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblNome.setBounds(120, 86, 45, 14);
 		contentPane.add(lblNome);
 		
 		JLabel lblDentista = new JLabel("DENTISTA");
-		lblDentista.setBounds(346, 102, 69, 14);
+		lblDentista.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblDentista.setBounds(316, 86, 69, 14);
 		contentPane.add(lblDentista);
 		
 		JLabel lblData = new JLabel("DATA");
-		lblData.setBounds(454, 102, 39, 14);
+		lblData.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblData.setBounds(455, 86, 39, 14);
 		contentPane.add(lblData);
 		
 		JLabel lblHorario = new JLabel("HORARIO");
-		lblHorario.setBounds(517, 102, 57, 14);
+		lblHorario.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblHorario.setBounds(508, 86, 69, 14);
 		contentPane.add(lblHorario);
 		
 		tbScheduling = new JTable();
+		
+		tbScheduling.setSelectionForeground(new Color(255, 255, 255));
+		tbScheduling.setSelectionBackground(SystemColor.textHighlight);
+		tbScheduling.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		tbScheduling.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(0, 0, 255), new Color(240, 248, 255), SystemColor.inactiveCaptionBorder, new Color(51, 0, 255)));
+		tbScheduling.setGridColor(new Color(47, 79, 79));
+		tbScheduling.setForeground(new Color(0, 0, 0));
 		tbScheduling.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null},
+				{null, null, null, null},
 			},
 			new String[] {
-				"New columnm", "New column", "New column", "New column", "New column"
+				"New column", "New column", "New column", "New column"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
-				false, true, true, true, true
+				false, false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		});
 		tbScheduling.getColumnModel().getColumn(0).setResizable(false);
-		tbScheduling.getColumnModel().getColumn(0).setPreferredWidth(167);
-		tbScheduling.getColumnModel().getColumn(1).setPreferredWidth(137);
-		tbScheduling.getColumnModel().getColumn(2).setPreferredWidth(134);
-		tbScheduling.setBounds(40, 132, 532, 292);
+		tbScheduling.getColumnModel().getColumn(0).setPreferredWidth(264);
+		tbScheduling.getColumnModel().getColumn(1).setResizable(false);
+		tbScheduling.getColumnModel().getColumn(1).setPreferredWidth(209);
+		tbScheduling.getColumnModel().getColumn(2).setResizable(false);
+		tbScheduling.getColumnModel().getColumn(3).setResizable(false);
+		tbScheduling.setBounds(32, 115, 550, 309);
 		contentPane.add(tbScheduling);
 		
 		try {
@@ -231,20 +243,47 @@ public class SchedulingView extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		tbScheduling.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SchedulingModel model;
+				String clientName = tbScheduling.getValueAt(tbScheduling.getSelectedRow(), 0).toString();
+				String clientDentist = tbScheduling.getValueAt(tbScheduling.getSelectedRow(), 1).toString();
+				String clientDate = tbScheduling.getValueAt(tbScheduling.getSelectedRow(), 2).toString();
+				String clientHour = tbScheduling.getValueAt(tbScheduling.getSelectedRow(), 3).toString();
+				NewSchedulingView newScheduling = new NewSchedulingView();
+				try {
+					model = readTable();
+					newScheduling.receiveData(model.getCpf(), clientName, clientDentist, clientDate, clientHour,  model.getDuration(), model.getReason());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				newScheduling.setLocationRelativeTo(null);
+				newScheduling.setVisible(true);
+			}
+		});
 	}
 	
-	public void readTable() throws Exception {
-		DefaultTableModel modelo = (DefaultTableModel) tbScheduling.getModel();
+	public SchedulingModel readTable() throws Exception {
+		SchedulingModel clientData;
 		SchedulingController controller = new SchedulingController();
-		modelo.setNumRows(0);
+		DefaultTableModel model = (DefaultTableModel) tbScheduling.getModel();
+		model.setNumRows(0);
 		for(SchedulingModel client: controller.schedulingListController()) {
-				modelo.addRow(new Object[] {
-						client.getCpf(),
+			model.addRow(new Object[] {
 						client.getName(),
 						client.getDentist(),
 						client.getDate(),
 						client.getSchedule()
 				});
+			 clientData = new SchedulingModel(client.getCpf(), client.getName(), client.getDentist(), client.getDuration(),
+					client.getDate(), client.getSchedule(), client.getReason());
+			 if(clientData != null) {
+			 	return clientData;
+			 }
 		}
+		 return null;
 	}
 }

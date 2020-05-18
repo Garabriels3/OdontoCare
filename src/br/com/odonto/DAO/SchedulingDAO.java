@@ -131,7 +131,7 @@ public class SchedulingDAO {
 		List<SchedulingModel> clientScheduling = new ArrayList();
 		
 		try {
-			stmt = con.prepareStatement("SELECT CLIENTE.CPF_CLIENTE, CLIENTE.NOME_CLIENTE, AGENDAMENTO.DENTISTA, AGENDAMENTO.DATACONSULTA, AGENDAMENTO.HORARIOCONSULTA FROM AGENDAMENTO, CLIENTE");
+			stmt = con.prepareStatement("SELECT CLIENTE.CPF_CLIENTE, CLIENTE.NOME_CLIENTE, AGENDAMENTO.DENTISTA, AGENDAMENTO.DATACONSULTA, AGENDAMENTO.HORARIOCONSULTA, AGENDAMENTO.DURACAOCONSULTA, AGENDAMENTO.MOTIVO FROM AGENDAMENTO, CLIENTE");
 			res = stmt.executeQuery();
 			
 			while(res.next()) {
@@ -142,6 +142,8 @@ public class SchedulingDAO {
 				client.setDentist(res.getString("DENTISTA"));
 				client.setDate(res.getString("DATACONSULTA"));
 				client.setSchedule(res.getString("HORARIOCONSULTA"));
+				client.setDuration(res.getString("DURACAOCONSULTA"));
+				client.setReason(res.getString("MOTIVO"));
 			
 				clientScheduling.add(client);
 			}
