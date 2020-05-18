@@ -459,7 +459,6 @@ public class NewSchedulingView extends JFrame {
 		btnBuscarCliente.setBackground(new Color(0, 102, 255));
 		btnBuscarCliente.setBounds(434, 80, 175, 44);
 		contentPane.add(btnBuscarCliente);
-		txtName.setText(clientName);;
 		
 	}
 	
@@ -471,5 +470,14 @@ public class NewSchedulingView extends JFrame {
 		this.clientHours = hour;
 		this.clientDuration = duration;
 		this.clientReason = reason;
+		txtName.setText(clientName);
+		txtConsultationDate.setText(clientDate);
+		txtConsultationDuration.setText(clientDuration);
+		txtConsultationSchedule.setText(clientHours);
+		txtConsultationReason.setText(clientReason);
+		cbDentists.setSelectedItem(clientDentist);
+		txtCPF.setText(clientCPF);
+
 	}
 }
+

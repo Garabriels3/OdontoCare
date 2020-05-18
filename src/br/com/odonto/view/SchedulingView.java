@@ -252,16 +252,22 @@ public class SchedulingView extends JFrame {
 				String clientDentist = tbScheduling.getValueAt(tbScheduling.getSelectedRow(), 1).toString();
 				String clientDate = tbScheduling.getValueAt(tbScheduling.getSelectedRow(), 2).toString();
 				String clientHour = tbScheduling.getValueAt(tbScheduling.getSelectedRow(), 3).toString();
-				NewSchedulingView newScheduling = new NewSchedulingView();
+				
 				try {
 					model = readTable();
-					newScheduling.receiveData(model.getCpf(), clientName, clientDentist, clientDate, clientHour,  model.getDuration(), model.getReason());
+					sch = new SchedulingView();
+					nsch = new NewSchedulingView();
+					nsch.receiveData(model.getCpf(), clientName, clientDentist, clientDate, clientHour,  model.getDuration(), model.getReason());
+					nsch.setLocationRelativeTo(null);
+					nsch.setVisible(true);
+					sch.setVisible(false);
+					dispose();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				newScheduling.setLocationRelativeTo(null);
-				newScheduling.setVisible(true);
+				
+
 			}
 		});
 	}
