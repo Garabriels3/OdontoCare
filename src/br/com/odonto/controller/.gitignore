@@ -2,3 +2,6 @@
 /RegisterController.class
 /ClientRegisterController.class
 /EmployeeRegisterController.class
+/ClientController.class
+/EmployeeController.class
+/SchedulingController.class

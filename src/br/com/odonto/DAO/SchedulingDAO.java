@@ -3,6 +3,11 @@ package br.com.odonto.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import br.com.odonto.model.ClientModel;
 import br.com.odonto.model.SchedulingModel;
@@ -115,5 +120,34 @@ public class SchedulingDAO {
 		} finally {
 			connectionFactory.closeConnection(con, stmt);
 		}
+	}
+	
+	public List<SchedulingModel> schedulingList() throws Exception {
+		connectionFactory = new ConnectionFactory();
+		con = connectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		ResultSet res = null;
+		
+		List<SchedulingModel> clientScheduling = new ArrayList();
+		
+		try {
+			stmt = con.prepareStatement("SELECT CLIENTE.CPF_CLIENTE, CLIENTE.NOME_CLIENTE, AGENDAMENTO.DENTISTA, AGENDAMENTO.DATACONSULTA, AGENDAMENTO.HORARIOCONSULTA FROM AGENDAMENTO, CLIENTE");
+			res = stmt.executeQuery();
+			
+			while(res.next()) {
+				SchedulingModel client = new SchedulingModel();
+				
+				client.setName(res.getString("CPF_CLIENTE"));
+				client.setName(res.getString("NOME_CLIENTE"));
+				client.setDentist(res.getString("DENTISTA"));
+				client.setDate(res.getString("DATACONSULTA"));
+				client.setSchedule(res.getString("HORARIOCONSULTA"));
+			
+				clientScheduling.add(client);
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(SchedulingDAO.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return clientScheduling;
 	}
 }

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+//AUTHOR: GABRIEL DOS SANTOS NASCIMENTO(21285136)
+
 public class ConnectionFactory {
 	private static String login;
 	private static String password;
@@ -15,7 +17,7 @@ public class ConnectionFactory {
 			System.out.println("Chegou no ConnectionFactory");
 			Class.forName("com.mysql.jdbc.Driver");
 			login = "root";
-			password = "";
+			password = "71463771";
 			url = "jdbc:mysql://localhost:3306/odonto";
 			return DriverManager.getConnection(url, login, password);
 		}

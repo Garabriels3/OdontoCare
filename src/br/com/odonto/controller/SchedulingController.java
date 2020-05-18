@@ -1,5 +1,10 @@
 package br.com.odonto.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import br.com.odonto.DAO.SchedulingDAO;
 import br.com.odonto.model.ClientModel;
 import br.com.odonto.model.SchedulingModel;
@@ -7,7 +12,9 @@ import br.com.odonto.model.SchedulingModel;
 public class SchedulingController {
 	private SchedulingDAO schedulingDAO = new SchedulingDAO();;
 	private SchedulingModel scheduling;
+	private List<SchedulingModel> clients = new ArrayList();
 	
+
 	public String queryClientName(String cpf)throws Exception{
 		String name = null;
 		if(cpf.length() > 10) {
@@ -48,4 +55,16 @@ public class SchedulingController {
 		}
 		return success;
 	}
+	
+	public List<SchedulingModel> schedulingListController() throws Exception {
+		
+		clients = schedulingDAO.schedulingList();
+		
+		if(clients != null) {
+			return clients;
+		} else {
+			JOptionPane.showMessageDialog(null, "LISTA DE AGENDAMENTOS VAZIA");
+			return null;
+		}
+    }
 }

@@ -37,11 +37,12 @@ import javax.swing.Box;
 import java.awt.Rectangle;
 import javax.swing.border.LineBorder;
 
-import br.com.odonto.DAO.ClientDAO;
 import br.com.odonto.controller.LoginController;
 import br.com.odonto.util.ConnectionFactory;
 
 import javax.swing.UIManager;
+
+// AUTHOR: GABRIEL DOS SANTOS NASCIMENTO(21285136)
 
 public class LoginView extends JFrame {
 	// MARK: Attributes

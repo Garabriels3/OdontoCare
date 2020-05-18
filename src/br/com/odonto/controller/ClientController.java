@@ -7,6 +7,8 @@ import br.com.odonto.model.CepModel;
 import br.com.odonto.model.ClientModel;
 import br.com.odonto.service.CepApi;
 
+//AUTHOR: GABRIEL DOS SANTOS NASCIMENTO(21285136)
+
 public class ClientController {
 	ClientModel client;
 	ClientDAO clientDAO = new ClientDAO(); // instancia da DAO

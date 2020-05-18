@@ -15,6 +15,8 @@ import br.com.odonto.model.ClientModel;
 import br.com.odonto.service.CepApi;
 import br.com.odonto.util.ConnectionFactory;
 
+//AUTHOR: GABRIEL DOS SANTOS NASCIMENTO(21285136)
+
 public class ClientDAO {
 	private Gson gson = new GsonBuilder().create(); // Gson é uma library, que converte Json para Objeto manipulavel, ou de Obejto para Json (fromJson, toJson)
     private CepModel data; // Variavel do tipo da Model, para manipular a api através de objetos Java
