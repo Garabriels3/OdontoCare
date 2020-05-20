@@ -1,5 +1,6 @@
 package br.com.odonto.service;
 
+//AUTHOR: GABRIEL DOS SANTOS (21285136)
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.logging.Logger;

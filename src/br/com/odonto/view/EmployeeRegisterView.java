@@ -1,5 +1,7 @@
 package br.com.odonto.view;
 
+//AUTHOR: FELIPE SORARES
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 

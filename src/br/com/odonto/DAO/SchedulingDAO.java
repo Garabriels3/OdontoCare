@@ -1,5 +1,7 @@
 package br.com.odonto.DAO;
 
+//AUTHOR: Gabriel dos Santos(21285136) e Felipe Pereira
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

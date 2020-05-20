@@ -1,5 +1,7 @@
 package br.com.odonto.DAO;
 
+//AUTHOR: FELIPE PEREIRA
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
