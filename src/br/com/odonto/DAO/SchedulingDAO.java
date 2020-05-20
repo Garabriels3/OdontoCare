@@ -131,13 +131,13 @@ public class SchedulingDAO {
 		List<SchedulingModel> clientScheduling = new ArrayList();
 		
 		try {
-			stmt = con.prepareStatement("SELECT AGENDAMENTO.CPF_CLIENTE, CLIENTE.NOME_CLIENTE, AGENDAMENTO.DENTISTA, AGENDAMENTO.DATACONSULTA, AGENDAMENTO.HORARIOCONSULTA, AGENDAMENTO.DURACAOCONSULTA, AGENDAMENTO.MOTIVO FROM AGENDAMENTO, CLIENTE");
+			stmt = con.prepareStatement("SELECT AGENDAMENTO.CPF_CLIENTE, CLIENTE.NOME_CLIENTE, AGENDAMENTO.DENTISTA, AGENDAMENTO.DATACONSULTA, AGENDAMENTO.HORARIOCONSULTA, AGENDAMENTO.DURACAOCONSULTA, AGENDAMENTO.MOTIVO FROM AGENDAMENTO INNER JOIN CLIENTE ON AGENDAMENTO.cpf_cliente = CLIENTE.cpf_cliente");
 			res = stmt.executeQuery();
 			
 			while(res.next()) {
 				SchedulingModel client = new SchedulingModel();
 				
-				client.setName(res.getString("CPF_CLIENTE"));
+				client.setCpf(res.getString("CPF_CLIENTE"));
 				client.setName(res.getString("NOME_CLIENTE"));
 				client.setDentist(res.getString("DENTISTA"));
 				client.setDate(res.getString("DATACONSULTA"));
@@ -146,6 +146,7 @@ public class SchedulingDAO {
 				client.setReason(res.getString("MOTIVO"));
 			
 				clientScheduling.add(client);
+				System.out.println(client.getCpf());
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(SchedulingDAO.class.getName()).log(Level.SEVERE, null, ex);

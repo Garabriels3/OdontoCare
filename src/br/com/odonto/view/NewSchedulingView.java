@@ -470,13 +470,14 @@ public class NewSchedulingView extends JFrame {
 		this.clientHours = hour;
 		this.clientDuration = duration;
 		this.clientReason = reason;
+		txtCPF.setText(clientCPF);
 		txtName.setText(clientName);
 		txtConsultationDate.setText(clientDate);
 		txtConsultationDuration.setText(clientDuration);
 		txtConsultationSchedule.setText(clientHours);
 		txtConsultationReason.setText(clientReason);
 		cbDentists.setSelectedItem(clientDentist);
-		txtCPF.setText(clientCPF);
+		System.out.println(CPF + name + dentist);
 
 	}
 }

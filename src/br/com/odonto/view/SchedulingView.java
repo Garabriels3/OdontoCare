@@ -42,6 +42,7 @@ public class SchedulingView extends JFrame {
 	private JButton btnCadastroCliente;
 	private JButton btnNovoAgendamento;
 	private JTable tbScheduling;
+	private SchedulingModel clientData;
 
 	/**
 	 * Launch the application.
@@ -215,7 +216,6 @@ public class SchedulingView extends JFrame {
 		tbScheduling.setForeground(new Color(0, 0, 0));
 		tbScheduling.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
 			},
 			new String[] {
 				"New column", "New column", "New column", "New column"
@@ -273,7 +273,6 @@ public class SchedulingView extends JFrame {
 	}
 	
 	public SchedulingModel readTable() throws Exception {
-		SchedulingModel clientData;
 		SchedulingController controller = new SchedulingController();
 		DefaultTableModel model = (DefaultTableModel) tbScheduling.getModel();
 		model.setNumRows(0);
@@ -284,12 +283,9 @@ public class SchedulingView extends JFrame {
 						client.getDate(),
 						client.getSchedule()
 				});
-			 clientData = new SchedulingModel(client.getCpf(), client.getName(), client.getDentist(), client.getDuration(),
+			 this.clientData = new SchedulingModel(client.getCpf(), client.getName(), client.getDentist(), client.getDuration(),
 					client.getDate(), client.getSchedule(), client.getReason());
-			 if(clientData != null) {
-			 	return clientData;
-			 }
 		}
-		 return null;
+		 return clientData;
 	}
 }
