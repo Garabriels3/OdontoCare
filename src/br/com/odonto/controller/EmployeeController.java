@@ -1,5 +1,5 @@
 package br.com.odonto.controller;
-//AUTHOR: FELIPE PEREIRA
+//AUTHOR: Felipe Pereira dos Santos(21192057)
 import javax.swing.JOptionPane;
 
 import br.com.odonto.DAO.EmployeeDAO;

@@ -1,6 +1,6 @@
 package br.com.odonto.DAO;
 
-//AUTHOR: Gabriel dos Santos(21285136) e Felipe Pereira
+//AUTHOR: Gabriel dos Santos(21285136) e Felipe Pereira dos Santos(21192057)
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

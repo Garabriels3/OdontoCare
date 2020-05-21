@@ -6,7 +6,7 @@ import br.com.odonto.DAO.EmployeeDAO;
 import br.com.odonto.DAO.LoginDAO;
 import br.com.odonto.model.LoginModel;
 
-//AUTHOR: GABRIEL DOS SANTOS NASCIMENTO(21285136)
+//AUTHOR: Gabriel Dos Santos Nascimento(21285136)
 
 public class LoginController {
 	private boolean sucess;

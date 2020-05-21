@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-//AUTHOR: GABRIEL DOS SANTOS NASCIMENTO(21285136)
+//AUTHOR: Gabriel Dos Santos Nascimento(21285136) E Felipe Pereira dos Santos(21192057)
 
 public class ConnectionFactory {
 	private static String login;

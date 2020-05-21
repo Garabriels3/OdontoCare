@@ -1,6 +1,6 @@
 package br.com.odonto.view;
 
-//AUTHOR: FELIPE SORARES
+//AUTHOR: Felipe Pereira dos Santos(21192057)
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

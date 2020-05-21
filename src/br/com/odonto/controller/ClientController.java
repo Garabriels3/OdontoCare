@@ -7,7 +7,7 @@ import br.com.odonto.model.CepModel;
 import br.com.odonto.model.ClientModel;
 import br.com.odonto.service.CepApi;
 
-//AUTHOR: GABRIEL DOS SANTOS NASCIMENTO(21285136)
+//AUTHOR: Gabriel Dos Santos Nascimento(21285136) E Felipe Pereira dos Santos(21192057)
 
 public class ClientController {
 	ClientModel client;
