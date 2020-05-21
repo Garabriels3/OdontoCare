@@ -115,8 +115,8 @@ public class LoginView extends JFrame {
 		background.add(btnMinimize);
 		
 		JButton btnSignUp = new JButton("Login");
-		
 		btnSignUp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnSignUp.setFocusable(false);
 		btnSignUp.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnSignUp.setForeground(new Color(255, 255, 255));
 		btnSignUp.setBorder(null);

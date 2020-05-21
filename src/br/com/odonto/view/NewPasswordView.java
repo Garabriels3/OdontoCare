@@ -145,6 +145,7 @@ public class NewPasswordView extends JFrame {
 		draggSecondPanel.setLayout(null);
 		
 		btnMinimize = new JButton("-");
+		btnMinimize.setFocusable(false);
 		btnMinimize.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setState(JFrame.ICONIFIED);
@@ -158,6 +159,7 @@ public class NewPasswordView extends JFrame {
 		btnMinimize.setBackground(new Color(0, 102, 255));
 		
 		btnClose = new JButton("X");
+		btnClose.setFocusable(false);
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -171,6 +173,7 @@ public class NewPasswordView extends JFrame {
 		btnClose.setBackground(new Color(0, 102, 255));
 		
 		btnAlterar = new JButton("Alterar senha");
+		btnAlterar.setFocusable(false);
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

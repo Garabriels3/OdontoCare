@@ -108,6 +108,7 @@ public class NewSchedulingView extends JFrame {
 		contentPane.add(panel);
 		
 		btnMinimize = new JButton("-");
+		btnMinimize.setFocusable(false);
 		btnMinimize.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setState(JFrame.ICONIFIED);
@@ -121,6 +122,7 @@ public class NewSchedulingView extends JFrame {
 		contentPane.add(btnMinimize);
 		
 		btnClose = new JButton("X");
+		btnClose.setFocusable(false);
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -283,6 +285,7 @@ public class NewSchedulingView extends JFrame {
 		contentPane.add(cbDentists);
 		
 		btnExcluir = new JButton("Excluir");
+		btnExcluir.setFocusable(false);
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean success = false;
@@ -317,6 +320,7 @@ public class NewSchedulingView extends JFrame {
 		contentPane.add(btnExcluir);
 		
 		btnConsultar = new JButton("Consultar");
+		btnConsultar.setFocusable(false);
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				schedulingModel = null;
@@ -347,6 +351,7 @@ public class NewSchedulingView extends JFrame {
 		contentPane.add(btnConsultar);
 		
 		btnAlterar = new JButton("Alterar");
+		btnAlterar.setFocusable(false);
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean success = false;
@@ -385,6 +390,7 @@ public class NewSchedulingView extends JFrame {
 		contentPane.add(btnAlterar);
 		
 		btnSalvar = new JButton("Salvar");
+		btnSalvar.setFocusable(false);
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean success = false;
@@ -439,6 +445,7 @@ public class NewSchedulingView extends JFrame {
 		contentPane.add(txtCPF);
 		
 		btnBuscarCliente = new JButton("Buscar Cliente");
+		btnBuscarCliente.setFocusable(false);
 		btnBuscarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name = null , cpf = txtCPF.getText();

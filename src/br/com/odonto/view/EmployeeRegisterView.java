@@ -120,6 +120,7 @@ public class EmployeeRegisterView extends JFrame {
 			}
 		});
 		btnMinimize.setForeground(Color.WHITE);
+		btnMinimize.setFocusable(false);
 		btnMinimize.setFont(new Font("Verdana", Font.PLAIN, 24));
 		btnMinimize.setBorder(null);
 		btnMinimize.setBackground(new Color(0, 102, 255));
@@ -127,6 +128,7 @@ public class EmployeeRegisterView extends JFrame {
 		contentPane.add(btnMinimize);
 		
 		btnClose = new JButton("X");
+		btnClose.setFocusable(false);
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -228,6 +230,7 @@ public class EmployeeRegisterView extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setFocusable(false);
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean success = false;

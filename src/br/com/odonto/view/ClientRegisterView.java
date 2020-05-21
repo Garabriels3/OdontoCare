@@ -164,6 +164,7 @@ public class ClientRegisterView extends JFrame {
 		JButton btnClose = new JButton("X");
 		
 		btnClose.setForeground(Color.WHITE);
+		btnClose.setFocusable(false);
 		btnClose.setFont(new Font("Verdana", Font.PLAIN, 17));
 		btnClose.setBorder(null);
 		btnClose.setBackground(new Color(0, 102, 255));
@@ -173,6 +174,7 @@ public class ClientRegisterView extends JFrame {
 		JButton btnMinimize = new JButton("-");
 		
 		btnMinimize.setForeground(Color.WHITE);
+		btnMinimize.setFocusable(false);
 		btnMinimize.setFont(new Font("Verdana", Font.PLAIN, 24));
 		btnMinimize.setBorder(null);
 		btnMinimize.setBackground(new Color(0, 102, 255));
@@ -276,6 +278,7 @@ public class ClientRegisterView extends JFrame {
 		contentPane.add(txtCep);
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setFocusable(false);
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean success = false;
@@ -323,6 +326,7 @@ public class ClientRegisterView extends JFrame {
 		contentPane.add(btnSalvar);
 		
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.setFocusable(false);
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean success = false;
@@ -370,6 +374,7 @@ public class ClientRegisterView extends JFrame {
 		contentPane.add(btnAlterar);
 		
 		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.setFocusable(false);
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean success = false;
@@ -398,6 +403,7 @@ public class ClientRegisterView extends JFrame {
 		contentPane.add(btnExcluir);
 		
 		JButton btnConsultar = new JButton("Consultar");
+		btnConsultar.setFocusable(false);
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				clientController = new ClientController();
@@ -450,7 +456,7 @@ public class ClientRegisterView extends JFrame {
 		lblCadastrar.setFont(new Font("Verdana", Font.BOLD, 30));
 		
 		JButton btnFindCep = new JButton("Buscar Endere\u00E7o");
-	
+		btnFindCep.setFocusable(false);
 		btnFindCep.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnFindCep.setForeground(Color.WHITE);
 		btnFindCep.setFont(new Font("Tahoma", Font.PLAIN, 16));
