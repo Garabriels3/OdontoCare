@@ -42,7 +42,7 @@ import br.com.odonto.util.ConnectionFactory;
 
 import javax.swing.UIManager;
 
-// AUTHOR: GABRIEL DOS SANTOS NASCIMENTO(21285136)
+// AUTHOR: Gabriel dos Santos Nascimento(21285136)
 
 public class LoginView extends JFrame {
 	// MARK: Attributes
@@ -52,10 +52,10 @@ public class LoginView extends JFrame {
 	private JPasswordField txtPassword;
 	private JButton btnCadastrar;
 	private ClientRegisterView crv;
-	private LoginView lv;
-	private LoginController lc;
+	private LoginView loginView;
 	private EmployeeRegisterView erv;
 	private SchedulingView sch;
+	private NewPasswordView npv;
 	int x,y;
 	
 	/**
@@ -96,6 +96,7 @@ public class LoginView extends JFrame {
 		txtEmail.setColumns(10);
 		
 		JButton btnClose = new JButton("X");
+		btnClose.setFocusable(false);
 		btnClose.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnClose.setFont(new Font("Verdana", Font.PLAIN, 17));
 		btnClose.setForeground(new Color(255, 255, 255));
@@ -105,6 +106,7 @@ public class LoginView extends JFrame {
 		background.add(btnClose);
 		
 		JButton btnMinimize = new JButton("-");
+		btnMinimize.setFocusable(false);
 		btnMinimize.setForeground(new Color(255, 255, 255));
 		btnMinimize.setFont(new Font("Verdana", Font.PLAIN, 24));
 		btnMinimize.setBorder(null);
@@ -142,6 +144,19 @@ public class LoginView extends JFrame {
 		background.add(lblSenha);
 		
 		JButton btnResetPassword = new JButton("Clique aqui para redefinir sua senha!");
+		btnResetPassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					npv = new NewPasswordView();
+					loginView = new LoginView();
+					npv.setLocationRelativeTo(null);
+					npv.setVisible(true);
+					npv.setAlwaysOnTop(true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnResetPassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnResetPassword.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnResetPassword.setForeground(new Color(51, 51, 255));
@@ -185,10 +200,10 @@ public class LoginView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					erv = new EmployeeRegisterView();
-					lv = new LoginView();
+					loginView = new LoginView();
 					erv.setLocationRelativeTo(null);
 					erv.setVisible(true);
-					lv.setVisible(false);
+					loginView.setVisible(false);
 					dispose();
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -219,20 +234,20 @@ public class LoginView extends JFrame {
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean success = false;
-				lc = new LoginController();
+				loginController = new LoginController();
 				String email = txtEmail.getText();
 				String password = txtPassword.getText();
 				try {
-					success = lc.signIn(email, password);			
+					success = loginController.signIn(email, password);			
 				}catch(Exception e2){
 				 e2.printStackTrace();
 				}
 				if(success) {
 					sch = new SchedulingView();
-					lv = new LoginView();
+					loginView = new LoginView();
 					sch.setLocationRelativeTo(null);
 					sch.setVisible(true);
-					lv.setVisible(false);
+					loginView.setVisible(false);
 					dispose();
 				}else {
 					lblError.setVisible(true);

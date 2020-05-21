@@ -17,7 +17,7 @@ public class ConnectionFactory {
 			System.out.println("Chegou no ConnectionFactory");
 			Class.forName("com.mysql.jdbc.Driver");
 			login = "root";
-			password = "71463771";
+			password = "";
 			url = "jdbc:mysql://localhost:3306/odonto";
 			return DriverManager.getConnection(url, login, password);
 		}
