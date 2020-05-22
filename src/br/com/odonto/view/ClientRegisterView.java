@@ -146,7 +146,7 @@ public class ClientRegisterView extends JFrame {
 		lblCelular.setBounds(59, 180, 85, 20);
 		contentPane.add(lblCelular);
 		
-		txtBirthday = new JFormattedTextField(new MaskFormatter("####/##/##"));
+		txtBirthday = new JFormattedTextField(new MaskFormatter("##/##/####"));
 		txtBirthday.setForeground(Color.DARK_GRAY);
 		txtBirthday.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtBirthday.setColumns(10);

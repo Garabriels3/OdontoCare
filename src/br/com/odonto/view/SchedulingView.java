@@ -158,7 +158,7 @@ public class SchedulingView extends JFrame {
 		btnCadastroCliente.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnCadastroCliente.setBorder(null);
 		btnCadastroCliente.setBackground(new Color(0, 102, 255));
-		btnCadastroCliente.setBounds(599, 139, 184, 45);
+		btnCadastroCliente.setBounds(595, 115, 184, 45);
 		contentPane.add(btnCadastroCliente);
 		
 		btnNovoAgendamento = new JButton("Marcar Agendamento");
@@ -181,7 +181,7 @@ public class SchedulingView extends JFrame {
 		btnNovoAgendamento.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNovoAgendamento.setBorder(null);
 		btnNovoAgendamento.setBackground(new Color(0, 102, 255));
-		btnNovoAgendamento.setBounds(595, 212, 184, 45);
+		btnNovoAgendamento.setBounds(595, 171, 184, 45);
 		contentPane.add(btnNovoAgendamento);
 		
 		JButton btnLogout = new JButton("Logout");
@@ -203,31 +203,31 @@ public class SchedulingView extends JFrame {
 		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnLogout.setBorder(null);
 		btnLogout.setBackground(new Color(0, 102, 255));
-		btnLogout.setBounds(605, 379, 184, 45);
+		btnLogout.setBounds(595, 390, 184, 45);
 		contentPane.add(btnLogout);
 		
 		JLabel lblNome = new JLabel("NOME");
-		lblNome.setForeground(Color.BLACK);
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNome.setForeground(new Color(128, 128, 128));
+		lblNome.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNome.setBounds(120, 95, 45, 14);
 		contentPane.add(lblNome);
 		
 		JLabel lblDentista = new JLabel("DENTISTA");
-		lblDentista.setForeground(Color.BLACK);
-		lblDentista.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDentista.setForeground(new Color(128, 128, 128));
+		lblDentista.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblDentista.setBounds(316, 95, 69, 14);
 		contentPane.add(lblDentista);
 		
 		JLabel lblData = new JLabel("DATA");
-		lblData.setForeground(Color.BLACK);
-		lblData.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblData.setBounds(455, 95, 39, 14);
+		lblData.setForeground(new Color(128, 128, 128));
+		lblData.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblData.setBounds(465, 95, 39, 14);
 		contentPane.add(lblData);
 		
 		JLabel lblHorario = new JLabel("HORARIO");
-		lblHorario.setForeground(Color.BLACK);
-		lblHorario.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblHorario.setBounds(522, 95, 56, 14);
+		lblHorario.setForeground(new Color(128, 128, 128));
+		lblHorario.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblHorario.setBounds(514, 95, 74, 14);
 		contentPane.add(lblHorario);
 		
 		tbScheduling = new JTable();
@@ -235,7 +235,7 @@ public class SchedulingView extends JFrame {
 		tbScheduling.setSelectionForeground(new Color(255, 255, 255));
 		tbScheduling.setSelectionBackground(SystemColor.textHighlight);
 		tbScheduling.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		tbScheduling.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(0, 0, 0), new Color(240, 248, 255), new Color(244, 247, 252), Color.BLACK));
+		tbScheduling.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(0, 0, 255), new Color(240, 248, 255), new Color(0, 0, 205), new Color(0, 0, 139)));
 		tbScheduling.setGridColor(new Color(47, 79, 79));
 		tbScheduling.setForeground(new Color(0, 0, 0));
 		tbScheduling.setModel(new DefaultTableModel(
@@ -258,7 +258,7 @@ public class SchedulingView extends JFrame {
 		tbScheduling.getColumnModel().getColumn(1).setPreferredWidth(209);
 		tbScheduling.getColumnModel().getColumn(2).setResizable(false);
 		tbScheduling.getColumnModel().getColumn(3).setResizable(false);
-		tbScheduling.setBounds(32, 115, 550, 309);
+		tbScheduling.setBounds(32, 115, 550, 320);
 		contentPane.add(tbScheduling);
 		
 		try {

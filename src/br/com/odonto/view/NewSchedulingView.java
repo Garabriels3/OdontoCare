@@ -191,7 +191,7 @@ public class NewSchedulingView extends JFrame {
 		lblData.setBounds(322, 197, 41, 20);
 		contentPane.add(lblData);
 		
-		txtConsultationDate = new JFormattedTextField(new MaskFormatter("####/##/##"));
+		txtConsultationDate = new JFormattedTextField(new MaskFormatter("##/##/####"));
 		txtConsultationDate.setForeground(Color.DARK_GRAY);
 		txtConsultationDate.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtConsultationDate.setColumns(10);
