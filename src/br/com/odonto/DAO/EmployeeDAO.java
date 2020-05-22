@@ -41,5 +41,22 @@ public class EmployeeDAO {
 			connectionFactory.closeConnection(con, stmt);
 		}
 	}
+	public boolean deleteEmployeeData(String cpf)throws Exception{
+		try {
+			boolean success = false;
+			connectionFactory = new ConnectionFactory();
+			sql = "DELETE FROM funcionario WHERE cpf_func=?";
+			con = connectionFactory.getConnection();
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1,cpf);
+			int i = stmt.executeUpdate();
+			if(i > 0) {
+				success = true;
+			}
+			return success;
+		} finally {
+			connectionFactory.closeConnection(con, stmt);
+		}
+	}
 
 }

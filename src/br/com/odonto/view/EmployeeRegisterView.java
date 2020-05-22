@@ -34,7 +34,7 @@ public class EmployeeRegisterView extends JFrame {
 	
 	private EmployeeController employeeRegisterController;
 	private EmployeeModel employee;
-	private EmployeeRegisterView erv;
+	private EmployeeRegisterView employeeRegisterView;
 	private LoginView lv;
 	private JPanel contentPane;
 	private JPanel panel;
@@ -55,7 +55,10 @@ public class EmployeeRegisterView extends JFrame {
 	private JButton btnCadastrar;
 	private JPasswordField txtSenha;
 	private int x,y;
+	private DeleteEmployeeView deleteEmployeeView;
+	private EmployeeController employeeController;
 	private JLabel lblResultado;
+	private JButton btnCliqueAquiPara;
 
 	/**
 	 * Launch the application.
@@ -212,9 +215,9 @@ public class EmployeeRegisterView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					lv = new LoginView();
-					erv = new EmployeeRegisterView();
-					erv.setLocationRelativeTo(null);
-					erv.setVisible(false);
+					employeeRegisterView = new EmployeeRegisterView();
+					employeeRegisterView.setLocationRelativeTo(null);
+					employeeRegisterView.setVisible(false);
 					lv.setVisible(true);
 					dispose();
 				} catch (Exception e1) {
@@ -226,7 +229,7 @@ public class EmployeeRegisterView extends JFrame {
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnVoltar.setBorder(null);
 		btnVoltar.setBackground(new Color(0, 102, 255));
-		btnVoltar.setBounds(529, 298, 184, 45);
+		btnVoltar.setBounds(529, 290, 184, 45);
 		contentPane.add(btnVoltar);
 		
 		btnCadastrar = new JButton("Cadastrar");
@@ -234,14 +237,14 @@ public class EmployeeRegisterView extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean success = false;
-				employeeRegisterController = EmployeeController.getINSTANCE();
+				employeeController = new EmployeeController();
 				String cpf = txtCPF.getText();
 				String nome = txtNome.getText();
 				String funcao = txtFuncao.getText();
 				String email = txtEmail.getText();
 				String senha = txtSenha.getText();
 				try {
-					success = employeeRegisterController.saveEmployeeData(cpf, nome, funcao, email, senha);		
+					success = employeeController.saveEmployeeData(cpf, nome, funcao, email, senha);		
 				} catch (Exception e2) {
 					e2.printStackTrace();
 				}
@@ -264,7 +267,7 @@ public class EmployeeRegisterView extends JFrame {
 		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnCadastrar.setBorder(null);
 		btnCadastrar.setBackground(new Color(0, 102, 255));
-		btnCadastrar.setBounds(529, 359, 184, 45);
+		btnCadastrar.setBounds(529, 351, 184, 45);
 		contentPane.add(btnCadastrar);
 		
 		lblCadastrar = new JLabel("Sign Up");
@@ -287,5 +290,26 @@ public class EmployeeRegisterView extends JFrame {
 		lblResultado.setBounds(50, 384, 382, 30);
 		lblResultado.setVisible(false);
 		contentPane.add(lblResultado);
+		
+		btnCliqueAquiPara = new JButton("Clique aqui para excluir funcion\u00E1rio");
+		btnCliqueAquiPara.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					deleteEmployeeView = new DeleteEmployeeView();
+					employeeRegisterView = new EmployeeRegisterView();
+					deleteEmployeeView.setLocationRelativeTo(null);
+					deleteEmployeeView.setVisible(true);
+					deleteEmployeeView.setAlwaysOnTop(true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnCliqueAquiPara.setForeground(new Color(51, 51, 255));
+		btnCliqueAquiPara.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnCliqueAquiPara.setBorder(null);
+		btnCliqueAquiPara.setBackground(Color.WHITE);
+		btnCliqueAquiPara.setBounds(488, 407, 279, 23);
+		contentPane.add(btnCliqueAquiPara);
 	}
 }

@@ -84,7 +84,7 @@ public class NewPasswordView extends JFrame {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(new Color(0, 102, 255));
-		panel.setBounds(0, 0, 20, 397);
+		panel.setBounds(0, 0, 20, 337);
 		contentPane.add(panel);
 		
 		txtCPF = new JTextField();
