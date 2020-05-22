@@ -49,8 +49,8 @@ public class ClientRegisterView extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtCPF;
 	private JTextField txtNameComplete;
-	private JTextField txtPhone;
-	private JTextField txtBirthday;
+	private JFormattedTextField txtPhone;
+	private JFormattedTextField txtBirthday;
 	private JTextField txtNeighborhood;
 	private JTextField txtCity;
 	private JTextField txtState;
@@ -125,7 +125,7 @@ public class ClientRegisterView extends JFrame {
 		txtNameComplete.setBounds(61, 139, 380, 30);
 		contentPane.add(txtNameComplete);
 		
-		txtPhone = new JTextField();
+		txtPhone = new JFormattedTextField(new MaskFormatter("(##)# ####-####"));
 		txtPhone.setForeground(Color.DARK_GRAY);
 		txtPhone.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtPhone.setColumns(10);
@@ -146,7 +146,7 @@ public class ClientRegisterView extends JFrame {
 		lblCelular.setBounds(59, 180, 85, 20);
 		contentPane.add(lblCelular);
 		
-		txtBirthday = new JTextField();
+		txtBirthday = new JFormattedTextField(new MaskFormatter("####/##/##"));
 		txtBirthday.setForeground(Color.DARK_GRAY);
 		txtBirthday.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtBirthday.setColumns(10);

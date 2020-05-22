@@ -35,5 +35,6 @@
 	<classpathentry kind="lib" path="jna-4.5.2.jar"/>
 	<classpathentry kind="lib" path="jna-platform-4.5.2.jar"/>
 	<classpathentry kind="lib" path="gson-2.8.2.jar"/>
+	<classpathentry kind="lib" path="Assets/Odonto care logo.png"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

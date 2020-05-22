@@ -41,6 +41,7 @@ import br.com.odonto.controller.LoginController;
 import br.com.odonto.util.ConnectionFactory;
 
 import javax.swing.UIManager;
+import javax.swing.ImageIcon;
 
 // AUTHOR: Gabriel dos Santos Nascimento(21285136)
 
@@ -80,12 +81,6 @@ public class LoginView extends JFrame {
 		setContentPane(background);
 		background.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 102, 255));
-		panel.setBounds(0, 0, 365, 502);
-		background.add(panel);
-		panel.setLayout(null);
-		
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtEmail.setForeground(Color.DARK_GRAY);
@@ -113,6 +108,12 @@ public class LoginView extends JFrame {
 		btnMinimize.setBackground(new Color(0, 102, 255));
 		btnMinimize.setBounds(630, 0, 45, 45);
 		background.add(btnMinimize);
+		
+		JLabel lblLogotipo = new JLabel("1");
+		lblLogotipo.setLabelFor(background);
+		lblLogotipo.setBounds(0, 0, 323, 502);
+		lblLogotipo.setIcon(new ImageIcon(LoginView.class.getResource("/images/logoDonto.png")));
+		background.add(lblLogotipo);
 		
 		JButton btnSignUp = new JButton("Login");
 		btnSignUp.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -192,7 +193,7 @@ public class LoginView extends JFrame {
 		JLabel lblError = new JLabel("Email ou senha invalidos!");
 		lblError.setFont(new Font("Verdana", Font.PLAIN, 16));
 		lblError.setForeground(new Color(204, 0, 0));
-		lblError.setBounds(447, 126, 205, 14);
+		lblError.setBounds(440, 112, 257, 14);
 		background.add(lblError);
 		
 		btnCadastrar = new JButton("Cadastrar");

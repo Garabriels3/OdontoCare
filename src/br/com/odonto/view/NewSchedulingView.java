@@ -8,6 +8,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
 import br.com.odonto.controller.SchedulingController;
 import br.com.odonto.model.SchedulingModel;
@@ -27,8 +28,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.text.ParseException;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFormattedTextField;
 
 public class NewSchedulingView extends JFrame {
 
@@ -41,10 +45,10 @@ public class NewSchedulingView extends JFrame {
 	private JLabel lblNomeCompleto;
 	private JTextField txtName;
 	private JLabel lblData;
-	private JTextField txtConsultationDate;
+	private JFormattedTextField txtConsultationDate;
 	private JLabel lblDuraoDaConsulta;
-	private JTextField txtConsultationDuration;
-	private JTextField txtConsultationSchedule;
+	private JFormattedTextField txtConsultationDuration;
+	private JFormattedTextField txtConsultationSchedule;
 	private JLabel lblHorario;
 	private JTextField txtConsultationReason;
 	private JLabel lblMotivoDaConsulta;
@@ -90,8 +94,9 @@ public class NewSchedulingView extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws ParseException 
 	 */
-	public NewSchedulingView() {
+	public NewSchedulingView() throws ParseException {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 758, 445);
@@ -186,7 +191,7 @@ public class NewSchedulingView extends JFrame {
 		lblData.setBounds(322, 197, 41, 20);
 		contentPane.add(lblData);
 		
-		txtConsultationDate = new JTextField();
+		txtConsultationDate = new JFormattedTextField(new MaskFormatter("####/##/##"));
 		txtConsultationDate.setForeground(Color.DARK_GRAY);
 		txtConsultationDate.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtConsultationDate.setColumns(10);
@@ -201,7 +206,7 @@ public class NewSchedulingView extends JFrame {
 		lblDuraoDaConsulta.setBounds(40, 197, 188, 20);
 		contentPane.add(lblDuraoDaConsulta);
 		
-		txtConsultationDuration = new JTextField();
+		txtConsultationDuration = new JFormattedTextField(new MaskFormatter("##:##"));
 		txtConsultationDuration.setForeground(Color.DARK_GRAY);
 		txtConsultationDuration.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtConsultationDuration.setColumns(10);
@@ -210,7 +215,7 @@ public class NewSchedulingView extends JFrame {
 		txtConsultationDuration.setBounds(42, 218, 144, 30);
 		contentPane.add(txtConsultationDuration);
 		
-		txtConsultationSchedule = new JTextField();
+		txtConsultationSchedule = new JFormattedTextField(new MaskFormatter("##:##"));
 		txtConsultationSchedule.setForeground(Color.DARK_GRAY);
 		txtConsultationSchedule.setFont(new Font("Verdana", Font.PLAIN, 14));
 		txtConsultationSchedule.setColumns(10);
